@@ -11,32 +11,29 @@ export const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault()
-        let valid = false
-        return fetch("http://localhost:8088/login", {
-            method: "GET",
+
+        return fetch("http://127.0.0.1:8088/login", {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
-            }
+            },
+            body: JSON.stringify({
+                email: email.current.value,
+                password: password.current.value
+            })
         })
             .then(res => res.json())
             .then(res => {
-                for (const user of res) {
-                    if (user.email === email.current.value && user.password === password.current.value) {
-                        valid = true
-                        localStorage.setItem("user_id", user.id)
-                    }
-                }
-                if (valid) {
-                    
+                if (res.valid) {
+                    localStorage.setItem("user_id", res.id )
                     history.push("/")
-                } else {
+                }
+                else {
                     invalidDialog.current.showModal()
                 }
             })
     }
-
-
 
     return (
         <main className="container--login">
@@ -57,7 +54,7 @@ export const Login = () => {
                         <input ref={password} type="password" id="password" className="form-control" defaultValue="me" placeholder="Password" required />
                     </fieldset>
                     <fieldset style={{
-                        textAlign: "center"
+                        textAlign:"center"
                     }}>
                         <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
                     </fieldset>
