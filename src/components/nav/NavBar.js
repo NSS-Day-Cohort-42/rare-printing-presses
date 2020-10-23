@@ -5,12 +5,11 @@ import Logo from "./rare.jpeg"
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import CategoryIcon from '@material-ui/icons/Category';
 
 
 
 export const NavBar = () => {
-    const history = useHistory()
-
     return (
         <ul className="navbar">
             <li className="navbar__item">
@@ -18,6 +17,9 @@ export const NavBar = () => {
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/posts"><div className ="icon"><MailOutlineIcon style={{ fontSize: 28 }} />Posts</div></Link>
+            </li>
+            <li className="navbar__item">
+                <Link className="navbar__link" to="/category"><div className ="icon"><CategoryIcon style={{ fontSize: 28 }} />Posts</div></Link>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/tag"><div className ="icon"><LoyaltyIcon style={{ fontSize: 28 }} />Tags</div> </Link>
