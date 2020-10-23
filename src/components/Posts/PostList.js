@@ -12,7 +12,6 @@ export const PostList = (props) => {
         getAllPosts()
     }, [])
 
- 
     const useStyles = makeStyles((theme) => ({
             root: {
             '& > *': {
@@ -50,8 +49,12 @@ export const PostList = (props) => {
             <article className="postsContainer">
                 {
                     posts.map(post => {
-                            return <section key={post.id} className="Posts">
-                                        <div className="PostTitle">{post.title} </div>
+                            return <section key={post.id} className="posts">
+                                        <div className="PostAuthor">Author: {post.id} </div>
+                                        <div className="PostTitle">Title: {post.title} </div>
+                                        <div className="PostContent">Content: {post.content}</div>
+                                        <div className="PostCategory">Category: {post.category_id}</div>
+                                    
                                     </section>
                             
                     })
