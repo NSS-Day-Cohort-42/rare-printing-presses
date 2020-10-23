@@ -53,7 +53,9 @@ export const PostList = (props) => {
                                         <div className="PostAuthor">Author: {post.id} </div>
                                         <div className="PostTitle">Title: {post.title} </div>
                                         <div className="PostCategory">Category: {post.category_id}</div>
-                                        <ArrowForwardIosIcon></ArrowForwardIosIcon>
+                                        <button className="postDetails">
+                                            <ArrowForwardIosIcon className={classes.primary} onClick={() => props.history.push(`/posts/${post.id}`)} />
+                                        </button>
                                     </section>
                             
                     })
