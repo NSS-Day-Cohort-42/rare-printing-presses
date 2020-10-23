@@ -12,8 +12,8 @@ import CategoryIcon from '@material-ui/icons/Category';
 export const NavBar = () => {
     return (
         <ul className="navbar">
-            <li className="navbar__item">
-                <img className="navbar__logo" src={Logo} />
+            <li className="navbarTitle">
+                Rare.
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/posts"><div className ="icon"><MailOutlineIcon style={{ fontSize: 28 }} />Posts</div></Link>
