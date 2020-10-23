@@ -4,6 +4,8 @@ import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
+import { Comment } from "./comment/Comment"
+import { CommentProvider } from "./comment/CommentProvider"
 
 export const Rare = (props) => (
     <>
@@ -12,12 +14,12 @@ export const Rare = (props) => (
                 return <>
                     <NavBar />
                     <ApplicationViews />
+
                 </>
             } else {
                 return <Redirect to="/login" />
             }
         }} />
-
         <Route path="/login" render={() => {
             if (localStorage.getItem("user_id")) {
                 return <Redirect to="/" />
