@@ -2,6 +2,11 @@ import React from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./NavBar.css"
 import Logo from "./rare.jpeg"
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import LoyaltyIcon from '@material-ui/icons/Loyalty';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
+
+
 
 export const NavBar = () => {
     const history = useHistory()
@@ -12,26 +17,14 @@ export const NavBar = () => {
                 <img className="navbar__logo" src={Logo} />
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/">Posts</Link>
+                <Link className="navbar__link" to="/posts"><div className ="icon"><MailOutlineIcon style={{ fontSize: 28 }} />Posts</div></Link>
             </li>
-            {
-                (localStorage.getItem("rare_user_id") !== null) ?
-                    <li className="nav-item">
-                        <button className="nav-link fakeLink"
-                            onClick={() => {
-                                localStorage.removeItem("rare_user_id")
-                                history.push({ pathname: "/" })
-                            }}
-                        >Logout</button>
-                    </li> :
-                    <>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/login">Login</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/register">Register</Link>
-                        </li>
-                    </>
-            }        </ul>
+            <li className="navbar__item">
+                <Link className="navbar__link" to="/tag"><div className ="icon"><LoyaltyIcon style={{ fontSize: 28 }} />Tags</div> </Link>
+            </li>
+            <li className="navbar__item">
+                <Link className="navbar__link" to="/logout"><div className ="icon"><ExitToAppIcon style={{ fontSize: 28 }} />Logout</div></Link>
+            </li>
+        </ul>
     )
 }
