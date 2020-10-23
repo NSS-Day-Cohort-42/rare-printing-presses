@@ -12,11 +12,9 @@ export const Rare = (props) => (
         <Route render={(props) => {
             if (localStorage.getItem("user_id")) {
                 return <>
-                <CommentProvider>
                     <NavBar />
                     <ApplicationViews />
-                    <Comment {...props}/>
-                    </CommentProvider>
+
                 </>
             } else {
                 return <Redirect to="/login" />
