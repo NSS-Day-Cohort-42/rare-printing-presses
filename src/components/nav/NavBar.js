@@ -19,7 +19,7 @@ export const NavBar = () => {
                 <Link className="navbar__link" to="/posts"><div className ="icon"><MailOutlineIcon style={{ fontSize: 28 }} />Posts</div></Link>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/category"><div className ="icon"><CategoryIcon style={{ fontSize: 28 }} />Posts</div></Link>
+                <Link className="navbar__link" to="/category"><div className ="icon"><CategoryIcon style={{ fontSize: 28 }} />Category</div></Link>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/tag"><div className ="icon"><LoyaltyIcon style={{ fontSize: 28 }} />Tags</div> </Link>
