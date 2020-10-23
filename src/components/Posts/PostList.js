@@ -3,7 +3,7 @@ import { PostContext } from "./PostProvider"
 import "./Post.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 export const PostList = (props) => {
     const { posts, getAllPosts } = useContext(PostContext)
@@ -53,7 +53,7 @@ export const PostList = (props) => {
                                         <div className="PostAuthor">Author: {post.id} </div>
                                         <div className="PostTitle">Title: {post.title} </div>
                                         <div className="PostCategory">Category: {post.category_id}</div>
-                                    
+                                        <ArrowForwardIosIcon></ArrowForwardIosIcon>
                                     </section>
                             
                     })
