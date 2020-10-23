@@ -7,7 +7,7 @@ import { Register } from "./auth/Register"
 import { Comment } from "./comment/Comment"
 import { CommentProvider } from "./comment/CommentProvider"
 
-export const Rare = () => (
+export const Rare = (props) => (
     <>
         <Route render={(props) => {
             if (localStorage.getItem("user_id")) {
@@ -29,13 +29,6 @@ export const Rare = () => (
                 return <Login />
             }
         }} />
-
-        <Route path="/register" render={() => {
-            if (localStorage.getItem("user_id")) {
-                return <Redirect to="/" />
-            } else {
-                return <Register />
-            }
-        }} />
+        <Route path="/register" render={props => <Register {...props} />} />
     </>
 )

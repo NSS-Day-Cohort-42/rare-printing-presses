@@ -3,24 +3,26 @@ import { Link } from "react-router-dom"
 import "./Auth.css"
 
 export const Register = (props) => {
-    const firstName = useRef()
-    const lastName = useRef()
+    const name = useRef()
     const email = useRef()
-    const bio = useRef()
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
+
+    // const existingUserCheck = () => {
+    //     return fetch(`http://localhost:8088/register`)
+    //         .then(_ => _.json())
+    //         .then(user => !!user.length)
+    // }
 
     const handleRegister = (e) => {
         e.preventDefault()
 
         if (password.current.value === verifyPassword.current.value) {
+            // existingUserCheck()
             const newUser = {
-                "username": email.current.value,
-                "first_name": firstName.current.value,
-                "last_name": lastName.current.value,
-                "bio": bio.current.value,
                 "email": email.current.value,
+                "name": name.current.value,
                 "password": password.current.value
             }
 
@@ -32,11 +34,11 @@ export const Register = (props) => {
                 },
                 body: JSON.stringify(newUser)
             })
-                .then(res => res.json())
-                .then(res => {
-                    if ("valid" in res && res.valid) {
-                        localStorage.setItem("rare_user_id", res.token)
-                        props.history.push("/")
+                .then(_ => _.json())
+                .then(createdUser => {
+                    if(createdUser.hasOwnProperty("id")) {
+                        localStorage.setItem("user_id", createdUser.id)
+                        props.history.push("/posts")
                     }
                 })
         } else {
@@ -55,12 +57,8 @@ export const Register = (props) => {
             <form className="form--login" onSubmit={handleRegister}>
                 <h1 className="h3 mb-3 font-weight-normal">Register an account</h1>
                 <fieldset>
-                    <label htmlFor="firstName"> First Name </label>
-                    <input ref={firstName} type="text" name="firstName" className="form-control" placeholder="First name" required autoFocus />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="lastName"> Last Name </label>
-                    <input ref={lastName} type="text" name="lastName" className="form-control" placeholder="Last name" required />
+                    <label htmlFor="name"> Name </label>
+                    <input ref={name} type="text" name="name" className="form-control" placeholder="Name" required autoFocus />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>
@@ -73,10 +71,6 @@ export const Register = (props) => {
                 <fieldset>
                     <label htmlFor="verifyPassword"> Verify Password </label>
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
-                </fieldset>
-                <fieldset>
-                    <label htmlFor="verifyPassword"> Verify Password </label>
-                    <textarea ref={bio} name="bio" className="form-control" placeholder="Let other gamers know a little bit about you..." />
                 </fieldset>
                 <fieldset style={{
                     textAlign: "center"
