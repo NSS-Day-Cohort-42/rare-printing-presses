@@ -52,7 +52,6 @@ export const PostList = (props) => {
                             return <section key={post.id} className="posts">
                                         <div className="PostAuthor">Author: {post.id} </div>
                                         <div className="PostTitle">Title: {post.title} </div>
-                                        <div className="PostContent">Content: {post.content}</div>
                                         <div className="PostCategory">Category: {post.category_id}</div>
                                     
                                     </section>
