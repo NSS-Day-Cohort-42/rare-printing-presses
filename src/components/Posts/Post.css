@@ -30,3 +30,9 @@
     border: none;
     background-color: white;
 }
+
+.postPageTitle { 
+    margin-top: 25rem;
+    margin-left: 23rem;
+    margin-bottom: -20rem;
+}

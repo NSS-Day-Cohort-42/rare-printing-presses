@@ -43,13 +43,17 @@ export const PostList = (props) => {
             </article> */}
             
             <article>
-                <div><h2 className="Posts">Posts</h2></div>
+                <div><h2 className="postPageTitle">Posts</h2></div>
             </article>
+            <section>
+                <Button className="addPostButton" onClick={() => props.history.push("/Post/create")}>
+                </Button>
+            </section>
 
             <article className="postsContainer">
                 {
                     posts.map(post => {
-                            return <section key={post.id} className="posts">
+                        return <section key={post.id} className="posts">
                                         <div className="PostAuthor">Author: {post.id} </div>
                                         <div className="PostTitle">Title: {post.title} </div>
                                         <div className="PostCategory">Category: {post.category_id}</div>
@@ -61,10 +65,6 @@ export const PostList = (props) => {
                     })
                 }
             </article>
-            <section className={classes.root}>
-                <Button className="addPostButton" onClick={() => props.history.push("/Post/create")}>
-                </Button>
-            </section>
         </>
     )
 }
