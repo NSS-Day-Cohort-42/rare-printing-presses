@@ -44,11 +44,9 @@ export const PostList = (props) => {
             
             <article>
                 <div><h2 className="postPageTitle">Posts</h2></div>
+                <button className="addPostButton" onClick={() => props.history.push("/Post/create")}>
+                </button>
             </article>
-            <section>
-                <Button className="addPostButton" onClick={() => props.history.push("/Post/create")}>
-                </Button>
-            </section>
 
             <article className="postsContainer">
                 {
