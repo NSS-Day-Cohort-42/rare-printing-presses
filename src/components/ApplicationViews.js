@@ -3,10 +3,19 @@ import { Route } from "react-router-dom"
 
 export const ApplicationViews = () => {
     return <>
-        <main style={{
-            margin: "5rem 2rem",
-            lineHeight: "1.75rem"
-        }}>
-        </main>
+
+
+
+
+
+
+
+
+        <Route path="/logout" render={
+            (props) => {
+                localStorage.removeItem("user_id")
+                props.history.push("/login")
+                }
+        } />
     </>
 }

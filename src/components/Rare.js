@@ -33,19 +33,5 @@ export const Rare = () => (
                 return <Register />
             }
         }} />
-
-
-
-
-
-
-
-
-        <Route path="/logout" render={
-            (props) => {
-                localStorage.removeItem("user_id")
-                props.history.push("/login")
-                }
-        } />
     </>
 )

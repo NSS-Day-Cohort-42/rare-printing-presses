@@ -21,7 +21,7 @@
     display: flex;
     list-style-type: none;
     color: black;
-    font-size: 12px;
+    font-size: 20px;
     letter-spacing: 2px;
 }
 
@@ -30,6 +30,6 @@
 }
 
 .navbarTitle { 
-    font-size: 32px;
+    font-size: 45px;
     padding: 25px;
 }
