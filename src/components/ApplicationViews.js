@@ -2,6 +2,7 @@ import React from "react"
 import { Route } from "react-router-dom"
 import PostsProvider from "./Posts/PostProvider"
 import PostList from "./Posts/PostList"
+import { NavBar } from "./nav/NavBar"
 
 export const ApplicationViews = () => {
     return <>
