@@ -4,13 +4,30 @@ import "./Comment.css"
 import { CommentContext } from "./CommentProvider"
 
 export const Comment = (props) => {
-    const { comments, addComment, getComment, deleteComment, updateComment} = useContext(CommentContext)
+    const { comments, addComment, getComment, deleteComment, updateComment, setComments} = useContext(CommentContext)
     const subject = useRef()
     const comment = useRef()
     comments.map(comment => console.log(comment.subject))
+
     useEffect(() => {
         getComment()
     }, [])
+
+    const editMode = props.match.params.hasOwnProperty("id")
+
+    const getCommentInEditMode = () => {
+        if (editMode) {
+            const commentId = parseInt(props.match.params.id)
+            const comment = comments.find(a => a.id === commentId) || {}
+            setComments(selectedComment)
+        }
+    }
+
+    animal (if edit)
+        useEffect(() => {
+            getAnimalInEditMode()
+        }, [animals])
+
 
     const add_new_comment = () => {
         addComment({
@@ -35,7 +52,8 @@ export const Comment = (props) => {
                     <button onClick={() => deleteComment(comment.id)}>Delete</button>
                     </>
                 })}
-                <div></div>
+                <div>
+                </div>
                 <h1>Add a Comment</h1>
                 <fieldset>
                     <input ref={subject} type="text" name="firstName" className="form-control" placeholder="Comment Subject" required autoFocus />
