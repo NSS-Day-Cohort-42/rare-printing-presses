@@ -34,11 +34,11 @@ export const Register = (props) => {
                 },
                 body: JSON.stringify(newUser)
             })
-                .then(res => res.json())
-                .then(res => {
-                    if (res.valid) {
-                        localStorage.setItem("user_id", res.id)
-                        props.history.push("/")
+                .then(_ => _.json())
+                .then(createdUser => {
+                    if(createdUser.hasOwnProperty("id")) {
+                        localStorage.setItem("user_id", createdUser.id)
+                        props.history.push("/posts")
                     }
                 })
         } else {
