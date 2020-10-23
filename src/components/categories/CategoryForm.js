@@ -20,9 +20,6 @@ export const CategoryForm = (props) => {
     }
 
     // Get categories from API when component initializes
-    useEffect(() => {
-        getAllCategories()
-    }, [])
 
 
 
@@ -30,7 +27,7 @@ export const CategoryForm = (props) => {
                 addCategory({
                     label: category.label,
                 })
-                    .then(() => props.history.push("/categories"))
+                    .then(() => props.history.push("/category"))
             }
 
 

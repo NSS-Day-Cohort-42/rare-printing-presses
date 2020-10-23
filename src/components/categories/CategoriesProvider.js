@@ -7,13 +7,13 @@ export const CategoriesProvider = (props) => {
     const [category, setCategory] = useState([])
 
     const getAllCategories = () => {
-        return fetch(`http://localhategory:8088/categories`)
+        return fetch(`http://localhost:8088/categories`)
             .then(res => res.json())
             .then(setCategories)
     }
 
     const getSingleCategory = (category) => {
-        return fetch(`http://localhategory:8088/categories/${category}`)
+        return fetch(`http://localhost:8088/categories/${category}`)
             .then(res => res.json())
             .then(setCategory)
     }
