@@ -26,3 +26,5 @@ export const PostsProvider = (props) => {
         </PostContext.Provider>
     )
 }
+
+export default PostsProvider
