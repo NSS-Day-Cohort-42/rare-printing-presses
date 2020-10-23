@@ -23,12 +23,6 @@ export const Comment = (props) => {
         }
     }
 
-    animal (if edit)
-        useEffect(() => {
-            getAnimalInEditMode()
-        }, [animals])
-
-
     const add_new_comment = () => {
         addComment({
             user_id: 1,
