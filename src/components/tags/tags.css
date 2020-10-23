@@ -1,0 +1,38 @@
+.tag_container{
+    width:100%;
+    margin-top: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tags_container{
+    width: 75%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+}
+
+.tag{
+    background-color: lightslategray;
+    border-radius: 20px;
+    padding: 1rem;
+    width: 15%;
+    text-align: center;
+    margin-top:1rem;
+}
+
+.new_tag_btn{
+    border-radius: 20px;
+    padding: 1rem;
+    background-color: lightslategray;
+    border: none;
+    margin-top: 2rem;
+
+}
+
+.tagForm{
+    margin-top:15rem;
+}
