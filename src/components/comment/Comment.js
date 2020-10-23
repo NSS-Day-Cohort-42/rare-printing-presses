@@ -4,7 +4,7 @@ import "./Comment.css"
 import { CommentContext } from "./CommentProvider"
 
 export const Comment = (props) => {
-    const { comments, addComment, getComment } = useContext(CommentContext)
+    const { comments, addComment, getComment, deleteComment, updateComment} = useContext(CommentContext)
     const subject = useRef()
     const comment = useRef()
     comments.map(comment => console.log(comment.subject))
@@ -30,8 +30,12 @@ export const Comment = (props) => {
                 comments.map(comment => {
                     return <> 
                     <h3>{comment.subject}</h3>
-                    <div>{comment.content}</div></>
+                    <div>{comment.content}</div>
+                    <button onClick={() => console.log("not yet")}>Edit</button>
+                    <button onClick={() => deleteComment(comment.id)}>Delete</button>
+                    </>
                 })}
+                <div></div>
                 <h1>Add a Comment</h1>
                 <fieldset>
                     <input ref={subject} type="text" name="firstName" className="form-control" placeholder="Comment Subject" required autoFocus />
