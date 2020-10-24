@@ -4,9 +4,13 @@ import "./Comment.css"
 import { CommentContext } from "./CommentProvider"
 
 export const Comment = (props) => {
-    const { addComment } = useContext(CommentContext)
+    const { comments, addComment, getComment } = useContext(CommentContext)
     const subject = useRef()
     const comment = useRef()
+    comments.map(comment => console.log(comment.subject))
+    useEffect(() => {
+        getComment()
+    }, [])
 
     const add_new_comment = () => {
         addComment({
@@ -22,7 +26,13 @@ export const Comment = (props) => {
         <main style={{ textAlign: "center" }}>
 
             <form className="form--login">
-                <h1 className="h3 mb-3 font-weight-normal">Comments:</h1>
+                <h1 className="h3 mb-3 font-weight-normal">Comments:</h1>{
+                comments.map(comment => {
+                    return <> 
+                    <h3>{comment.subject}</h3>
+                    <div>{comment.content}</div></>
+                })}
+                <h1>Add a Comment</h1>
                 <fieldset>
                     <input ref={subject} type="text" name="firstName" className="form-control" placeholder="Comment Subject" required autoFocus />
                 </fieldset>
@@ -38,7 +48,7 @@ export const Comment = (props) => {
                     add_new_comment()
                 }}
                 className="btn btn-primary">
-                Submit Comment
+                Submit
             </button>
                 </fieldset>
             </form>
