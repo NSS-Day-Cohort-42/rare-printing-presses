@@ -19,11 +19,19 @@ export const CommentProvider = (props) => {
         },
         body: JSON.stringify(comment)
     })
+    .then(getComment)
 }
+
+    const deleteComment = (commentId) => {
+        return fetch(`http://localhost:8088/comments/${commentId}`, {
+            method: "DELETE"
+        })
+            .then(getComment)
+    }
 
 return (
     <CommentContext.Provider value={{
-        addComment, getComment, comments, setComments
+        addComment, getComment, comments, setComments, deleteComment
     }}>
         {props.children}
         </CommentContext.Provider>
