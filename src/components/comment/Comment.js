@@ -7,7 +7,6 @@ export const Comment = (props) => {
     const { comments, addComment, getComment, deleteComment, updateComment, setComments} = useContext(CommentContext)
     const subject = useRef()
     const comment = useRef()
-    comments.map(comment => console.log(comment.subject))
 
     useEffect(() => {
         getComment()
@@ -15,13 +14,13 @@ export const Comment = (props) => {
 
     const editMode = props.match.params.hasOwnProperty("id")
 
-    const getCommentInEditMode = () => {
-        if (editMode) {
-            const commentId = parseInt(props.match.params.id)
-            const comment = comments.find(a => a.id === commentId) || {}
-            setComments(selectedComment)
-        }
-    }
+    // const getCommentInEditMode = () => {
+    //     if (editMode) {
+    //         const commentId = parseInt(props.match.params.id)
+    //         const comment = comments.find(a => a.id === commentId) || {}
+    //         setComments(selectedComment)
+    //     }
+    // }
 
     const add_new_comment = () => {
         addComment({
