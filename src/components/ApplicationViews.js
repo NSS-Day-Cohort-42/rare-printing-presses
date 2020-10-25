@@ -9,15 +9,20 @@ import { NavBar } from "./nav/NavBar"
 export const ApplicationViews = () => {
     return <>
             <PostsProvider>
-                <CommentProvider>
                     <Route exact path="/posts" render={(props) => {
                         return <> 
                             <PostList history={props.history} />
+                        </>
+                    }} />    
+            </PostsProvider>
+
+            <CommentProvider>
+            <Route exact path="/posts/:sampleId(\d+)" render={(props) => {
+                        return <> 
                     <Comment {...props}/>
                         </>
                     }} />    
                 </CommentProvider>
-            </PostsProvider>
 
         <Route path="/logout" render={
             (props) => {

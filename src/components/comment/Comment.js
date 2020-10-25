@@ -7,12 +7,14 @@ export const Comment = (props) => {
     const { comments, addComment, getComment, deleteComment, updateComment, setComments} = useContext(CommentContext)
     const subject = useRef()
     const comment = useRef()
+    comments.map(comment => console.log(comment.subject))
 
     useEffect(() => {
         getComment()
     }, [])
 
     const editMode = props.match.params.hasOwnProperty("id")
+    console.log(editMode)
 
     // const getCommentInEditMode = () => {
     //     if (editMode) {
@@ -35,14 +37,16 @@ export const Comment = (props) => {
     return (
         <main style={{ textAlign: "center" }}>
 
-            <form className="form--login">
+            <form className="comments-form">
                 <h1 className="h3 mb-3 font-weight-normal">Comments:</h1>{
                 comments.map(comment => {
                     return <> 
+                    <section key={comment.id} className="comments">
                     <h3>{comment.subject}</h3>
                     <div>{comment.content}</div>
                     <button onClick={() => console.log("not yet")}>Edit</button>
                     <button onClick={() => deleteComment(comment.id)}>Delete</button>
+                    </section>
                     </>
                 })}
                 <div>
