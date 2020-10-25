@@ -2,11 +2,15 @@ import React, { useContext, useRef, useEffect } from "react"
 import { Route, Link } from "react-router-dom"
 import "./Comment.css"
 import { CommentContext } from "./CommentProvider"
+import { PostContext } from "../Posts/PostProvider" 
 
-export const Comment = (props) => {
+export const EditCommentForm = (props) => {
     const { comments, addComment, getComment, deleteComment, updateComment, setComments} = useContext(CommentContext)
+    const {posts, getSinglePost} = useContext(PostContext)
     const subject = useRef()
+    console.log(subject)
     const comment = useRef()
+    let editMode = false
 
     useEffect(() => {
         getComment()
@@ -21,35 +25,13 @@ export const Comment = (props) => {
         })
 }
 
-    const delete_prompt = (id) => {
-            var retVal = window.confirm("Are you sure you want to delete your comment?");
-            if( retVal == true ) {
-                deleteComment(id)
-               return true;
-            } else {
-               return false;
-            }
-        }
     return (
         <main style={{ textAlign: "center" }}>
 
             <form className="comments-form">
-                <h1 className="h3 mb-3 font-weight-normal">Comments:</h1>{
-                comments.map(comment => {
-                    return <> 
-                    <section key={comment.id} className="comments">
-                    <h3>{comment.subject}</h3>
-                    <div>{comment.content}</div>
-                    <button onClick={() => props.history.push(`/comments/${comment.id}/edit`)}>Edit</button>
-                    <button onClick={() => delete_prompt(comment.id)}>Delete</button>
-                    </section>
-                    </>
-                })}
-                <div>
-                </div>
                 <h1>Add a Comment</h1>
                 <fieldset>
-                    <input ref={subject} type="text" name="firstName" className="form-control" placeholder="Comment Subject" />
+                    <input ref={subject} type="text" name="firstName" className="form-control" value={subject} required autoFocus />
                 </fieldset>
                 <fieldset>
                     <textarea ref={comment} name="bio" className="form-control" placeholder="Comment" />
@@ -65,6 +47,7 @@ export const Comment = (props) => {
                 className="btn btn-primary">
                 Submit
             </button>
+            <button className="btn btn-primary" onClick={() => props.history.push(`/posts/`)}>Cancel</button>
                 </fieldset>
             </form>
         </main>
