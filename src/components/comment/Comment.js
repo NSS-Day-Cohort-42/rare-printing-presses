@@ -7,14 +7,12 @@ export const Comment = (props) => {
     const { comments, addComment, getComment, deleteComment, updateComment, setComments} = useContext(CommentContext)
     const subject = useRef()
     const comment = useRef()
-    comments.map(comment => console.log(comment.subject))
+    let editMode = false
 
     useEffect(() => {
         getComment()
+        console.log(editMode)
     }, [])
-
-    const editMode = props.match.params.hasOwnProperty("id")
-    console.log(editMode)
 
     // const getCommentInEditMode = () => {
     //     if (editMode) {
@@ -34,6 +32,10 @@ export const Comment = (props) => {
         .then(() => props.history.push("/"))
 }
 
+const switch_to_edit = () => {
+    editMode = true
+}
+
     return (
         <main style={{ textAlign: "center" }}>
 
@@ -44,7 +46,7 @@ export const Comment = (props) => {
                     <section key={comment.id} className="comments">
                     <h3>{comment.subject}</h3>
                     <div>{comment.content}</div>
-                    <button onClick={() => console.log("not yet")}>Edit</button>
+                    <button onClick={() => switch_to_edit()}>Edit</button>
                     <button onClick={() => deleteComment(comment.id)}>Delete</button>
                     </section>
                     </>
