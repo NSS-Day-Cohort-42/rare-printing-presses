@@ -6,6 +6,7 @@ import { TagProvider } from "./tags/TagProvider"
 import PostsProvider from "./Posts/PostProvider"
 import PostList from "./Posts/PostList"
 import { Comment } from "./comment/Comment"
+import { EditCommentForm } from "./comment/EditCommentForm"
 import { CommentProvider } from "./comment/CommentProvider"
 import { NavBar } from "./nav/NavBar"
 import { CategoryForm } from "./categories/CategoryForm"
@@ -35,17 +36,31 @@ export const ApplicationViews = () => {
                             <Comment {...props}/>
                         </>
                     }} />    
+                    <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
+                        return <>
+                            <EditCommentForm {...props}/>
+                        </>
+                    }} />    
                 </CommentProvider>
             </PostsProvider>
-        <TagProvider>
-            <Route exact path="/tag">
-                <TagList />
-            </Route>
-            <Route exact path="/createtag" render={
-                props => <TagForm {...props} />
-            }>
-            </Route>
-        </TagProvider>
+
+            <CommentProvider>
+                <Route exact path="/posts/:sampleId(\d+)" render={(props) => {
+                        return <> 
+                    <Comment {...props}/>
+                        </>
+                }} />    
+            </CommentProvider>
+
+            <TagProvider>
+                <Route exact path="/tag">
+                    <TagList />
+                </Route>
+                <Route exact path="/createtag" render={
+                    props => <TagForm {...props} />
+                }>
+                </Route>
+            </TagProvider>
 
         <Route path="/logout" render={
             (props) => {

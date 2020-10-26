@@ -1,30 +1,61 @@
-import React, { useContext, useRef, useEffect } from "react"
+import React, { useContext, useRef, useEffect, useState } from "react"
 import { Route, Link } from "react-router-dom"
 import "./Comment.css"
 import { CommentContext } from "./CommentProvider"
 
 export const Comment = (props) => {
-    const { addComment } = useContext(CommentContext)
+    const { comments, addComment, getComment, deleteComment, getSingleComment, updateComment, setComments} = useContext(CommentContext)
+    const [post, setPost] = useState([])
     const subject = useRef()
     const comment = useRef()
+    var pathArray = window.location.pathname.split('/')
+    let postNumber = parseInt(pathArray[2])
+    const thisPost = comments.filter(comment => comment.post_id === postNumber)
+
+    useEffect(() => {
+        getComment()
+    }, [])
 
     const add_new_comment = () => {
         addComment({
-            user_id: 1,
-            post_id: 1,
+            user_id: localStorage.user_id,
+            post_id: postNumber,
             subject: subject.current.value,
             content: comment.current.value
         })
-        .then(() => props.history.push("/"))
 }
 
+    const delete_prompt = (id) => {
+            var retVal = window.confirm("Are you sure you want to delete your comment?");
+            if( retVal == true ) {
+                deleteComment(id)
+               return true;
+            } else {
+               return false;
+            }
+        }
     return (
         <main style={{ textAlign: "center" }}>
 
-            <form className="form--login">
-                <h1 className="h3 mb-3 font-weight-normal">Comments:</h1>
+            <form className="comments-form">
+                <h1 className="h3 mb-3 font-weight-normal">Comments:</h1>{
+                thisPost.map(comment => {
+                    return <> 
+                    <section key={comment.id} className="comments">
+                    <h3>{comment.subject}</h3>
+                    <div>{comment.content}</div>
+                    <button onClick={() => {
+                        props.history.push(`/comments/${comment.id}`)
+                        window.location.reload()}}>Edit</button>
+                    <button onClick={() => delete_prompt(comment.id)}>Delete</button>
+                    </section>
+                    </>
+                })}
+                <div>
+                </div>
+                <h1>Add a Comment</h1>
                 <fieldset>
-                    <input ref={subject} type="text" name="firstName" className="form-control" placeholder="Comment Subject" required autoFocus />
+                    <input ref={subject} type="text" name="firstName" className="form-control" placeholder="Comment Subject" />
                 </fieldset>
                 <fieldset>
                     <textarea ref={comment} name="bio" className="form-control" placeholder="Comment" />
@@ -38,7 +69,7 @@ export const Comment = (props) => {
                     add_new_comment()
                 }}
                 className="btn btn-primary">
-                Submit Comment
+                Submit
             </button>
                 </fieldset>
             </form>
