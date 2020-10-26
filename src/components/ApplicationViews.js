@@ -7,13 +7,19 @@ import { CommentProvider } from "./comment/CommentProvider"
 import { NavBar } from "./nav/NavBar"
 import { CategoryForm } from "./categories/CategoryForm"
 import { CategoriesProvider } from "./categories/CategoriesProvider";
+import { CategoriesList } from "./categories/CategoriesList"
 
 export const ApplicationViews = () => {
     return <>
             <CategoriesProvider>
-                <Route exact path="/category" render={(props) => {
+                <Route exact path="/addCategory" render={(props) => {
                     return <> 
                         <CategoryForm history={props.history} />
+                    </>
+                }} />    
+                <Route exact path="/categories" render={(props) => {
+                    return <> 
+                        <CategoriesList history={props.history} />
                     </>
                 }} />    
             </CategoriesProvider>
@@ -23,7 +29,7 @@ export const ApplicationViews = () => {
                     <Route exact path="/posts" render={(props) => {
                         return <> 
                             <PostList history={props.history} />
-                    <Comment {...props}/>
+                            <Comment {...props}/>
                         </>
                     }} />    
                 </CommentProvider>

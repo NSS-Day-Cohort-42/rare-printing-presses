@@ -4,7 +4,7 @@ import "./Categories.css"
 
 
 export const CategoryForm = (props) => {
-    const { addCategory, categories, getAllCategories } = useContext(CategoryContext)
+    const { addCategory } = useContext(CategoryContext)
 
     // Component state
     const [category, setCategory] = useState({})
@@ -15,7 +15,7 @@ export const CategoryForm = (props) => {
             and change state instead of modifying current one
         */
         const newCategory = Object.assign({}, category)
-        newCategory[event.target.label] = event.target.value
+        newCategory[event.target.name] = event.target.value
         setCategory(newCategory)
     }
 
@@ -27,16 +27,15 @@ export const CategoryForm = (props) => {
                 addCategory({
                     label: category.label,
                 })
-                    .then(() => props.history.push("/category"))
+                    .then(() => props.history.push("/categories"))
             }
 
 
     return (
         <form className="categoryForm">
-            <h2 className="categoryForm__title">Create A Category</h2>
-            <fieldset>
+            <h2 className="categoryForm__title">CREATE A CATEGORY</h2>
+            <fieldset className="categoryForm__fieldset">
                 <div className="form-group">
-                    <label htmlFor="label">Category name </label>
                     <input type="text" name="label" required autoFocus className="form-control"
                         proptype="varchar"
                         placeholder="Category name"
@@ -50,7 +49,7 @@ export const CategoryForm = (props) => {
                     evt.preventDefault()
                     constructNewCategory()
                 }}
-                className="btn btn-primary">
+                className="btn btn-primary btn-add_category">
                 Save
             </button>
         </form>

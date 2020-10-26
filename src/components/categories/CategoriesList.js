@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react"
 import { CategoryContext } from "./CategoriesProvider" 
-import "./Post.css"
+import "./Categories.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import { Category } from "@material-ui/icons";
 
 export const CategoriesList = (props) => {
-    const { posts, getAllCategories } = useContext(CategoryContext)
+    const { categories, getAllCategories } = useContext(CategoryContext)
 
     useEffect(() => {
         getAllCategories()
@@ -36,35 +37,23 @@ export const CategoriesList = (props) => {
 
     return (
         <>
-            {/* <article className="welcomeMessage">
-                <section key={currentUser.id} className="user">
-                    <div><h1 className="welcomeTitle">Hey, {currentUser.firstName}</h1></div>
-                </section>
-            </article> */}
-            
+        <section className="CategoryList">
             <article>
-                <div><h2 className="postPageTitle">Posts</h2></div>
-                <button className="addPostButton" onClick={() => props.history.push("/Post/create")}>
-                </button>
+                <div><h2 className="categoryPageTitle">ALL CATEGORIES</h2></div>
             </article>
 
-            <article className="postsContainer">
+            <article className="categoriesContainer">
                 {
-                    posts.map(post => {
-                        return <section key={post.id} className="posts">
-                                        <div className="PostAuthor">Author: {post.id} </div>
-                                        <div className="PostTitle">Title: {post.title} </div>
-                                        <div className="PostCategory">Category: {post.category_id}</div>
-                                        <button className="postDetailsButton">
-                                            <ArrowForwardIosIcon className={classes.primary} onClick={() => props.history.push(`/posts/${post.id}`)} />
-                                        </button>
-                                    </section>
-                            
+                    categories.map(c => {
+                        return <section key={c.id} className="categories">
+                                    <div className="categoryLabel"> {c.label} </div>
+                                </section>                           
                     })
                 }
             </article>
+        </section>
         </>
     )
 }
 
-export default PostList
+export default CategoriesList
