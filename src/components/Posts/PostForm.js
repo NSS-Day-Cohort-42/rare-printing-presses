@@ -42,7 +42,7 @@ export const PostForm = (props) => {
                 content: postState.content,
                 date: postState.date,
                 category_id: postState.catergory_id,
-                userId: parseInt(localStorage.getItem("user_id")),
+                user_id: parseInt(localStorage.getItem("user_id")),
             })
                 .then(() => props.history.push("/posts"))
         } else {
@@ -51,7 +51,7 @@ export const PostForm = (props) => {
                 content: postState.content,
                 date: postState.date,
                 category_id: postState.catergory_id,
-                userId: parseInt(localStorage.getItem("user_id")),
+                user_id: parseInt(localStorage.getItem("user_id")),
             })
                 .then(() => props.history.push("/posts"))
         }
@@ -90,16 +90,16 @@ export const PostForm = (props) => {
                     />
                 </div>
             </fieldset>
-            {/* <fieldset>
+            <fieldset>
                 <div className="form-group">
                     <label htmlFor="category">Category</label>
                     <select defaultValue="" name="category" required className="form-control" >
-                        <option value="0">Select an tag</option>
-                        {category.map(c => (
+                        <option value="1">Select an tag</option>
+                        {/* {category.map(c => (
                             <option key={c.id} value={c.id}>
                                 {c.label}
                             </option>
-                        ))}
+                        ))} */}
                     </select>
                 </div>
             </fieldset>
@@ -107,15 +107,15 @@ export const PostForm = (props) => {
                 <div className="form-group">
                     <label htmlFor="tag">Category</label>
                     <select defaultValue="" name="tag" required className="form-control" >
-                        <option value="0">Select an tag</option>
-                        {tag.map(t => (
+                        <option value="1">Select an tag</option>
+                        {/* {tag.map(t => (
                             <option key={t.id} value={t.id}>
                                 {t.label}
                             </option>
-                        ))}
+                        ))} */}
                     </select>
                 </div>
-            </fieldset> */}
+            </fieldset>
             <section>
                 <Button className="savePostButton" variant="contained" type="submit"
                     onClick={evt => {
