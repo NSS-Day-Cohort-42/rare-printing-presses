@@ -29,7 +29,6 @@ export const PostList = (props) => {
                 color: "black"
             },
         },
-
     }));
 
     const classes = useStyles()
