@@ -29,12 +29,12 @@ export const ApplicationViews = () => {
             </PostsProvider>
 
             <CommentProvider>
-            <Route exact path="/posts/:sampleId(\d+)" render={(props) => {
-                        return <> 
-                    <Comment {...props}/>
-                        </>
-                    }} />    
-                </CommentProvider>
+                <Route exact path="/posts/:sampleId(\d+)" render={(props) => {
+                    return <> 
+                        <Comment {...props}/>
+                    </>
+                }} />    
+            </CommentProvider>
 
 
             <TagProvider>
