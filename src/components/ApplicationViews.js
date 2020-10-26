@@ -5,6 +5,7 @@ import PostList from "./Posts/PostList"
 import { Comment } from "./comment/Comment"
 import { CommentProvider } from "./comment/CommentProvider"
 import { NavBar } from "./nav/NavBar"
+import { PostForm } from "./Posts/PostForm"
 
 export const ApplicationViews = () => {
     return <>
@@ -17,6 +18,17 @@ export const ApplicationViews = () => {
                         </>
                     }} />    
                 </CommentProvider>
+            </PostsProvider>
+
+            <PostsProvider>
+                <Route path="/Post/create" render ={(props) => {
+                            return <PostForm {...props}/>
+                        }}>
+                </Route>
+                <Route path="/Post/edit/:postId(\d+)" render ={(props) => {
+                        return <PostForm {...props}/>
+                    }}>
+                </Route>
             </PostsProvider>
 
         <Route path="/logout" render={

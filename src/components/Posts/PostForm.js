@@ -5,23 +5,23 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 export const PostForm = (props) => {
-    const { posts, getAllPosts, post, getSinglePost, createPost, deletePost, editPost } = useContext(ShowContext)
-    const [post, setPost] = useState({})
+    const { posts, getAllPosts, post, getSinglePost, createPost, deletePost, editPost } = useContext(PostContext)
+    const [postState, setPost] = useState({})
 
     const editMode = props.match.params.hasOwnProperty("postId")
 
     const handleControlledInputChange = (event) => {
 
-        const newPost = Object.assign({}, post)
+        const newPost = Object.assign({}, postState)
         newPost[event.target.name] = event.target.value
-        setShow(newPost)
+        setPost(newPost)
     }
 
     const getPostInEditMode = () => {
         if (editMode) {
             const postId = parseInt(props.match.params.postId)
             const selectedPost = posts.find(post => post.id === postId) || {}
-            setShow(selectedPost)
+            setPost(selectedPost)
         }
     }
 
@@ -37,20 +37,20 @@ export const PostForm = (props) => {
 
         if (editMode) {
             editPost({
-                id: post.id,
-                title: post.title,
-                content: post.content,
-                date: post.date,
-                category_id: post.catergory_id,
+                id: postState.id,
+                title: postState.title,
+                content: postState.content,
+                date: postState.date,
+                category_id: postState.catergory_id,
                 userId: parseInt(localStorage.getItem("user_id")),
             })
                 .then(() => props.history.push("/posts"))
         } else {
-            addShow({
-                title: post.title,
-                content: post.content,
-                date: post.date,
-                category_id: post.catergory_id,
+            createPost({
+                title: postState.title,
+                content: postState.content,
+                date: postState.date,
+                category_id: postState.catergory_id,
                 userId: parseInt(localStorage.getItem("user_id")),
             })
                 .then(() => props.history.push("/posts"))
@@ -65,7 +65,7 @@ export const PostForm = (props) => {
                     <label htmlFor="title"></label>
                     <input type="text" name="title" required autoFocus className="form-control"
                         placeholder="Title"
-                        defaultValue={post.title}
+                        defaultValue={postState.title}
                         onChange={handleControlledInputChange} 
                     />
                 </div>
@@ -75,7 +75,7 @@ export const PostForm = (props) => {
                     <label htmlFor="content"></label>
                     <input type="text" name="content" required className="form-control"
                         placeholder="content"
-                        defaultValue={post.content}
+                        defaultValue={postState.content}
                         onChange={handleControlledInputChange}
                     />
                 </div>
@@ -85,12 +85,12 @@ export const PostForm = (props) => {
                     <label htmlFor="date"></label>
                     <input type="date" name="date" required className="form-control"
                         placeholder="Date"
-                        defaultValue={post.date}
+                        defaultValue={postState.date}
                         onChange={handleControlledInputChange}
                     />
                 </div>
             </fieldset>
-            <fieldset>
+            {/* <fieldset>
                 <div className="form-group">
                     <label htmlFor="category">Category</label>
                     <select defaultValue="" name="category" required className="form-control" >
@@ -115,8 +115,8 @@ export const PostForm = (props) => {
                         ))}
                     </select>
                 </div>
-            </fieldset>
-            <section className={classes.buttonStyle}>
+            </fieldset> */}
+            <section>
                 <Button className="savePostButton" variant="contained" type="submit"
                     onClick={evt => {
                         evt.preventDefault() 
