@@ -1,5 +1,8 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { TagForm } from "./tags/TagForm"
+import { TagList } from "./tags/TagList"
+import { TagProvider } from "./tags/TagProvider"
 import PostsProvider from "./Posts/PostProvider"
 import PostList from "./Posts/PostList"
 import { Comment } from "./comment/Comment"
@@ -9,16 +12,29 @@ import { PostForm } from "./Posts/PostForm"
 
 export const ApplicationViews = () => {
     return <>
-            <PostsProvider>
-                <CommentProvider>
-                    <Route exact path="/posts" render={(props) => {
-                        return <> 
-                            <PostList history={props.history} />
-                    <Comment {...props}/>
-                        </>
-                    }} />    
-                </CommentProvider>
-            </PostsProvider>
+        <TagProvider>
+            <Route exact path="/tag">
+                <TagList />
+            </Route>
+            <Route exact path="/createtag" render={
+                props => <TagForm {...props} />
+            }>
+            </Route>
+        </TagProvider>
+
+
+
+
+        <PostsProvider>
+            <CommentProvider>
+                <Route exact path="/posts" render={(props) => {
+                    return <>
+                        <PostList history={props.history} />
+                        <Comment {...props} />
+                    </>
+                }} />
+            </CommentProvider>
+        </PostsProvider>
 
             <PostsProvider>
                 <Route path="/Post/create" render ={(props) => {
@@ -35,7 +51,7 @@ export const ApplicationViews = () => {
             (props) => {
                 localStorage.removeItem("user_id")
                 props.history.push("/login")
-                }
+            }
         } />
     </>
 }
