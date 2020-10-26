@@ -9,15 +9,23 @@ import { Comment } from "./comment/Comment"
 import { EditCommentForm } from "./comment/EditCommentForm"
 import { CommentProvider } from "./comment/CommentProvider"
 import { NavBar } from "./nav/NavBar"
+import { PostForm } from "./Posts/PostForm"
 
 export const ApplicationViews = () => {
     return <>
             <PostsProvider>
+                <CommentProvider>
                     <Route exact path="/posts" render={(props) => {
                         return <> 
                             <PostList history={props.history} />
                         </>
-                    }} />    
+                    }} /> 
+                    <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
+                        return <>
+                            <EditCommentForm {...props}/>
+                        </>
+                    }} />     
+                </CommentProvider>
             </PostsProvider>
 
             <CommentProvider>
@@ -28,38 +36,27 @@ export const ApplicationViews = () => {
                     }} />    
                 </CommentProvider>
 
+
+            <TagProvider>
+                <Route exact path="/tag">
+                    <TagList />
+                </Route>
+                <Route exact path="/createtag" render={
+                    props => <TagForm {...props} />
+                }>
+                </Route>
+            </TagProvider>
+
             <PostsProvider>
-            <CommentProvider>
-            <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
-                        return <>
-                    <EditCommentForm {...props}/>
-                        </>
-                    }} />    
-                </CommentProvider>
-                </PostsProvider>
-        <TagProvider>
-            <Route exact path="/tag">
-                <TagList />
-            </Route>
-            <Route exact path="/createtag" render={
-                props => <TagForm {...props} />
-            }>
-            </Route>
-        </TagProvider>
-
-
-
-
-        <PostsProvider>
-            <CommentProvider>
-                <Route exact path="/posts" render={(props) => {
-                    return <>
-                        <PostList history={props.history} />
-                        <Comment {...props} />
-                    </>
-                }} />
-            </CommentProvider>
-        </PostsProvider>
+                <Route path="/Post/create" render ={(props) => {
+                            return <PostForm {...props}/>
+                        }}>
+                </Route>
+                <Route path="/Post/edit/:postId(\d+)" render ={(props) => {
+                        return <PostForm {...props}/>
+                    }}>
+                </Route>
+            </PostsProvider>
 
         <Route path="/logout" render={
             (props) => {
