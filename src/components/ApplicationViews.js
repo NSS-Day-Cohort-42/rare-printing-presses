@@ -36,7 +36,6 @@ export const ApplicationViews = () => {
                             <Route exact path="/posts" render={(props) => {
                                 return <> 
                                     <PostList history={props.history} />
-                                    <Comment {...props}/>
                                 </>
                             }} /> 
                             <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
