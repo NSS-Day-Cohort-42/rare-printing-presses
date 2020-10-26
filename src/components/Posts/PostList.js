@@ -24,7 +24,7 @@ export const PostList = (props) => {
                 position: "fixed",
                 display: "flex",
                 bottom: 0,
-                background: "white",
+                background: "black",
                 margin: 0
             },
             },
@@ -45,11 +45,6 @@ export const PostList = (props) => {
                 </section>
             </article> */}
             
-            <article>
-                <div><h2 className="postPageTitle">Posts</h2></div>
-                <button className="addPostButton" onClick={() => props.history.push("/Post/create")}>
-                </button>
-            </article>
 
             <article className="postsContainer">
                 {
@@ -67,6 +62,7 @@ export const PostList = (props) => {
                     })
                 }
             </article>
+            <button className="addPostButton" onClick={() => props.history.push("/Post/create")}>Create Post</button>
         </>
     )
 }
