@@ -10,7 +10,6 @@ export const TagList = () =>{
 
 return (
     <div className="tag_container">
-        <h2>All Available Tags</h2>
         <div className="tags_container">
             {
                 tags.map(tag=>{

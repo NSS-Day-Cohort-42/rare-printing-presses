@@ -13,12 +13,12 @@ export const TagForm = (props) => {
 
     return(
         <form className="tagForm">
-            <h2 className="animalForm__title">Create New Tag</h2>
+            <h2 className="tagForm__title">Create New Tag</h2>
             <fieldset>
                 <div className="tag-form">
-                    <label htmlFor="label">Tag Label: </label>
+                    
                     <input ref={label}type="text" name="label" required autoFocus className="tag-input"
-                        placeholder="Tag"
+                        placeholder="Enter Tag Label"
                     />
                 </div>
             </fieldset>
@@ -26,7 +26,7 @@ export const TagForm = (props) => {
                 onClick={evt => {
                     evt.preventDefault()
                     addTag({"label": label.current.value})
-                    props.history.push("/")
+                    props.history.push("/tags")
                 }}
                 className="new-tag-submit">
                 Add
