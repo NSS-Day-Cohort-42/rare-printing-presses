@@ -16,22 +16,24 @@ export const ApplicationViews = () => {
                     return <> 
                         <CategoryForm history={props.history} />
                     </>
-                }} />    
-                <Route exact path="/categories" render={(props) => {
-                    return <> 
-                        <CategoriesList history={props.history} />
-                    </>
-                }} />    
+                }} />       
             </CategoriesProvider>
             
             <PostsProvider>
                 <CommentProvider>
-                    <Route exact path="/posts" render={(props) => {
-                        return <> 
-                            <PostList history={props.history} />
-                            <Comment {...props}/>
-                        </>
-                    }} />    
+                    <CategoriesProvider>
+                        <Route exact path="/posts" render={(props) => {
+                            return <> 
+                                <PostList history={props.history} />
+                                <Comment {...props}/>
+                            </>
+                        }} />
+                        <Route path="/categories" render={(props) => {
+                    return <> 
+                        <CategoriesList history={props.history} />
+                    </>
+                }} />    
+                    </CategoriesProvider>
                 </CommentProvider>
             </PostsProvider>
 
