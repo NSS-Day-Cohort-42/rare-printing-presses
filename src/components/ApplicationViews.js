@@ -9,15 +9,32 @@ import { Comment } from "./comment/Comment"
 import { EditCommentForm } from "./comment/EditCommentForm"
 import { CommentProvider } from "./comment/CommentProvider"
 import { NavBar } from "./nav/NavBar"
+import { CategoryForm } from "./categories/CategoryForm"
+import { CategoriesProvider } from "./categories/CategoriesProvider";
+import { CategoriesList } from "./categories/CategoriesList"
 import { PostForm } from "./Posts/PostForm"
 
 export const ApplicationViews = () => {
     return <>
+            <CategoriesProvider>
+                <Route exact path="/addCategory" render={(props) => {
+                    return <> 
+                        <CategoryForm history={props.history} />
+                    </>
+                }} />    
+                <Route exact path="/categories" render={(props) => {
+                    return <> 
+                        <CategoriesList history={props.history} />
+                    </>
+                }} />    
+            </CategoriesProvider>
+            
             <PostsProvider>
                 <CommentProvider>
                     <Route exact path="/posts" render={(props) => {
                         return <> 
                             <PostList history={props.history} />
+                            <Comment {...props}/>
                         </>
                     }} /> 
                     <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
