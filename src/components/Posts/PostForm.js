@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
 export const PostForm = (props) => {
-    const { posts, getAllPosts, post, getSinglePost, createPost, deletePost, editPost } = useContext(PostContext)
+    const { posts, getAllPosts, getSinglePost, singlePost, createPost, deletePost, editPost } = useContext(PostContext)
     const { tags, getTags } = useContext(TagContext)
     const { categories, getAllCategories } = useContext(CategoryContext)
     const [postState, setPost] = useState({})
@@ -24,33 +24,38 @@ export const PostForm = (props) => {
     }
 
     const getPostInEditMode = () => {
+
+        
         if (editMode) {
             const postId = parseInt(props.match.params.postId)
             const selectedPost = posts.find(post => post.id === postId) || {}
             setPost(selectedPost)
         }
     }
-
+    
     useEffect(() => {
         getAllPosts()
         getAllCategories()
         getTags()
     }, [])
-
+    
     useEffect(() => {
         getPostInEditMode()
     }, [posts])
-
+    
     const constructNewPost = () => {
+        
+        const categoryId = parseInt(postState.category_id)
 
+        console.log(categoryId)
         if (editMode) {
             editPost({
                 id: postState.id,
                 title: postState.title,
                 content: postState.content,
                 date: postState.date,
-                category_id: postState.catergory_id,
-                user_id: parseInt(localStorage.getItem("user_id")),
+                category_id: categoryId,
+                user_id: parseInt(localStorage.getItem("user_id"))
             })
                 .then(() => props.history.push("/posts"))
         } else {
@@ -58,8 +63,8 @@ export const PostForm = (props) => {
                 title: postState.title,
                 content: postState.content,
                 date: postState.date,
-                category_id: postState.catergory_id,
-                user_id: parseInt(localStorage.getItem("user_id")),
+                category_id: categoryId,
+                user_id: parseInt(localStorage.getItem("user_id"))
             })
                 .then(() => props.history.push("/posts"))
         }
@@ -100,10 +105,11 @@ export const PostForm = (props) => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="category">Category</label>
-                    <select defaultValue="" name="category" required className="form-control" >
-                        <option value="1">Select an tag</option>
-                        {category.map(c => (
+                    <label htmlFor="category_id">Category</label>
+                    <select name="category_id" className="form-control" 
+                    value={postState.category_id} onChange={handleControlledInputChange}>
+                        <option value="0">Select an tag</option>
+                        {categories.map(c => (
                             <option key={c.id} value={c.id}>
                                 {c.label}
                             </option>
@@ -113,10 +119,10 @@ export const PostForm = (props) => {
             </fieldset>
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="tag">Category</label>
+                    <label htmlFor="tag">Tag</label>
                     <select defaultValue="" name="tag" required className="form-control" >
-                        <option value="1">Select an tag</option>
-                        {tagState.map(t => (
+                        <option value="0">Select an tag</option>
+                        {tags.map(t => (
                             <option key={t.id} value={t.id}>
                                 {t.label}
                             </option>
