@@ -14,11 +14,18 @@ import { PostForm } from "./Posts/PostForm"
 export const ApplicationViews = () => {
     return <>
             <PostsProvider>
+                <CommentProvider>
                     <Route exact path="/posts" render={(props) => {
                         return <> 
                             <PostList history={props.history} />
                         </>
-                    }} />    
+                    }} /> 
+                    <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
+                        return <>
+                            <EditCommentForm {...props}/>
+                        </>
+                    }} />     
+                </CommentProvider>
             </PostsProvider>
 
             <CommentProvider>
@@ -29,38 +36,16 @@ export const ApplicationViews = () => {
                     }} />    
                 </CommentProvider>
 
-            <PostsProvider>
-            <CommentProvider>
-            <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
-                        return <>
-                    <EditCommentForm {...props}/>
-                        </>
-                    }} />    
-                </CommentProvider>
-                </PostsProvider>
-        <TagProvider>
-            <Route exact path="/tag">
-                <TagList />
-            </Route>
-            <Route exact path="/createtag" render={
-                props => <TagForm {...props} />
-            }>
-            </Route>
-        </TagProvider>
 
-
-
-
-        <PostsProvider>
-            <CommentProvider>
-                <Route exact path="/posts" render={(props) => {
-                    return <>
-                        <PostList history={props.history} />
-                        <Comment {...props} />
-                    </>
-                }} />
-            </CommentProvider>
-        </PostsProvider>
+            <TagProvider>
+                <Route exact path="/tag">
+                    <TagList />
+                </Route>
+                <Route exact path="/createtag" render={
+                    props => <TagForm {...props} />
+                }>
+                </Route>
+            </TagProvider>
 
             <PostsProvider>
                 <Route path="/Post/create" render ={(props) => {
