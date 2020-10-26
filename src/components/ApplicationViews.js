@@ -21,27 +21,29 @@ export const ApplicationViews = () => {
                     return <> 
                         <CategoryForm history={props.history} />
                     </>
-                }} />    
-                <Route exact path="/categories" render={(props) => {
-                    return <> 
-                        <CategoriesList history={props.history} />
-                    </>
-                }} />    
+                }} />       
             </CategoriesProvider>
             
             <PostsProvider>
                 <CommentProvider>
-                    <Route exact path="/posts" render={(props) => {
+                    <CategoriesProvider>
+                        <Route path="/categories" render={(props) => {
                         return <> 
-                            <PostList history={props.history} />
-                            <Comment {...props}/>
+                            <CategoriesList history={props.history} />
                         </>
-                    }} /> 
-                    <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
-                        return <>
-                            <EditCommentForm {...props}/>
-                        </>
-                    }} />     
+                        }} />    
+                        <Route exact path="/posts" render={(props) => {
+                            return <> 
+                                <PostList history={props.history} />
+                                <Comment {...props}/>
+                            </>
+                        }} /> 
+                        <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
+                            return <>
+                                <EditCommentForm {...props}/>
+                            </>
+                        }} />     
+                    </CategoriesProvider>
                 </CommentProvider>
             </PostsProvider>
 
@@ -65,14 +67,16 @@ export const ApplicationViews = () => {
             </TagProvider>
 
             <PostsProvider>
-                <Route path="/Post/create" render ={(props) => {
+                <CategoriesProvider>
+                    <Route path="/Post/create" render ={(props) => {
+                                return <PostForm {...props}/>
+                            }}>
+                    </Route>
+                    <Route path="/Post/edit/:postId(\d+)" render ={(props) => {
                             return <PostForm {...props}/>
                         }}>
-                </Route>
-                <Route path="/Post/edit/:postId(\d+)" render ={(props) => {
-                        return <PostForm {...props}/>
-                    }}>
-                </Route>
+                    </Route>
+                </CategoriesProvider>
             </PostsProvider>
 
         <Route path="/logout" render={
