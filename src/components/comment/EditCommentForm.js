@@ -4,27 +4,30 @@ import "./Comment.css"
 import { CommentContext } from "./CommentProvider"
 import { PostContext } from "../Posts/PostProvider" 
 
+// const construct_comment = () => {
+//     if (postNumber != -1) {
+//     newComment = {
+//         user_id: localStorage.user_id,
+//         post_id: postNumber,
+//         subject: subject.current.value,
+//         content: comment.current.value
+//     }
+//     }
+// }
+
 export const EditCommentForm = (props) => {
     const { comments, addComment, getComment, getSingleComment, deleteComment, updateComment, setComments} = useContext(CommentContext)
     const {posts, getSinglePost} = useContext(PostContext)
     const subject = useRef()
     const comment = useRef()
+    let newComment = {}
+    let pathArray = window.location.pathname.split('/')
+    let commentNumber = pathArray[2]
 
     useEffect(() => {
-        var pathArray = window.location.pathname.split('/')
-        let postNumber = pathArray[2]
-        getSingleComment(postNumber).then(
+        getSingleComment(commentNumber).then(
         console.log(comments))
     }, [])
-
-    const update_comment = () => {
-        addComment({
-            user_id: 1,
-            post_id: 1,
-            subject: subject.current.value,
-            content: comment.current.value
-        })
-}
 
     return (
         <main style={{ textAlign: "center" }}>
@@ -43,8 +46,15 @@ export const EditCommentForm = (props) => {
             <button type="submit"
                 onClick={evt => {
                     evt.preventDefault() // Prevent browser from submitting the form
-                    updateComment(comments.id)
-                    props.history.push(`/posts/`)
+                    newComment = {
+                        id: parseInt(commentNumber),
+                        user_id: parseInt(localStorage.user_id),
+                        post_id: comments.post_id,
+                        subject: subject.current.value,
+                        content: comment.current.value
+                    }
+                    updateComment(newComment).then(() =>
+                    props.history.push(`/posts/${comments.post_id}`))
                 }}
                 className="btn btn-primary">
                 Submit
