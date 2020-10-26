@@ -5,18 +5,19 @@ import { CommentContext } from "./CommentProvider"
 import { PostContext } from "../Posts/PostProvider" 
 
 export const EditCommentForm = (props) => {
-    const { comments, addComment, getComment, deleteComment, updateComment, setComments} = useContext(CommentContext)
+    const { comments, addComment, getComment, getSingleComment, deleteComment, updateComment, setComments} = useContext(CommentContext)
     const {posts, getSinglePost} = useContext(PostContext)
     const subject = useRef()
-    console.log(subject)
     const comment = useRef()
-    let editMode = false
 
     useEffect(() => {
-        getComment()
+        var pathArray = window.location.pathname.split('/')
+        let postNumber = pathArray[2]
+        getSingleComment(postNumber).then(
+        console.log(comments))
     }, [])
 
-    const add_new_comment = () => {
+    const update_comment = () => {
         addComment({
             user_id: 1,
             post_id: 1,
@@ -31,10 +32,10 @@ export const EditCommentForm = (props) => {
             <form className="comments-form">
                 <h1>Add a Comment</h1>
                 <fieldset>
-                    <input ref={subject} type="text" name="firstName" className="form-control" value={subject} required autoFocus />
+                    <input ref={subject} type="text" name="firstName" className="form-control" defaultValue={comments.subject} required autoFocus />
                 </fieldset>
                 <fieldset>
-                    <textarea ref={comment} name="bio" className="form-control" placeholder="Comment" />
+                    <textarea ref={comment} name="bio" className="form-control" defaultValue={comments.content} placeholder="Comment" />
                 </fieldset>
                 <fieldset style={{
                     textAlign: "center"
@@ -42,7 +43,8 @@ export const EditCommentForm = (props) => {
             <button type="submit"
                 onClick={evt => {
                     evt.preventDefault() // Prevent browser from submitting the form
-                    add_new_comment()
+                    updateComment(comments.id)
+                    props.history.push(`/posts/`)
                 }}
                 className="btn btn-primary">
                 Submit

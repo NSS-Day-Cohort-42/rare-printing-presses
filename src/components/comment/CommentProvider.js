@@ -11,6 +11,12 @@ export const CommentProvider = (props) => {
             .then(setComments)
     }
 
+    const getSingleComment = (id) => {
+        return fetch(`http://localhost:8088/comments/${id}`)
+            .then(res => res.json())
+            .then(setComments)
+    }
+
     const addComment = comment => {
         return fetch("http://localhost:8088/comments", {
         method: "POST",
@@ -29,9 +35,20 @@ export const CommentProvider = (props) => {
             .then(getComment)
     }
 
+    const updateComment = comment => {
+        return fetch(`http://localhost:8088/comments/${comment.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(comment)
+        })
+            .then(getComment)
+    }
+    
 return (
     <CommentContext.Provider value={{
-        addComment, getComment, comments, setComments, deleteComment
+        addComment, getComment, comments, setComments, deleteComment, getSingleComment, updateComment
     }}>
         {props.children}
         </CommentContext.Provider>

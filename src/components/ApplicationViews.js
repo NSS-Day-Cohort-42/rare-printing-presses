@@ -27,7 +27,7 @@ export const ApplicationViews = () => {
 
             <PostsProvider>
             <CommentProvider>
-            <Route exact path="/comments/:sampleId(\d+)/edit" render={(props) => {
+            <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
                         return <>
                     <EditCommentForm {...props}/>
                         </>
