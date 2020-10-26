@@ -12,6 +12,7 @@ import { NavBar } from "./nav/NavBar"
 import { CategoryForm } from "./categories/CategoryForm"
 import { CategoriesProvider } from "./categories/CategoriesProvider";
 import { CategoriesList } from "./categories/CategoriesList"
+import { PostForm } from "./Posts/PostForm"
 
 export const ApplicationViews = () => {
     return <>
@@ -35,22 +36,23 @@ export const ApplicationViews = () => {
                             <PostList history={props.history} />
                             <Comment {...props}/>
                         </>
-                    }} />    
+                    }} /> 
                     <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
                         return <>
                             <EditCommentForm {...props}/>
                         </>
-                    }} />    
+                    }} />     
                 </CommentProvider>
             </PostsProvider>
 
             <CommentProvider>
-                <Route exact path="/posts/:sampleId(\d+)" render={(props) => {
+            <Route exact path="/posts/:sampleId(\d+)" render={(props) => {
                         return <> 
                     <Comment {...props}/>
                         </>
-                }} />    
-            </CommentProvider>
+                    }} />    
+                </CommentProvider>
+
 
             <TagProvider>
                 <Route exact path="/tag">
@@ -61,6 +63,17 @@ export const ApplicationViews = () => {
                 }>
                 </Route>
             </TagProvider>
+
+            <PostsProvider>
+                <Route path="/Post/create" render ={(props) => {
+                            return <PostForm {...props}/>
+                        }}>
+                </Route>
+                <Route path="/Post/edit/:postId(\d+)" render ={(props) => {
+                        return <PostForm {...props}/>
+                    }}>
+                </Route>
+            </PostsProvider>
 
         <Route path="/logout" render={
             (props) => {
