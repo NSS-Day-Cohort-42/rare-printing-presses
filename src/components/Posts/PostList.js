@@ -65,13 +65,13 @@ export const PostList = (props) => {
                                                         props.history.push(`/posts/edit/${post.id}`)
                                                 }}>
                                                 <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
-                                            </Button>
+                                        </Button>
                                     </section>
                             
                     })
                 }
             </article>
-            <button className="addPostButton" onClick={() => props.history.push("/Post/create")}>Create Post</button>
+            <Button variant="outlined" color="primary" className="createPost" onClick={() => props.history.push("/Post/create")}>Create Post</Button>
         </>
     )
 }
