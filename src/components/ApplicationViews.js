@@ -59,12 +59,12 @@ export const ApplicationViews = () => {
                 <CommentProvider>
                     <CategoriesProvider>
                         <TagProvider>
-                <Route exact path="/posts/:sampleId(\d+)" render={(props) => {
-                    return <> 
-                        <PostDetails {...props}/>
-                        <Comment {...props}/>
-                    </>
-                }} />    
+                            <Route exact path="/posts/:sampleId(\d+)" render={(props) => {
+                                return <> 
+                                    <PostDetails {...props}/>
+                                    <Comment {...props}/>
+                                </>
+                            }} />    
                         </TagProvider>
                     </CategoriesProvider>
                 </CommentProvider>
