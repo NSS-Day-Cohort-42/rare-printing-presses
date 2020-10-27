@@ -38,7 +38,7 @@ export const PostsProvider = (props) => {
     }
 
     const editPost = post => {
-        return fetch(`http://localhost:8088/posts/${post.Id}`, {
+        return fetch(`http://localhost:8088/posts/${post.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
