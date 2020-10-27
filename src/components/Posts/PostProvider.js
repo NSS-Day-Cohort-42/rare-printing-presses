@@ -48,10 +48,16 @@ export const PostsProvider = (props) => {
             .then(getAllPosts)
     }
 
+    const getPostsByCategoryId = category_id => {
+        return fetch(`http://localhost:8088/posts?category_id=${category_id}`)
+            .then(res => res.json())
+            .then(setPosts);
+    };
+
     return (
         <PostContext.Provider value={{
             posts, getAllPosts, singlePost, getSinglePost,
-            createPost, editPost, deletePost
+            createPost, editPost, deletePost, getPostsByCategoryId
         }}>
             {props.children}
         </PostContext.Provider>

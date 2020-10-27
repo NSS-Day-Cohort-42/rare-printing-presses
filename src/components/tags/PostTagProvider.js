@@ -22,7 +22,7 @@ export const PostTagProvider = (props) => {
 
     return (
         <PostTagContext.Provider value={{
-            PostTags, getPostTags
+            postTags, getPostTags
         }}>
             {props.children}
         </PostTagContext.Provider>

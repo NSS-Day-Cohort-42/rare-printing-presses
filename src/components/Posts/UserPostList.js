@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { PostContext } from "./PostProvider" 
 import {CategoryContext} from "../categories/CategoriesProvider"
@@ -7,15 +7,11 @@ import "./Post.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import EditIcon from '@material-ui/icons/Edit';
 
-export const PostList = (props) => {
-    const { posts, getAllPosts, getPostsByCategoryId } = useContext(PostContext)
+export const UserPostList = (props) => {
+    const { posts, getAllPosts } = useContext(PostContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
-
-    const [filteredPosts, setFiltered] = useState([])
-    const [categorySelected, setCategorySelected] = useState([])
-
+    let yourPosts = posts.filter(post => post.user_id === parseInt(localStorage.getItem("user_id")))
     useEffect(() => {
         getAllPosts()
             .then(getAllCategories)
@@ -41,16 +37,7 @@ export const PostList = (props) => {
     }));
 
     const classes = useStyles()
-    const categoryRef = useRef("")
 
-    const filterPosts = (value) => {
-        if (value ==="0") {
-            getAllPosts()
-        } else {
-            getPostsByCategoryId(value)
-        }
-
-    }
     return (
         <>
             {/* <article className="welcomeMessage">
@@ -58,26 +45,11 @@ export const PostList = (props) => {
                     <div><h1 className="welcomeTitle">Hey, {currentUser.firstName}</h1></div>
                 </section>
             </article> */}
-            <h1>Posts</h1>
-            <section className="filteredPosts">
-                <label htmlFor="category_id">Filter By Category</label>
-                    <select name="category_id" ref={categoryRef} className="form-control" 
-                    onChange={event => {
-                        event.preventDefault()
-                        filterPosts(categoryRef.current.value)
-                    }}>
-                        <option value="0">Select a Category</option>
-                        {categories.map(c => (
-                            <option key={c.id} value={c.id}>
-                                {c.label}
-                            </option>
-                        ))}
-                    </select>
-            </section>
+            
 
             <article className="postsContainer">
                 {
-                    posts.map(post => {
+                    yourPosts.map(post => {
                         const category = categories.find(c => c.id === post.category_id) || {}
                         // const userName = users.find(c => c.id === post.category_id) || {}
                         return <section key={post.id} className="posts">
@@ -87,12 +59,6 @@ export const PostList = (props) => {
                                         <button className="postDetailsButton">
                                             <ArrowForwardIosIcon className={classes.primary} onClick={() => props.history.push(`/posts/${post.id}`)} />
                                         </button>
-                                        <button className="postDetailsButton" 
-                                                onClick={() => {
-                                                        props.history.push(`/posts/edit/${post.id}`)
-                                                }}>
-                                                <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
-                                            </button>
                                     </section>
                             
                     })
@@ -103,4 +69,4 @@ export const PostList = (props) => {
     )
 }
 
-export default PostList
+export default UserPostList
