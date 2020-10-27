@@ -40,6 +40,7 @@ export const Comment = (props) => {
             <form className="comments-form">
                 <h1 className="h3 mb-3 font-weight-normal">Comments:</h1>{
                 thisPost.map(comment => {
+                    if (comment.user_id == parseInt(localStorage.getItem("user_id"))){
                     return <> 
                     <section key={comment.id} className="comments">
                     <h3>{comment.subject}</h3>
@@ -50,6 +51,17 @@ export const Comment = (props) => {
                     <button onClick={() => delete_prompt(comment.id)}>Delete</button>
                     </section>
                     </>
+                }
+                
+                else {
+                    return <> 
+                    <section key={comment.id} className="comments">
+                    <h3>{comment.subject}</h3>
+                    <div>{comment.content}</div>
+                    </section>
+                    </>
+                }
+
                 })}
                 <div>
                 </div>
