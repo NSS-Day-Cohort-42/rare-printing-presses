@@ -6,6 +6,7 @@ import { TagProvider } from "./tags/TagProvider"
 import PostsDetails, { PostDetails } from "./Posts/PostDetail"
 import PostsProvider from "./Posts/PostProvider"
 import PostList from "./Posts/PostList"
+import UserPostList from "./Posts/UserPostList"
 import { Comment } from "./comment/Comment"
 import { EditCommentForm } from "./comment/EditCommentForm"
 import { CommentProvider } from "./comment/CommentProvider"
@@ -37,7 +38,11 @@ export const ApplicationViews = () => {
                             <Route exact path="/posts" render={(props) => {
                                 return <> 
                                     <PostList history={props.history} />
-                                    <Comment {...props}/>
+                                </>
+                            }} /> 
+                            <Route exact path="/userposts" render={(props) => {
+                                return <>
+                                    <UserPostList history={props.history} />
                                 </>
                             }} /> 
                             <Route exact path="/comments/:sampleId(\d+)" render={(props) => {

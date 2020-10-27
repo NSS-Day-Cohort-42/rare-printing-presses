@@ -6,6 +6,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import CategoryIcon from '@material-ui/icons/Category';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 
 
@@ -16,7 +17,10 @@ export const NavBar = () => {
                 Rare.
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/posts"><div className ="icon"><MailOutlineIcon style={{ fontSize: 28 }} />Posts</div></Link>
+                <Link className="navbar__link" to="/posts"><div className ="icon"><MailOutlineIcon style={{ fontSize: 28 }} />All Posts</div></Link>
+            </li>
+            <li className="navbar__item">
+                <Link className="navbar__link" to="/userposts"><div className ="icon"><VisibilityIcon style={{ fontSize: 28 }} />Your Posts</div></Link>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/addCategory"><div className ="icon"><CategoryIcon style={{ fontSize: 28 }} />Create Category</div></Link>
