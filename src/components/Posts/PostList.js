@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useState, useRef } from "react"
 import { Link } from "react-router-dom"
 import { PostContext } from "./PostProvider" 
 import {CategoryContext} from "../categories/CategoriesProvider"
@@ -10,8 +10,11 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import EditIcon from '@material-ui/icons/Edit';
 
 export const PostList = (props) => {
-    const { posts, getAllPosts } = useContext(PostContext)
+    const { posts, getAllPosts, getPostsByCategoryId } = useContext(PostContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
+
+    const [filteredPosts, setFiltered] = useState([])
+    const [categorySelected, setCategorySelected] = useState([])
 
     useEffect(() => {
         getAllPosts()
@@ -38,7 +41,16 @@ export const PostList = (props) => {
     }));
 
     const classes = useStyles()
+    const categoryRef = useRef("")
 
+    const filterPosts = (value) => {
+        if (value ==="0") {
+            getAllPosts()
+        } else {
+            getPostsByCategoryId(value)
+        }
+
+    }
     return (
         <>
             {/* <article className="welcomeMessage">
@@ -46,7 +58,22 @@ export const PostList = (props) => {
                     <div><h1 className="welcomeTitle">Hey, {currentUser.firstName}</h1></div>
                 </section>
             </article> */}
-            
+            <h1>Posts</h1>
+            <section className="filteredPosts">
+                <label htmlFor="category_id">Filter By Category</label>
+                    <select name="category_id" ref={categoryRef} className="form-control" 
+                    onChange={event => {
+                        event.preventDefault()
+                        filterPosts(categoryRef.current.value)
+                    }}>
+                        <option value="0">Select a Category</option>
+                        {categories.map(c => (
+                            <option key={c.id} value={c.id}>
+                                {c.label}
+                            </option>
+                        ))}
+                    </select>
+            </section>
 
             <article className="postsContainer">
                 {
