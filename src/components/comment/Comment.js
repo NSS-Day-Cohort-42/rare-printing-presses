@@ -29,9 +29,9 @@ export const Comment = (props) => {
             var retVal = window.confirm("Are you sure you want to delete your comment?");
             if( retVal == true ) {
                 deleteComment(id)
-               return true;
+            return true;
             } else {
-               return false;
+            return false;
             }
         }
     return (
@@ -54,24 +54,24 @@ export const Comment = (props) => {
                 <div>
                 </div>
                 <h1>Add a Comment</h1>
-                <fieldset>
-                    <input ref={subject} type="text" name="firstName" className="form-control" placeholder="Comment Subject" />
-                </fieldset>
-                <fieldset>
-                    <textarea ref={comment} name="bio" className="form-control" placeholder="Comment" />
-                </fieldset>
-                <fieldset style={{
-                    textAlign: "center"
-                }}>
-            <button type="submit"
-                onClick={evt => {
-                    evt.preventDefault() // Prevent browser from submitting the form
-                    add_new_comment()
-                }}
-                className="btn btn-primary">
-                Submit
-            </button>
-                </fieldset>
+                    <fieldset>
+                        <input ref={subject} type="text" name="firstName" className="form-control" placeholder="Comment Subject" />
+                    </fieldset>
+                    <fieldset>
+                        <textarea ref={comment} name="bio" className="form-control" placeholder="Comment" />
+                    </fieldset>
+                    <fieldset style={{
+                        textAlign: "center"
+                    }}>
+                        <button type="submit"
+                            onClick={evt => {
+                                evt.preventDefault() // Prevent browser from submitting the form
+                                add_new_comment()
+                            }}
+                            className="btn btn-primary">
+                            Submit
+                        </button>
+                    </fieldset>
             </form>
         </main>
     )
