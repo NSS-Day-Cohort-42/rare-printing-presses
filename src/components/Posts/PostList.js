@@ -7,6 +7,7 @@ import "./Post.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import EditIcon from '@material-ui/icons/Edit';
 
 export const PostList = (props) => {
     const { posts, getAllPosts } = useContext(PostContext)
@@ -59,6 +60,12 @@ export const PostList = (props) => {
                                         <button className="postDetailsButton">
                                             <ArrowForwardIosIcon className={classes.primary} onClick={() => props.history.push(`/posts/${post.id}`)} />
                                         </button>
+                                        <button className="postDetailsButton" 
+                                                onClick={() => {
+                                                        props.history.push(`/posts/edit/${post.id}`)
+                                                }}>
+                                                <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
+                                            </button>
                                     </section>
                             
                     })
