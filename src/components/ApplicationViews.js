@@ -3,6 +3,7 @@ import { Route } from "react-router-dom"
 import { TagForm } from "./tags/TagForm"
 import { TagList } from "./tags/TagList"
 import { TagProvider } from "./tags/TagProvider"
+import PostsDetails, { PostDetails } from "./Posts/PostDetail"
 import PostsProvider from "./Posts/PostProvider"
 import PostList from "./Posts/PostList"
 import { Comment } from "./comment/Comment"
@@ -48,13 +49,20 @@ export const ApplicationViews = () => {
                 </CommentProvider>
             </PostsProvider>
 
-            <CommentProvider>
+            <PostsProvider>
+                <CommentProvider>
+                    <CategoriesProvider>
+                        <TagProvider>
                 <Route exact path="/posts/:sampleId(\d+)" render={(props) => {
                     return <> 
+                        <PostDetails {...props}/>
                         <Comment {...props}/>
                     </>
                 }} />    
-            </CommentProvider>
+                        </TagProvider>
+                    </CategoriesProvider>
+                </CommentProvider>
+            </PostsProvider>
 
 
             <TagProvider>

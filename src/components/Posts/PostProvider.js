@@ -29,15 +29,13 @@ export const PostsProvider = (props) => {
             .then(getAllPosts)
     }
 
-    // const deletePost = (postId) => {
-    //     console.log("delete method")
-    //     return fetch(`http://localhost:8088/posts/${postId}`, {
-    //         method: "DELETE"
-    //     })
-    //         .then(() => {
-    //             getUserPosts(localStorage.getItem("user_id"))
-    //         })
-    // }
+    const deletePost = (postId) => {
+        console.log("delete method")
+        return fetch(`http://localhost:8088/posts/${postId}`, {
+            method: "DELETE"
+        })
+            .then(getAllPosts)
+    }
 
     const editPost = post => {
         return fetch(`http://localhost:8088/posts/${post.id}`, {
@@ -53,7 +51,7 @@ export const PostsProvider = (props) => {
     return (
         <PostContext.Provider value={{
             posts, getAllPosts, singlePost, getSinglePost,
-            createPost, editPost
+            createPost, editPost, deletePost
         }}>
             {props.children}
         </PostContext.Provider>
