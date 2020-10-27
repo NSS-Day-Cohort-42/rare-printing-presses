@@ -60,7 +60,7 @@ export const PostList = (props) => {
                                         <button className="postDetailsButton">
                                             <ArrowForwardIosIcon className={classes.primary} onClick={() => props.history.push(`/posts/${post.id}`)} />
                                         </button>
-                                        <button className="deleteShowButton" 
+                                        <button className="postDetailsButton" 
                                                 onClick={() => {
                                                         props.history.push(`/posts/edit/${post.id}`)
                                                 }}>

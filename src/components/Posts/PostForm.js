@@ -47,7 +47,6 @@ export const PostForm = (props) => {
         
         const categoryId = parseInt(postState.category_id)
 
-        console.log(categoryId)
         if (editMode) {
             editPost({
                 id: postState.id,
