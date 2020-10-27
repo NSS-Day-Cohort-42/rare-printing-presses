@@ -27,7 +27,7 @@ export const Login = () => {
             .then(res => {
                 if (res.valid) {
                     localStorage.setItem("user_id", res.id )
-                    history.push("/")
+                    history.push("/userposts")
                 }
                 else {
                     invalidDialog.current.showModal()
