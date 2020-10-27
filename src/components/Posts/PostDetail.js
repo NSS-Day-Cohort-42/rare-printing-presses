@@ -51,7 +51,7 @@ export const PostDetails = (props) => {
     }));
 
     const classes = useStyles()
-
+    if (singlePost.user_id == parseInt(localStorage.getItem("user_id"))){
     return (
         <>
             <article className="postsContainer">
@@ -61,6 +61,16 @@ export const PostDetails = (props) => {
             </article>
         </>
     )
+}
+    else{
+    return(
+        <>
+        <article className="postsContainer">
+                <div>{singlePost.title}</div>
+                <div>{singlePost.content}</div>
+        </article>
+    </>
+    )}
 }
 
 export default PostDetails
