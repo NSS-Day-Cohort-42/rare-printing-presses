@@ -82,8 +82,8 @@ export const ApplicationViews = () => {
                             return <PostForm {...props}/>
                         }}>
                         </Route>
-                        <Route path="/Post/edit/:postId(\d+)" render ={(props) => {
-                            return <PostForm {...props}/>
+                        <Route path="/posts/edit/:postId(\d+)" render ={(props) => {
+                            return <PostForm {...props} /> 
                             }}>
                         </Route>
                     </TagProvider>
