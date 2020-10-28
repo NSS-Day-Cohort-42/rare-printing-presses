@@ -62,47 +62,58 @@ export const PostDetails = (props) => {
     
     return (
         <>
+        <div>
+            <article>
+                <div className="postDetails__title">Post Details</div>
+            </article>
             <article className="postDetailsContainer">
                 <article className="postDetails">
-                    <div>{userName.name}</div>
+                    <div className="postDetails_author">{userName.name}</div>
+                    <div>{singlePost.date}</div>
                     <section className="postContent">
                         <div className="postDetailsTitle">{singlePost.title}</div>
                         <div className="postDetailsContent">{singlePost.content}</div>
                     </section>
                     <section className="contentTags">
                         <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
-                        {
-                            postTags.map(t =>{
-                                return <p>{t.tags.label}</p>
-                        })
-                    }
+                            {
+                                postTags.map(t =>{
+                                    return <p>{t.tags.label}</p>
+                                })
+                            }
                     </section>
                         <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(singlePost.id)}>Delete</button>
                 </article>
             </article>
+        </div>
+
         </>
     )
 }
     else{
     return(
         <>
-        <article className="postDetailsContainer">
-            <article className="postDetails">
-                <div>{userName.name}</div>
-                <section className="postContent">
-                    <div className="postDetailsTitle">{singlePost.title}</div>
-                    <div className="postDetailsContent">{singlePost.content}</div>
-                </section>
-                <section className="contentTags">
-                    <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
-                    {
-                        postTags.map(t =>{
-                            return <p>{t.tags.label}</p>
-                        })
-                    }
-                </section>s
+        <div>
+            <h2 className="postDetails__title">Post Details</h2>
+            <article className="postDetailsContainer">
+                <article className="postDetails">
+                    <div>{userName.name}</div>
+                    <div>{singlePost.date}</div>
+                    <section className="postContent">
+                        <div className="postDetailsTitle">{singlePost.title}</div>
+                        <div className="postDetailsContent">{singlePost.content}</div>
+                    </section>
+                    <section className="contentTags">
+                        <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
+                            {
+                                postTags.map(t =>{
+                                    return <p>{t.tags.label}</p>
+                                })
+                            }
+                    </section>
+                </article>
             </article>
-        </article>
+        </div>
     </>
     )}
 }
