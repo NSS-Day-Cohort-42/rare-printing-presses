@@ -2,19 +2,21 @@ import React, { useContext, useEffect, useState, useRef } from "react"
 import { Link } from "react-router-dom"
 import { PostContext } from "./PostProvider" 
 import {CategoryContext} from "../categories/CategoriesProvider"
-import {users} from "../auth/AuthProvider"
 import "./Post.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import EditIcon from '@material-ui/icons/Edit';
+import { ProfileContext, profile } from "../auth/AuthProvider"
 
 export const PostList = (props) => {
     const { posts, getAllPosts, getPostsByCategoryId } = useContext(PostContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
+    const { profile, getProfile } = useContext(ProfileContext)
+
 
     useEffect(() => {
         getAllPosts()
+        getProfile()
             .then(getAllCategories)
     }, [])
 
@@ -74,20 +76,14 @@ export const PostList = (props) => {
                 {
                     posts.map(post => {
                         const category = categories.find(c => c.id === post.category_id) || {}
-                        // const userName = users.find(c => c.id === post.category_id) || {}
+                        const userName = profile.find(c => c.id === post.user_id) || {}
                         return <section key={post.id} className="posts">
-                                        <div className="PostAuthor">Author: {post.user_id} </div>
+                                        <div className="PostAuthor">Author: {userName.name} </div>
                                         <div className="PostTitle">Title: {post.title} </div>
                                         <div className="PostCategory">Category:<Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link></div>
                                         <button className="postDetailsButton">
                                             <ArrowForwardIosIcon className={classes.primary} onClick={() => props.history.push(`/posts/${post.id}`)} />
                                         </button>
-                                        <Button className="postDetailsButton" 
-                                                onClick={() => {
-                                                        props.history.push(`/posts/edit/${post.id}`)
-                                                }}>
-                                                <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
-                                        </Button>
                                     </section>
                             
                     })
