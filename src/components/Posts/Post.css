@@ -7,7 +7,7 @@
     align-content: start;
     background-color: rgb(242, 240, 240);
     border-top-left-radius: 25px;
-    margin-top: 20rem;
+    margin-top: 5rem;
     margin-left: 20rem;
     height: 900px;
     overflow: scroll;
@@ -59,8 +59,8 @@
 } */
 
 .filteredPosts {
-    margin-top: 200px;
-    margin-bottom: -19rem;
+    margin-top: 2rem;
+    /* margin-bottom: -19rem; */
     width: 400px;
     display:flex;
     justify-content: center;
@@ -75,7 +75,7 @@
 }
 
 .createArticle {
-    margin-top: 20rem;
-    margin-bottom: -16.4rem;
-    margin-left: 27rem;
+    margin-top: 10rem;
+    /* margin-bottom: 5rem; */
+    margin-left: 49rem;
 }
