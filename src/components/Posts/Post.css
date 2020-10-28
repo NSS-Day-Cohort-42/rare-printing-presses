@@ -7,7 +7,7 @@
     align-content: start;
     background-color: rgb(242, 240, 240);
     border-top-left-radius: 25px;
-    margin-top: 20rem;
+    margin-top: 2rem;
     margin-left: 20rem;
     height: 900px;
     overflow: scroll;
@@ -56,3 +56,17 @@
     margin-left: 23rem;
     margin-bottom: -20rem;
 } */
+
+.filteredPosts {
+    margin-top: 200px;
+    width: 400px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-control {
+    width: 15rem;
+
+}
