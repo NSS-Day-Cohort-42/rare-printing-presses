@@ -21,10 +21,10 @@ export const PostList = (props) => {
             .then(getAllCategories)
     }, [])
 
-    const useStyles = makeStyles((theme) => ({
+    const useStyles = makeStyles((thbe) => ({
             root: {
             '& > *': {
-                margin: theme.spacing(1),
+                margin: thbe.spacing(1),
                 color: "#EB5757",  
                 position: "fixed",
                 display: "flex",
@@ -79,9 +79,12 @@ export const PostList = (props) => {
                         const category = categories.find(c => c.id === post.category_id) || {}
                         // const userName = users.find(c => c.id === post.category_id) || {}
                         return <section key={post.id} className="posts">
-                                        <div className="PostAuthor">Author: {post.user_id} </div>
-                                        <div className="PostTitle">Title: {post.title} </div>
-                                        <div className="PostCategory">Category:<Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link></div>
+                                    <div className="post-info">
+                                        <div className="PostAuthor">{post.user_id} </div>
+                                        <div className="PostTitle">{post.title}</div>
+                                        <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link></div>
+                                    </div>
+                                    <div className="post-icons">
                                         <button className="postDetailsButton">
                                             <ArrowForwardIosIcon className={classes.primary} onClick={() => props.history.push(`/posts/${post.id}`)} />
                                         </button>
@@ -91,6 +94,7 @@ export const PostList = (props) => {
                                                 }}>
                                                 <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
                                         </Button>
+                                    </div>
                                     </section>
                             
                     })
