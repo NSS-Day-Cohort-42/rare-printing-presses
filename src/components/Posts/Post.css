@@ -8,7 +8,7 @@
     background-color: rgb(242, 240, 240);
     border-top-left-radius: 25px;
     margin-top: 5rem;
-    margin-left: 20rem;
+    margin-left: 25rem;
     height: 900px;
     overflow: scroll;
 }
@@ -24,6 +24,47 @@
     color: black;
     box-shadow: 0px 6px 10px 2px rgba(163, 163,163,1);
     width: 25rem;
+    display:flex;
+    justify-content: space-between;
+}
+
+.PostAuthor{
+    background-color: #72c8cc;
+    border-radius: 10px;
+    text-align: center;
+    padding:2px;
+    width: 7rem;
+}
+
+.PostAuthor>p{
+    margin-left:3px;
+}
+
+.PostTitle{
+    font-weight: bold;
+}
+
+.PostCategory{
+    font-style: italic;
+}
+
+.PostTitle,.PostCategory{
+    margin-left: 1rem;
+}
+
+.post-icons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.post-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.post-info>*{
+    margin-top:2px;
 }
 
 .postDetailsButton {
@@ -51,6 +92,7 @@
 
 .postForm { 
     margin-top: 300px;
+    margin-left: 25rem;
 }
 /* .postPageTitle { 
     margin-top: 25rem;
@@ -60,7 +102,7 @@
 
 .filteredPosts {
     margin-top: 2rem;
-    /* margin-bottom: -19rem; */
+    margin-bottom: -5rem;
     width: 400px;
     display:flex;
     justify-content: center;
@@ -76,6 +118,11 @@
 
 .createArticle {
     margin-top: 10rem;
-    /* margin-bottom: 5rem; */
-    margin-left: 49rem;
+    margin-bottom: -5.9rem;
+    margin-left: 30rem;
+}
+.userArticle {
+    margin-top: 10rem;
+    margin-bottom: -5rem;
+    margin-left: 30rem;
 }

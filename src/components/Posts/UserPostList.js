@@ -44,7 +44,7 @@ export const UserPostList = (props) => {
 
     return (
         <>
-                        <article className="createArticle">
+            <article className="userArticle">
                 <Button variant="outlined" color="primary" className="createPostButton" onClick={() => props.history.push("/Post/create")}>Create Post</Button>
             </article>
             
@@ -55,18 +55,16 @@ export const UserPostList = (props) => {
                         const category = categories.find(c => c.id === post.category_id) || {}
                         const userName = profile.find(c => c.id === post.user_id) || {}
                         return <section key={post.id} className="posts">
-                                        <div className="PostAuthor">Author: {userName.name} </div>
-                                        <div className="PostTitle">Title: {post.title} </div>
-                                        <div className="PostCategory">Category:<Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link></div>
+                                    <div className="post-info">
+                                        <div className="PostAuthor">{post.user_id} </div>
+                                        <div className="PostTitle">{post.title} </div>
+                                        <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link></div>
+                                    </div>
+                                    <div className="post-icons">
                                         <button className="postDetailsButton">
                                             <ArrowForwardIosIcon className={classes.primary} onClick={() => props.history.push(`/posts/${post.id}`)} />
                                         </button>
-                                        <Button className="postDetailsButton" 
-                                                onClick={() => {
-                                                        props.history.push(`/posts/edit/${post.id}`)
-                                                }}>
-                                                <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
-                                        </Button>
+                                        </div>
                                     </section>
                             
                     })
