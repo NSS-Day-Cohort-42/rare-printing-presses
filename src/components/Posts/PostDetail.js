@@ -60,13 +60,13 @@ export const PostDetails = (props) => {
             <article className="postDetailsContainer">
                 <article className="postDetails">
                     <section className="postContent">
-                        <div>{singlePost.title}</div>
-                        <div>{singlePost.content}</div>
+                        <div className="postDetailsTitle">{singlePost.title}</div>
+                        <div className="postDetailsContent">{singlePost.content}</div>
                     </section>
                     <section className="contentTags">
                         <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
                     </section>
-                        <button onClick={() => delete_prompt(singlePost.id)}>Delete</button>
+                        <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(singlePost.id)}>Delete</button>
                 </article>
             </article>
         </>
@@ -77,8 +77,8 @@ export const PostDetails = (props) => {
         <>
         <article className="postDetails">
             <section className="postContent">
-                <div>{singlePost.title}</div>
-                <div>{singlePost.content}</div>
+                <div className="postDetailsTitle">{singlePost.title}</div>
+                <div className="postDetailsContent">{singlePost.content}</div>
             </section>
             <section className="contentTags">
                 <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
