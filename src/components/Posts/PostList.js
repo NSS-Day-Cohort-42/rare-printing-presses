@@ -13,8 +13,7 @@ export const PostList = (props) => {
     const { posts, getAllPosts, getPostsByCategoryId } = useContext(PostContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
     const { profile, getProfile } = useContext(ProfileContext)
-    const [filteredPosts, setFiltered] = useState([])
-    const [categorySelected, setCategorySelected] = useState([])
+
 
     useEffect(() => {
         getAllPosts()
@@ -54,7 +53,6 @@ export const PostList = (props) => {
     }
     return (
         <>
-            
             <article className="createArticle">
                 <Button variant="outlined" color="primary" className="createPostButton" onClick={() => props.history.push("/Post/create")}>Create Post</Button>
             </article>

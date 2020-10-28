@@ -41,14 +41,16 @@ export const Comment = (props) => {
                 <h1 className="h3 mb-3 font-weight-normal">Comments:</h1>{
                 thisPost.map(comment => {
                     if (comment.user_id == parseInt(localStorage.getItem("user_id"))){
-                    return <> 
-                    <section key={comment.id} className="comments">
-                    <h3>{comment.subject}</h3>
-                    <div>{comment.content}</div>
-                    <button onClick={() => {
-                        props.history.push(`/comments/${comment.id}`)
-                        window.location.reload()}}>Edit</button>
-                    <button onClick={() => delete_prompt(comment.id)}>Delete</button>
+                    return <>
+                    <section className="commentContainer">
+                        <section key={comment.id} className="comments">
+                        <h3>{comment.subject}</h3>
+                        <div>{comment.content}</div>
+                        <button onClick={() => {
+                            props.history.push(`/comments/${comment.id}`)
+                            window.location.reload()}}>Edit</button>
+                        <button onClick={() => delete_prompt(comment.id)}>Delete</button>
+                        </section>
                     </section>
                     </>
                 }
@@ -61,11 +63,10 @@ export const Comment = (props) => {
                     </section>
                     </>
                 }
-
                 })}
                 <div>
                 </div>
-                <h1>Add a Comment</h1>
+                <h2>Add a Comment</h2>
                     <fieldset>
                         <input ref={subject} type="text" name="firstName" className="form-control" placeholder="Comment Subject" />
                     </fieldset>

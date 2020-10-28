@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { PostContext } from "./PostProvider" 
 import {CategoryContext} from "../categories/CategoriesProvider"
 import {users} from "../auth/AuthProvider"
-import "./Post.css"
+import "./PostDetail.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
@@ -56,38 +56,59 @@ export const PostDetails = (props) => {
     }));
 
     const classes = useStyles()
+    const category = categories.find(c => c.id === singlePost.category_id) || {}
     const userName = profile.find(c => c.id === singlePost.user_id) || {}
     if (singlePost.user_id == parseInt(localStorage.getItem("user_id"))){
     
-    return (
-        <>
-            <article className="postsContainer">
-                    <div>{userName.name}</div>
-                    <div>{singlePost.title}</div>
-                    <div>{singlePost.content}</div>
-                    {
-                        postTags.map(t =>{
-                        return <p>{t.tags.label}</p>
-                        })
-                    }
-                    <button onClick={() => delete_prompt(singlePost.id)}>Delete</button>
-            </article>
-        </>
-    )
-}
+        return (
+            <>
+            <div>
+                <article className="postDetailsContainer">
+                    <article className="postDetails">
+                        <div className="postDetails_author">{userName.name}</div>
+                        <div>{singlePost.date}</div>
+                        <section className="postContent">
+                            <div className="postDetailsTitle">{singlePost.title}</div>
+                            <div className="postDetailsContent">{singlePost.content}</div>
+                        </section>
+                        <section className="contentTags">
+                            <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
+                                {
+                                    postTags.map(t =>{
+                                        return <p>{t.tags.label}</p>
+                                    })
+                                }
+                        </section>
+                            <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(singlePost.id)}>Delete</button>
+                    </article>
+                </article>
+            </div>
+            </>
+        )
+    }
     else{
     return(
         <>
-        <article className="postsContainer">
-                <div>{userName.name}</div>
-                <div>{singlePost.title}</div>
-                <div>{singlePost.content}</div>
-                {
-                        postTags.map(t =>{
-                        return <p>{t.tags.label}</p>
-                        })
-                    }
-        </article>
+        <div>
+            <article className="postDetailsContainer">
+                <article className="postDetails">
+                    <div className="postDetails_author">{userName.name}</div>
+                    <div>{singlePost.date}</div>
+                    <section className="postContent">
+                        <div className="postDetailsTitle">{singlePost.title}</div>
+                        <div className="postDetailsContent">{singlePost.content}</div>
+                    </section>
+                    <section className="contentTags">
+                        <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
+                            {
+                                postTags.map(t =>{
+                                    return <p>{t.tags.label}</p>
+                                })
+                            }
+                    </section>
+                </article>
+            </article>
+        </div>
     </>
     )}
 }
