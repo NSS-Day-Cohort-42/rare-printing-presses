@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { PostContext } from "./PostProvider" 
 import {CategoryContext} from "../categories/CategoriesProvider"
 import {users} from "../auth/AuthProvider"
-import "./Post.css"
+import "./PostDetail.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
@@ -51,13 +51,23 @@ export const PostDetails = (props) => {
     }));
 
     const classes = useStyles()
+    const category = categories.find(c => c.id === singlePost.category_id) || {}
+    // const userName = users.find
+
     if (singlePost.user_id == parseInt(localStorage.getItem("user_id"))){
     return (
         <>
-            <article className="postsContainer">
-                    <div>{singlePost.title}</div>
-                    <div>{singlePost.content}</div>
-                    <button onClick={() => delete_prompt(singlePost.id)}>Delete</button>
+            <article className="postDetailsContainer">
+                <article className="postDetails">
+                    <section className="postContent">
+                        <div>{singlePost.title}</div>
+                        <div>{singlePost.content}</div>
+                    </section>
+                    <section className="contentTags">
+                        <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
+                    </section>
+                        <button onClick={() => delete_prompt(singlePost.id)}>Delete</button>
+                </article>
             </article>
         </>
     )
@@ -65,9 +75,14 @@ export const PostDetails = (props) => {
     else{
     return(
         <>
-        <article className="postsContainer">
+        <article className="postDetails">
+            <section className="postContent">
                 <div>{singlePost.title}</div>
                 <div>{singlePost.content}</div>
+            </section>
+            <section className="contentTags">
+                <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
+            </section>
         </article>
     </>
     )}

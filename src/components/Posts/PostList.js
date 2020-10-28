@@ -13,9 +13,6 @@ export const PostList = (props) => {
     const { posts, getAllPosts, getPostsByCategoryId } = useContext(PostContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
 
-    const [filteredPosts, setFiltered] = useState([])
-    const [categorySelected, setCategorySelected] = useState([])
-
     useEffect(() => {
         getAllPosts()
             .then(getAllCategories)
