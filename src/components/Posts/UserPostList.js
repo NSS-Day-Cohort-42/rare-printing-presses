@@ -44,7 +44,7 @@ export const UserPostList = (props) => {
 
     return (
         <>
-                        <article className="createArticle">
+            <article className="userArticle">
                 <Button variant="outlined" color="primary" className="createPostButton" onClick={() => props.history.push("/Post/create")}>Create Post</Button>
             </article>
             

@@ -27,13 +27,13 @@
     align-content: start;
     background-color: rgb(242, 240, 240);
     border-top-left-radius: 25px;
-    margin: 2rem;
+    margin-left: 25rem;
     height: auto;
     overflow: scroll;
 }
 
 .categoryPageTitle {
-    margin-left: 2rem;
+    margin-left: 25rem;
     text-align: center;
     color: rgb(142, 142, 142);
 }
@@ -57,4 +57,10 @@
     display: flex;
     justify-content: center;
     padding-bottom: 15rem;
+}
+
+.createCatButton { 
+        display: flex;
+        justify-content: center;
+        width: 500px;
 }

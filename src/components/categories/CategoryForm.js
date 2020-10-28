@@ -4,7 +4,6 @@ import "./Categories.css"
 import Button from '@material-ui/core/Button';
 
 
-
 export const CategoryForm = (props) => {
     const { addCategory } = useContext(CategoryContext)
 
@@ -46,7 +45,7 @@ export const CategoryForm = (props) => {
                     />
                 </div>
             </fieldset>
-            <Button type="submit"
+            <Button className="savePostButton" variant="contained" type="submit"
                 onClick={evt => {
                     evt.preventDefault()
                     constructNewCategory()
