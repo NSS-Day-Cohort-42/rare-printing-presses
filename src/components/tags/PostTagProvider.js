@@ -16,9 +16,7 @@ export const PostTagProvider = (props) => {
         getPostTags()
     }, [])
 
-    useEffect(() => {
-
-    }, [postTags])
+    
 
     return (
         <PostTagContext.Provider value={{

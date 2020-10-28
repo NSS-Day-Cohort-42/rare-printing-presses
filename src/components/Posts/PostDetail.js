@@ -10,18 +10,17 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { PostTagContext } from "../tags/PostTagProvider"
 
 export const PostDetails = (props) => {
-    const { singlePost, getSinglePost, deletePost, getPostTags } = useContext(PostContext)
+    const { singlePost, getSinglePost, deletePost } = useContext(PostContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
-    const {postTags} = useContext(PostTagContext)
+    const {postTags, getPostTags} = useContext(PostTagContext)
     var pathArray = window.location.pathname.split('/')
     let postNumber = parseInt(pathArray[2])
 
     useEffect(() => {
         getSinglePost(postNumber)
             .then(getAllCategories)
-            .then(getPostTags(singlePost.id))
-            console.log(postTags)
             console.log(singlePost)
+        getPostTags(postNumber)
     }, [])
 
     const delete_prompt = (id) => {
@@ -56,11 +55,17 @@ export const PostDetails = (props) => {
 
     const classes = useStyles()
     if (singlePost.user_id == parseInt(localStorage.getItem("user_id"))){
+    
     return (
         <>
             <article className="postsContainer">
                     <div>{singlePost.title}</div>
                     <div>{singlePost.content}</div>
+                    {
+                        postTags.map(t =>{
+                        return <p>{t.tags.label}</p>
+                        })
+                    }
                     <button onClick={() => delete_prompt(singlePost.id)}>Delete</button>
             </article>
         </>
@@ -72,6 +77,11 @@ export const PostDetails = (props) => {
         <article className="postsContainer">
                 <div>{singlePost.title}</div>
                 <div>{singlePost.content}</div>
+                {
+                        postTags.map(t =>{
+                        return <p>{t.tags.label}</p>
+                        })
+                    }
         </article>
     </>
     )}
