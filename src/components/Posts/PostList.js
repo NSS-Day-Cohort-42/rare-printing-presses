@@ -6,6 +6,7 @@ import "./Post.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import EditIcon from '@material-ui/icons/Edit';
 import { ProfileContext, profile } from "../auth/AuthProvider"
 
 export const PostList = (props) => {
@@ -80,7 +81,7 @@ export const PostList = (props) => {
                         const userName = profile.find(c => c.id === post.user_id) || {}
                         return <section key={post.id} className="posts">
                                     <div className="post-info">
-                                        <div className="PostAuthor">{post.user_id} </div>
+                                        <div className="PostAuthor">{userName.name} </div>
                                         <div className="PostTitle">{post.title}</div>
                                         <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link></div>
                                     </div>
