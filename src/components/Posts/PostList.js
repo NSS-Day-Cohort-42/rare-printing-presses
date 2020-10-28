@@ -53,12 +53,10 @@ export const PostList = (props) => {
     }
     return (
         <>
-            {/* <article className="welcomeMessage">
-                <section key={currentUser.id} className="user">
-                    <div><h1 className="welcomeTitle">Hey, {currentUser.firstName}</h1></div>
-                </section>
-            </article> */}
-            <h1>Posts</h1>
+            
+            <article className="createArticle">
+                <Button variant="outlined" color="primary" className="createPostButton" onClick={() => props.history.push("/Post/create")}>Create Post</Button>
+            </article>
             <section className="filteredPosts">
                 <label htmlFor="category_id">Filter By Category</label>
                     <select name="category_id" ref={categoryRef} className="form-control" 
@@ -87,18 +85,17 @@ export const PostList = (props) => {
                                         <button className="postDetailsButton">
                                             <ArrowForwardIosIcon className={classes.primary} onClick={() => props.history.push(`/posts/${post.id}`)} />
                                         </button>
-                                        <button className="postDetailsButton" 
+                                        <Button className="postDetailsButton" 
                                                 onClick={() => {
                                                         props.history.push(`/posts/edit/${post.id}`)
                                                 }}>
                                                 <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
-                                            </button>
+                                        </Button>
                                     </section>
                             
                     })
                 }
             </article>
-            <button className="addPostButton" onClick={() => props.history.push("/Post/create")}>Create Post</button>
         </>
     )
 }

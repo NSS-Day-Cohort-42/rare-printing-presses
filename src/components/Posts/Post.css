@@ -7,7 +7,7 @@
     align-content: start;
     background-color: rgb(242, 240, 240);
     border-top-left-radius: 25px;
-    margin-top: 2rem;
+    margin-top: 5rem;
     margin-left: 20rem;
     height: 900px;
     overflow: scroll;
@@ -29,6 +29,24 @@
 .postDetailsButton {
     border: none;
     background-color: white;
+
+}
+
+.addPostButton { 
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    margin-left: 20rem;
+    
+}
+.createPostButton { 
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    margin-left: 20rem;
+    margin-top: 20rem;
+    margin-left: 25rem;
+
 }
 
 .postForm { 
@@ -41,15 +59,23 @@
 } */
 
 .filteredPosts {
-    margin-top: 200px;
+    margin-top: 2rem;
+    /* margin-bottom: -19rem; */
     width: 400px;
     display:flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-left: 43rem;
+
 }
 
 .form-control {
     width: 15rem;
+}
 
+.createArticle {
+    margin-top: 10rem;
+    /* margin-bottom: 5rem; */
+    margin-left: 49rem;
 }

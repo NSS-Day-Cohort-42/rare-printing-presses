@@ -24,7 +24,6 @@ export const PostForm = (props) => {
     }
 
     const getPostInEditMode = () => {
-
         
         if (editMode) {
             const postId = parseInt(props.match.params.postId)
