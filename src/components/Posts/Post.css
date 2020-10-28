@@ -60,7 +60,7 @@
 
 .filteredPosts {
     margin-top: 200px;
-    margin-bottom: -18rem;
+    margin-bottom: -19rem;
     width: 400px;
     display:flex;
     justify-content: center;
@@ -76,6 +76,6 @@
 
 .createArticle {
     margin-top: 20rem;
-    margin-bottom: -10rem;
-    margin-left: 49rem;
+    margin-bottom: -16.4rem;
+    margin-left: 27rem;
 }
