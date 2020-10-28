@@ -54,15 +54,9 @@ export const PostList = (props) => {
     return (
         <>
             
-            <article>
+            <article className="createArticle">
                 <Button variant="outlined" color="primary" className="createPostButton" onClick={() => props.history.push("/Post/create")}>Create Post</Button>
             </article>
-            {/* <article className="welcomeMessage">
-                <section key={currentUser.id} className="user">
-                    <div><h1 className="welcomeTitle">Hey, {currentUser.firstName}</h1></div>
-                </section>
-            </article> */}
-            <h1>Posts</h1>
             <section className="filteredPosts">
                 <label htmlFor="category_id">Filter By Category</label>
                     <select name="category_id" ref={categoryRef} className="form-control" 
