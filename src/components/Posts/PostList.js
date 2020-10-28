@@ -41,12 +41,10 @@ export const PostList = (props) => {
 
     return (
         <>
-            {/* <article className="welcomeMessage">
-                <section key={currentUser.id} className="user">
-                    <div><h1 className="welcomeTitle">Hey, {currentUser.firstName}</h1></div>
-                </section>
-            </article> */}
             
+            <article>
+                <Button variant="outlined" color="primary" className="createPostButton" onClick={() => props.history.push("/Post/create")}>Create Post</Button>
+            </article>
 
             <article className="postsContainer">
                 {
@@ -71,7 +69,6 @@ export const PostList = (props) => {
                     })
                 }
             </article>
-            <Button variant="outlined" color="primary" className="createPost" onClick={() => props.history.push("/Post/create")}>Create Post</Button>
         </>
     )
 }
