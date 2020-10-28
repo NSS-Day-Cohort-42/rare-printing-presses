@@ -60,10 +60,16 @@
     text-align: center;
     margin-left: 200px;
     color: rgb(142, 142, 142);
+    width: 100px;
 }
 
 .contentTags {
     display:flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+
+.postDetails__title_article {
+    margin-left: 20rem;
 }

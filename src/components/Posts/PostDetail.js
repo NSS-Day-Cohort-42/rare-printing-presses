@@ -60,44 +60,39 @@ export const PostDetails = (props) => {
     const userName = profile.find(c => c.id === singlePost.user_id) || {}
     if (singlePost.user_id == parseInt(localStorage.getItem("user_id"))){
     
-    return (
-        <>
-        <div>
-            <article>
-                <div className="postDetails__title">Post Details</div>
-            </article>
-            <article className="postDetailsContainer">
-                <article className="postDetails">
-                    <div className="postDetails_author">{userName.name}</div>
-                    <div>{singlePost.date}</div>
-                    <section className="postContent">
-                        <div className="postDetailsTitle">{singlePost.title}</div>
-                        <div className="postDetailsContent">{singlePost.content}</div>
-                    </section>
-                    <section className="contentTags">
-                        <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
-                            {
-                                postTags.map(t =>{
-                                    return <p>{t.tags.label}</p>
-                                })
-                            }
-                    </section>
-                        <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(singlePost.id)}>Delete</button>
+        return (
+            <>
+            <div>
+                <article className="postDetailsContainer">
+                    <article className="postDetails">
+                        <div className="postDetails_author">{userName.name}</div>
+                        <div>{singlePost.date}</div>
+                        <section className="postContent">
+                            <div className="postDetailsTitle">{singlePost.title}</div>
+                            <div className="postDetailsContent">{singlePost.content}</div>
+                        </section>
+                        <section className="contentTags">
+                            <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
+                                {
+                                    postTags.map(t =>{
+                                        return <p>{t.tags.label}</p>
+                                    })
+                                }
+                        </section>
+                            <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(singlePost.id)}>Delete</button>
+                    </article>
                 </article>
-            </article>
-        </div>
-
-        </>
-    )
-}
+            </div>
+            </>
+        )
+    }
     else{
     return(
         <>
         <div>
-            <h2 className="postDetails__title">Post Details</h2>
             <article className="postDetailsContainer">
                 <article className="postDetails">
-                    <div>{userName.name}</div>
+                    <div className="postDetails_author">{userName.name}</div>
                     <div>{singlePost.date}</div>
                     <section className="postContent">
                         <div className="postDetailsTitle">{singlePost.title}</div>
