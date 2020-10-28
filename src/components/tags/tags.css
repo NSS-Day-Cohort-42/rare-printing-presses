@@ -6,9 +6,8 @@
     align-content: center;
     background-color: rgb(242, 240, 240);
     border-top-left-radius: 25px;
-    margin-top: 5rem;
-    margin-left: 20rem;
-    width: 70%;
+    margin-top: 20rem;
+    margin-left: 25rem;
     height: 900px;
     overflow: scroll;
 }
