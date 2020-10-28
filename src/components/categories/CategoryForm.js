@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from "react"
 import { CategoryContext } from "./CategoriesProvider"
 import "./Categories.css"
+import Button from '@material-ui/core/Button';
+
 
 
 export const CategoryForm = (props) => {
@@ -44,14 +46,14 @@ export const CategoryForm = (props) => {
                     />
                 </div>
             </fieldset>
-            <button type="submit"
+            <Button type="submit"
                 onClick={evt => {
                     evt.preventDefault()
                     constructNewCategory()
                 }}
                 className="btn btn-primary btn-add_category">
                 Save
-            </button>
+            </Button>
         </form>
     )
 }
