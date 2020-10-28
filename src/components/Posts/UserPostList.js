@@ -56,7 +56,7 @@ export const UserPostList = (props) => {
                         const userName = profile.find(c => c.id === post.user_id) || {}
                         return <section key={post.id} className="posts">
                                     <div className="post-info">
-                                        <div className="PostAuthor">{post.user_id} </div>
+                                        <div className="PostAuthor">{userName.name} </div>
                                         <div className="PostTitle">{post.title} </div>
                                         <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link></div>
                                     </div>
