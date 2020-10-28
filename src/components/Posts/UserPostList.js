@@ -7,13 +7,17 @@ import "./Post.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import EditIcon from '@material-ui/icons/Edit';
+import { ProfileContext } from "../auth/AuthProvider"
 
 export const UserPostList = (props) => {
     const { posts, getAllPosts } = useContext(PostContext)
+    const { profile, getProfile } = useContext(ProfileContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
     let yourPosts = posts.filter(post => post.user_id === parseInt(localStorage.getItem("user_id")))
     useEffect(() => {
         getAllPosts()
+        getProfile()
             .then(getAllCategories)
     }, [])
 
@@ -40,7 +44,7 @@ export const UserPostList = (props) => {
 
     return (
         <>
-                        <article className="createArticle">
+            <article className="userArticle">
                 <Button variant="outlined" color="primary" className="createPostButton" onClick={() => props.history.push("/Post/create")}>Create Post</Button>
             </article>
             
@@ -49,7 +53,7 @@ export const UserPostList = (props) => {
                 {
                     yourPosts.map(post => {
                         const category = categories.find(c => c.id === post.category_id) || {}
-                        // const userName = users.find(c => c.id === post.category_id) || {}
+                        const userName = profile.find(c => c.id === post.user_id) || {}
                         return <section key={post.id} className="posts">
                                     <div className="post-info">
                                         <div className="PostAuthor">{post.user_id} </div>

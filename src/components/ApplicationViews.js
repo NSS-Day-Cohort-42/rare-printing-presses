@@ -15,6 +15,7 @@ import { CategoryForm } from "./categories/CategoryForm"
 import { CategoriesProvider } from "./categories/CategoriesProvider";
 import { CategoriesList } from "./categories/CategoriesList"
 import { PostForm } from "./Posts/PostForm"
+import { ProfileProvider} from "./auth/AuthProvider"
 import { PostTagProvider } from "./tags/PostTagProvider"
 
 export const ApplicationViews = () => {
@@ -26,7 +27,7 @@ export const ApplicationViews = () => {
                     </>
                 }} />       
             </CategoriesProvider>
-            
+            <ProfileProvider>
             <PostsProvider>
                 <CommentProvider>
                     <CategoriesProvider>
@@ -55,6 +56,8 @@ export const ApplicationViews = () => {
                     </CategoriesProvider>
                 </CommentProvider>
             </PostsProvider>
+            </ProfileProvider>
+            <ProfileProvider>
         <PostTagProvider>
             <PostsProvider>
                 <CommentProvider>
@@ -71,7 +74,7 @@ export const ApplicationViews = () => {
                 </CommentProvider>
             </PostsProvider>
         </PostTagProvider>
-
+        </ProfileProvider>
             <TagProvider>
                 <Route exact path="/tag">
                     <TagList />
@@ -81,7 +84,7 @@ export const ApplicationViews = () => {
                 }>
                 </Route>
             </TagProvider>
-
+            
             <PostsProvider>
                 <CategoriesProvider>
                     <TagProvider>

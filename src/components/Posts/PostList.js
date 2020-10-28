@@ -2,22 +2,22 @@ import React, { useContext, useEffect, useState, useRef } from "react"
 import { Link } from "react-router-dom"
 import { PostContext } from "./PostProvider" 
 import {CategoryContext} from "../categories/CategoriesProvider"
-import {users} from "../auth/AuthProvider"
 import "./Post.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import EditIcon from '@material-ui/icons/Edit';
+import { ProfileContext, profile } from "../auth/AuthProvider"
 
 export const PostList = (props) => {
     const { posts, getAllPosts, getPostsByCategoryId } = useContext(PostContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
-
+    const { profile, getProfile } = useContext(ProfileContext)
     const [filteredPosts, setFiltered] = useState([])
     const [categorySelected, setCategorySelected] = useState([])
 
     useEffect(() => {
         getAllPosts()
+        getProfile()
             .then(getAllCategories)
     }, [])
 
@@ -77,7 +77,7 @@ export const PostList = (props) => {
                 {
                     posts.map(post => {
                         const category = categories.find(c => c.id === post.category_id) || {}
-                        // const userName = users.find(c => c.id === post.category_id) || {}
+                        const userName = profile.find(c => c.id === post.user_id) || {}
                         return <section key={post.id} className="posts">
                                     <div className="post-info">
                                         <div className="PostAuthor">{post.user_id} </div>

@@ -8,7 +8,7 @@
     background-color: rgb(242, 240, 240);
     border-top-left-radius: 25px;
     margin-top: 5rem;
-    margin-left: 20rem;
+    margin-left: 25rem;
     height: 900px;
     overflow: scroll;
 }
@@ -92,6 +92,7 @@
 
 .postForm { 
     margin-top: 300px;
+    margin-left: 25rem;
 }
 /* .postPageTitle { 
     margin-top: 25rem;
@@ -101,7 +102,7 @@
 
 .filteredPosts {
     margin-top: 2rem;
-    /* margin-bottom: -19rem; */
+    margin-bottom: -5rem;
     width: 400px;
     display:flex;
     justify-content: center;
@@ -117,6 +118,11 @@
 
 .createArticle {
     margin-top: 10rem;
-    /* margin-bottom: 5rem; */
-    margin-left: 49rem;
+    margin-bottom: -5.9rem;
+    margin-left: 30rem;
+}
+.userArticle {
+    margin-top: 10rem;
+    margin-bottom: -5rem;
+    margin-left: 30rem;
 }
