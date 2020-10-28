@@ -7,17 +7,19 @@ import "./Post.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import { ProfileContext } from "../auth/AuthProvider"
 
 export const PostDetails = (props) => {
     const { singlePost, getSinglePost, deletePost } = useContext(PostContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
+    const { profile, getProfile } = useContext(ProfileContext)
     var pathArray = window.location.pathname.split('/')
     let postNumber = parseInt(pathArray[2])
 
     useEffect(() => {
         getSinglePost(postNumber)
+        getProfile()
             .then(getAllCategories)
-            console.log(singlePost)
     }, [])
 
     const delete_prompt = (id) => {
@@ -51,10 +53,12 @@ export const PostDetails = (props) => {
     }));
 
     const classes = useStyles()
+    const userName = profile.find(c => c.id === singlePost.user_id) || {}
     if (singlePost.user_id == parseInt(localStorage.getItem("user_id"))){
     return (
         <>
             <article className="postsContainer">
+                    <div>{userName.name}</div>
                     <div>{singlePost.title}</div>
                     <div>{singlePost.content}</div>
                     <button onClick={() => delete_prompt(singlePost.id)}>Delete</button>
@@ -66,6 +70,7 @@ export const PostDetails = (props) => {
     return(
         <>
         <article className="postsContainer">
+                <div>{userName.name}</div>
                 <div>{singlePost.title}</div>
                 <div>{singlePost.content}</div>
         </article>
