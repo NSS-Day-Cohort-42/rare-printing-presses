@@ -26,7 +26,7 @@ export const TagForm = (props) => {
                 onClick={evt => {
                     evt.preventDefault()
                     addTag({"label": label.current.value})
-                    props.history.push("/tags")
+                    props.history.push("/tag")
                 }}
                 className="new-tag-submit">
                 Add
