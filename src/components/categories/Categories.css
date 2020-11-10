@@ -1,7 +1,14 @@
+.categoryPage_container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .categoryForm {
     margin: 1rem;
     margin-top: 250px;
     text-align: center;
+    margin-right:2rem;
+
 }
 
 .categories { 
@@ -27,13 +34,14 @@
     align-content: start;
     background-color: rgb(242, 240, 240);
     border-top-left-radius: 25px;
-    margin-left: 25rem;
+    width:auto;
     height: auto;
     overflow: scroll;
 }
 
 .categoryPageTitle {
-    margin-left: 25rem;
+    margin:auto;
+    margin-top: 2rem;
     text-align: center;
     color: rgb(142, 142, 142);
 }
@@ -56,7 +64,7 @@
 .categoryForm__fieldset {
     display: flex;
     justify-content: center;
-    padding-bottom: 15rem;
+    padding-bottom: 1rem;
 }
 
 .createCatButton { 
