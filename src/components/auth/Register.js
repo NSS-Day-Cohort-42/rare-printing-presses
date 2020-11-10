@@ -1,6 +1,6 @@
 import React, { useRef } from "react"
 import { Link } from "react-router-dom"
-import { DateTime } from "luxon";
+import { DateTime } from "luxon"
 import "./Auth.css"
 
 export const Register = (props) => {
@@ -46,8 +46,8 @@ export const Register = (props) => {
                 .then(_ => _.json())
                 .then(res => {
                     if ("token" in res) {
-                        localStorage.setItem("lu_token", res.token)
-                        props.history.push("/")
+                        localStorage.setItem("rareUser_id", res.token)
+                        props.history.push("/posts")
                     }
                 })
         } else {
