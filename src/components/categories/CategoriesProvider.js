@@ -7,19 +7,19 @@ export const CategoriesProvider = (props) => {
     const [category, setCategory] = useState([])
 
     const getAllCategories = () => {
-        return fetch(`http://localhost:8088/categories`)
+        return fetch(`http://localhost:8000/categories`)
             .then(res => res.json())
             .then(setCategories)
     }
 
     const getSingleCategory = (category) => {
-        return fetch(`http://localhost:8088/categories/${category}`)
+        return fetch(`http://localhost:8000/categories/${category}`)
             .then(res => res.json())
             .then(setCategory)
     }
 
     const addCategory = category => {
-        return fetch("http://localhost:8088/categories", {
+        return fetch("http://localhost:8000/categories", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
