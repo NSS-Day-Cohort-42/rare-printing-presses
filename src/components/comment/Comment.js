@@ -18,7 +18,7 @@ export const Comment = (props) => {
 
     const add_new_comment = () => {
         addComment({
-            user_id: localStorage.user_id,
+            rareUser_id: localStorage.rareUser_id,
             post_id: postNumber,
             subject: subject.current.value,
             content: comment.current.value
@@ -40,7 +40,7 @@ export const Comment = (props) => {
             <form className="comments-form">
                 <h1 className="h3 mb-3 font-weight-normal">Comments:</h1>{
                 thisPost.map(comment => {
-                    if (comment.user_id == parseInt(localStorage.getItem("user_id"))){
+                    if (comment.user_id == parseInt(localStorage.getItem("rareUser_id"))){
                     return <>
                     <section className="commentContainer">
                         <section key={comment.id} className="comments">
