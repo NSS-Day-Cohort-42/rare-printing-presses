@@ -12,22 +12,22 @@ export const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault()
 
-        return fetch("http://127.0.0.1:8088/login", {
+        return fetch("http://127.0.0.1:8000/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                email: email.current.value,
+                username: email.current.value,
                 password: password.current.value
             })
         })
             .then(res => res.json())
             .then(res => {
                 if (res.valid) {
-                    localStorage.setItem("user_id", res.id )
-                    history.push("/userposts")
+                    localStorage.setItem("rareUser_id", res.id )
+                    history.push("/")
                 }
                 else {
                     invalidDialog.current.showModal()
@@ -47,11 +47,11 @@ export const Login = () => {
                     <h2>Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
-                        <input ref={email} type="email" id="email" className="form-control" defaultValue="mo@mo.com" placeholder="Email address" required autoFocus />
+                        <input ref={email} type="email" id="email" className="form-control" defaultValue="me@me.com" placeholder="Email address" required autoFocus />
                     </fieldset>
                     <fieldset>
                         <label htmlFor="inputPassword"> Password </label>
-                        <input ref={password} type="password" id="password" className="form-control" defaultValue="password" placeholder="Password" required />
+                        <input ref={password} type="password" id="password" className="form-control" defaultValue="me" placeholder="Password" required />
                     </fieldset>
                     <fieldset style={{
                         textAlign:"center"

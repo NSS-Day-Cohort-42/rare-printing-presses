@@ -3,14 +3,14 @@ import { Link } from "react-router-dom"
 import "./Auth.css"
 
 export const Register = (props) => {
-    const name = useRef()
+    const username = useRef()
     const email = useRef()
     const password = useRef()
     const verifyPassword = useRef()
     const passwordDialog = useRef()
 
     // const existingUserCheck = () => {
-    //     return fetch(`http://localhost:8088/register`)
+    //     return fetch(`http://localhost:8000/register`)
     //         .then(_ => _.json())
     //         .then(user => !!user.length)
     // }
@@ -22,11 +22,11 @@ export const Register = (props) => {
             // existingUserCheck()
             const newUser = {
                 "email": email.current.value,
-                "name": name.current.value,
+                "username": username.current.value,
                 "password": password.current.value
             }
 
-            return fetch("http://127.0.0.1:8088/register", {
+            return fetch("http://127.0.0.1:8000/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export const Register = (props) => {
                 .then(_ => _.json())
                 .then(createdUser => {
                     if(createdUser.hasOwnProperty("id")) {
-                        localStorage.setItem("user_id", createdUser.id)
+                        localStorage.setItem("rareUser_id", createdUser.id)
                         props.history.push("/userposts")
                     }
                 })
@@ -57,8 +57,8 @@ export const Register = (props) => {
             <form className="form--login" onSubmit={handleRegister}>
                 <h1 className="h3 mb-3 font-weight-normal">Register an account</h1>
                 <fieldset>
-                    <label htmlFor="name"> Name </label>
-                    <input ref={name} type="text" name="name" className="form-control" placeholder="Name" required autoFocus />
+                    <label htmlFor="username"> Name </label>
+                    <input ref={username} type="text" name="username" className="form-control" placeholder="Name" required autoFocus />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>

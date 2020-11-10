@@ -7,19 +7,19 @@ export const PostsProvider = (props) => {
     const [singlePost, setPost] = useState([])
 
     const getAllPosts = () => {
-        return fetch(`http://localhost:8088/posts`)
+        return fetch(`http://localhost:8000/posts`)
             .then(res => res.json())
             .then(setPosts)
     }
 
     const getSinglePost = (post) => {
-        return fetch(`http://localhost:8088/posts/${post}`)
+        return fetch(`http://localhost:8000/posts/${post}`)
             .then(res => res.json())
             .then(setPost)
     }
 
     const createPost = post => {
-        return fetch("http://localhost:8088/posts", {
+        return fetch("http://localhost:8000/posts", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -31,14 +31,14 @@ export const PostsProvider = (props) => {
 
     const deletePost = (postId) => {
         console.log("delete method")
-        return fetch(`http://localhost:8088/posts/${postId}`, {
+        return fetch(`http://localhost:8000/posts/${postId}`, {
             method: "DELETE"
         })
             .then(getAllPosts)
     }
 
     const editPost = post => {
-        return fetch(`http://localhost:8088/posts/${post.id}`, {
+        return fetch(`http://localhost:8000/posts/${post.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -49,13 +49,13 @@ export const PostsProvider = (props) => {
     }
 
     const getPostsByCategoryId = category_id => {
-        return fetch(`http://localhost:8088/posts?category_id=${category_id}`)
+        return fetch(`http://localhost:8000/posts?category_id=${category_id}`)
             .then(res => res.json())
             .then(setPosts);
     };
 
     const getPostTags = post_id => {
-        return fetch(`http://localhost:8088/posts?category_id=${post_id}`)
+        return fetch(`http://localhost:8000/posts?category_id=${post_id}`)
             .then(res => res.json())
             .then(setPost);
     }
