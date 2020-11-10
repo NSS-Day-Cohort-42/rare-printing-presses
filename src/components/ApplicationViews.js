@@ -11,7 +11,6 @@ import { Comment } from "./comment/Comment"
 import { EditCommentForm } from "./comment/EditCommentForm"
 import { CommentProvider } from "./comment/CommentProvider"
 import { NavBar } from "./nav/NavBar"
-import { CategoryForm } from "./categories/CategoryForm"
 import { CategoriesProvider } from "./categories/CategoriesProvider";
 import { CategoriesList } from "./categories/CategoriesList"
 import { PostForm } from "./Posts/PostForm"
@@ -20,13 +19,6 @@ import { PostTagProvider } from "./tags/PostTagProvider"
 
 export const ApplicationViews = () => {
     return <>
-            <CategoriesProvider>
-                <Route exact path="/addCategory" render={(props) => {
-                    return <> 
-                        <CategoryForm history={props.history} />
-                    </>
-                }} />       
-            </CategoriesProvider>
             <ProfileProvider>
             <PostsProvider>
                 <CommentProvider>

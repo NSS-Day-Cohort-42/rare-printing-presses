@@ -23,7 +23,7 @@ export const NavBar = () => {
                 <Link className="navbar__link" to="/userposts"><div className ="icon"><VisibilityIcon style={{ fontSize: 28 }} />Your Posts</div></Link>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/addCategory"><div className ="icon"><CategoryIcon style={{ fontSize: 28 }} />Create Category</div></Link>
+                <Link className="navbar__link" to="/categories"><div className ="icon"><CategoryIcon style={{ fontSize: 28 }} />Category Manager</div></Link>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/tag"><div className ="icon"><LoyaltyIcon style={{ fontSize: 28 }} />Tags</div> </Link>
