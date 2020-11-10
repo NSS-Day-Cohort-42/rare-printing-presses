@@ -7,7 +7,13 @@ export const TagProvider = (props) => {
     const [tags, setTags] = useState([])
 
     const getTags = () => {
-        return fetch("http://localhost:8000/tags")
+        return fetch("http://localhost:8000/tags", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
+            }
+        })
         .then(res => res.json())
         .then(setTags)
     }
@@ -16,7 +22,8 @@ export const TagProvider = (props) => {
         return fetch("http://localhost:8000/tags", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
             },
             body: JSON.stringify(tag)
         })

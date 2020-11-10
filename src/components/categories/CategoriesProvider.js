@@ -7,7 +7,11 @@ export const CategoriesProvider = (props) => {
     const [category, setCategory] = useState([])
 
     const getAllCategories = () => {
-        return fetch(`http://localhost:8000/categories`)
+        return fetch(`http://localhost:8000/categories`, {
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
+            }
+        })
             .then(res => res.json())
             .then(setCategories)
     }
@@ -22,7 +26,8 @@ export const CategoriesProvider = (props) => {
         return fetch("http://localhost:8000/categories", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
             },
             body: JSON.stringify(category)
         })
