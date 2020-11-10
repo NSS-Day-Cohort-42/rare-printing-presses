@@ -1,9 +1,11 @@
 import React, { useRef } from "react"
 import { Link } from "react-router-dom"
+import { DateTime } from "luxon"
 import "./Auth.css"
 
 export const Register = (props) => {
-    const username = useRef()
+    const first_name = useRef()
+    const last_name = useRef()
     const email = useRef()
     const password = useRef()
     const verifyPassword = useRef()
@@ -19,11 +21,18 @@ export const Register = (props) => {
         e.preventDefault()
 
         if (password.current.value === verifyPassword.current.value) {
-            // existingUserCheck()
+
+            const now = DateTime.local()
             const newUser = {
+                "first_name": first_name.current.value,
+                "last_name": last_name.current.value,
                 "email": email.current.value,
-                "username": username.current.value,
-                "password": password.current.value
+                "username": email.current.value,
+                "password": password.current.value,
+                "bio": "",
+                "active": true,
+                "created_on": now.toISODate(),
+                "profile_img": ""
             }
 
             return fetch("http://127.0.0.1:8000/register", {
@@ -35,10 +44,10 @@ export const Register = (props) => {
                 body: JSON.stringify(newUser)
             })
                 .then(_ => _.json())
-                .then(createdUser => {
-                    if(createdUser.hasOwnProperty("id")) {
-                        localStorage.setItem("rareUser_id", createdUser.id)
-                        props.history.push("/userposts")
+                .then(res => {
+                    if ("token" in res) {
+                        localStorage.setItem("rareUser_id", res.token)
+                        props.history.push("/posts")
                     }
                 })
         } else {
@@ -56,10 +65,16 @@ export const Register = (props) => {
 
             <form className="form--login" onSubmit={handleRegister}>
                 <h1 className="h3 mb-3 font-weight-normal">Register an account</h1>
-                <fieldset>
-                    <label htmlFor="username"> Name </label>
-                    <input ref={username} type="text" name="username" className="form-control" placeholder="Name" required autoFocus />
-                </fieldset>
+                <div className="register__fullName">
+                    <fieldset>
+                        <label htmlFor="first_name">First Name </label>
+                        <input ref={first_name} type="text" name="first_name" className="form-control" placeholder="First Name" required autoFocus />
+                    </fieldset>
+                    <fieldset>
+                        <label htmlFor="last_name">Last Name </label>
+                        <input ref={last_name} type="text" name="last_name" className="form-control" placeholder="Last Name" required autoFocus />
+                    </fieldset>
+                </div>
                 <fieldset>
                     <label htmlFor="inputEmail"> Email address </label>
                     <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
@@ -75,7 +90,7 @@ export const Register = (props) => {
                 <fieldset style={{
                     textAlign: "center"
                 }}>
-                    <button className="btn btn-1 btn-sep icon-send" type="submit">Register</button>
+                    <button className="btn btn-1 btn-sep icon-send" type="submit" >Register</button>
                 </fieldset>
             </form>
             <section className="link--register">
