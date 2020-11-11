@@ -16,6 +16,7 @@ import { CategoriesList } from "./categories/CategoriesList"
 import { PostForm } from "./Posts/PostForm"
 import { ProfileProvider} from "./auth/AuthProvider"
 import { PostTagProvider } from "./tags/PostTagProvider"
+import { CategoryEdit } from "./categories/CategoryEdit"
 
 export const ApplicationViews = () => {
     return <>
@@ -24,9 +25,14 @@ export const ApplicationViews = () => {
                 <CommentProvider>
                     <CategoriesProvider>
                         <TagProvider>
-                            <Route path="/categories" render={(props) => {
+                            <Route exact path="/categories" render={(props) => {
                             return <> 
                                 <CategoriesList history={props.history} />
+                            </>
+                            }} />    
+                            <Route exact path="/categories/edit/:categoryId(\d+)" render={(props) => {
+                            return <> 
+                                <CategoryEdit {...props} />
                             </>
                             }} />    
                             <Route exact path="/posts" render={(props) => {
