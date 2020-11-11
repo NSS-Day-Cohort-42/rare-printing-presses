@@ -8,7 +8,6 @@ export const TagForm = (props) => {
     const {tags, addTag, editTag} = useContext(TagContext)
     const label = useRef()
     var tagRouteNo = window.location.pathname.split("/")
-
     if(window.location.pathname.includes("/edittag"))
     {
         return(
@@ -18,14 +17,14 @@ export const TagForm = (props) => {
                     <div className="tag-form">
                         
                         <input ref={label} type="text" name="label" required autoFocus className="tag-input"
-                            placeholder="Enter Edited Tag"
+                            placeholder={localStorage.getItem("currentLabel")}
                         />
                     </div>
                 </fieldset>
                 <button type="submit"
                     onClick={evt => {
                         evt.preventDefault()
-                        editTag(tagRouteNo[2] ,{"label": label.current.value})
+                        editTag(tagRouteNo[2],{"label": label.current.value})
                         props.history.push("/tag")
                     }}
                     className="new-tag-submit">

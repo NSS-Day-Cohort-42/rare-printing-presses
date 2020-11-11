@@ -18,7 +18,7 @@ return (
                     <div>{tag.label}</div>
                     <button className="new_tag_btn" onClick={() => removeTag(tag.id)}>Delete</button>
                     <div className="new_tag_btn_container"> <Link to={`/edittag/${tag.id}`}>
-                    <button className="new_tag_btn">Edit Tag</button>
+                    <button onClick={() => localStorage.setItem("currentLabel", tag.label)} className="new_tag_btn">Edit Tag</button>
             </Link></div>
                     </>)
                 })
@@ -31,5 +31,5 @@ return (
 
     </div>
 )
-
+;
 }
