@@ -14,7 +14,7 @@ export const PostsProvider = (props) => {
             .then(res => res.json())
             .then(setPosts)
     }
-console.warn(getAllPosts);
+
     const getSinglePost = (post) => {
         return fetch(`http://localhost:8000/posts/${post}`)
             .then(res => res.json())
