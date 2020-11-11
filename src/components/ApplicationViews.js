@@ -14,12 +14,12 @@ import { NavBar } from "./nav/NavBar"
 import { CategoriesProvider } from "./categories/CategoriesProvider";
 import { CategoriesList } from "./categories/CategoriesList"
 import { PostForm } from "./Posts/PostForm"
-// import { ProfileProvider} from "./auth/AuthProvider"
+import { ProfileProvider} from "./auth/AuthProvider"
 import { PostTagProvider } from "./tags/PostTagProvider"
 
 export const ApplicationViews = () => {
     return <>
-            {/* <ProfileProvider> */}
+            <ProfileProvider>
             <PostsProvider>
                 <CommentProvider>
                     <CategoriesProvider>
@@ -48,8 +48,8 @@ export const ApplicationViews = () => {
                     </CategoriesProvider>
                 </CommentProvider>
             </PostsProvider>
-            {/* </ProfileProvider> */}
-            {/* <ProfileProvider> */}
+            </ProfileProvider>
+            <ProfileProvider>
         <PostTagProvider>
             <PostsProvider>
                 <CommentProvider>
@@ -66,7 +66,7 @@ export const ApplicationViews = () => {
                 </CommentProvider>
             </PostsProvider>
         </PostTagProvider>
-        {/* </ProfileProvider> */}
+        </ProfileProvider>
             <TagProvider>
                 <Route exact path="/tag">
                     <TagList />
