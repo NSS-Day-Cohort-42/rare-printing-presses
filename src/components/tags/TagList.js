@@ -4,7 +4,7 @@ import {TagContext} from "./TagProvider"
 import "./tags.css"
 
 export const TagList = () =>{
-    const {tags} = useContext(TagContext)
+    const {tags, removeTag} = useContext(TagContext)
     
     
 
@@ -14,10 +14,17 @@ return (
         <div className="tags_container">
             {
                 tags.map(tag=>{
-                    return(<div className="tag">{tag.label}</div>)
+                    return(<>
+                    <div>{tag.label}</div>
+                    <button className="new_tag_btn" onClick={() => removeTag(tag.id)}>Delete</button>
+                    <div className="new_tag_btn_container"> <Link to={`/edittag/${tag.id}`}>
+                    <button className="new_tag_btn">Edit Tag</button>
+            </Link></div>
+                    </>)
                 })
             }
         </div>
+        
         <div className="new_tag_btn_container"> <Link to={"/createtag"}>
         <button className="new_tag_btn">New Tag</button> 
             </Link></div>

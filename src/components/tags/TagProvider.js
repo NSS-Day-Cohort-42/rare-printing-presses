@@ -31,6 +31,30 @@ export const TagProvider = (props) => {
     
     }
 
+    const removeTag = (tag) =>{
+        return fetch(`http://localhost:8000/tags/${tag}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
+            },
+        })
+        .then(getTags)
+    
+    }
+
+    const editTag = (tag, payload) => {
+        return fetch(`http://localhost:8000/tags/${tag}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
+            },
+            body: JSON.stringify(payload)
+        })
+            .then(getTags)
+    }
+
     useEffect(() => {
         getTags()
     }, [])
@@ -41,7 +65,7 @@ export const TagProvider = (props) => {
 
     return (
         <TagContext.Provider value={{
-            tags, getTags, addTag
+            tags, getTags, addTag, removeTag, editTag
         }}>
             {props.children}
         </TagContext.Provider>
