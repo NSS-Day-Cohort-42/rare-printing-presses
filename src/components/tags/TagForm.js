@@ -17,7 +17,7 @@ export const TagForm = (props) => {
                     <div className="tag-form">
                         
                         <input ref={label} type="text" name="label" required autoFocus className="tag-input"
-                            placeholder={localStorage.getItem("currentLabel")}
+                            value={localStorage.getItem("currentLabel")}
                         />
                     </div>
                 </fieldset>
@@ -28,7 +28,15 @@ export const TagForm = (props) => {
                         props.history.push("/tag")
                     }}
                     className="new-tag-submit">
-                    Add
+                    Submit New Name
+                </button>
+                <button type="submit"
+                    onClick={evt => {
+                        evt.preventDefault()
+                        props.history.push("/tag")
+                    }}
+                    className="new-tag-submit">
+                    Cancel
                 </button>
             </form>
         )

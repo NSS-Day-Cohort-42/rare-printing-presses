@@ -5,8 +5,16 @@ import "./tags.css"
 
 export const TagList = () =>{
     const {tags, removeTag} = useContext(TagContext)
-    
-    
+
+const delete_prompt = (id) => {
+    var retVal = window.confirm("Are you sure you want to delete your comment?");
+    if( retVal == true ) {
+        removeTag(id)
+    return true;
+    } else {
+    return false;
+}
+}
 
 return (
     <div className="tag_container">
@@ -16,7 +24,7 @@ return (
                 tags.map(tag=>{
                     return(<>
                     <div>{tag.label}</div>
-                    <button className="new_tag_btn" onClick={() => removeTag(tag.id)}>Delete</button>
+                    <button className="new_tag_btn" onClick={() => delete_prompt(tag.id)}>Delete</button>
                     <div className="new_tag_btn_container"> <Link to={`/edittag/${tag.id}`}>
                     <button onClick={() => localStorage.setItem("currentLabel", tag.label)} className="new_tag_btn">Edit Tag</button>
             </Link></div>
