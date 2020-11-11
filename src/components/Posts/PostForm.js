@@ -67,7 +67,7 @@ export const PostForm = (props) => {
                 .then(() => props.history.push("/posts"))
         }
     }
-
+// form needs image url option
     return (
         <form className="postForm">
             
