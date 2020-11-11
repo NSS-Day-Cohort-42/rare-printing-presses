@@ -7,7 +7,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { Category } from "@material-ui/icons";
 
 export const CategoriesList = (props) => {
-    const { categories, getAllCategories, addCategory } = useContext(CategoryContext)
+    const { categories, getAllCategories, addCategory, deleteCategory  } = useContext(CategoryContext)
     const [category, setCategory] = useState({})
 
     useEffect(() => {
@@ -68,7 +68,11 @@ export const CategoriesList = (props) => {
                     categories.map(c => {
                         return <section key={c.id} className="categories">
                                     <div className="categoryLabel"> {c.label} </div>
-                                </section>                           
+                                    <button className="cat-del-btn" onClick={evt=>{
+                                    evt.preventDefault()
+                                    deleteCategory(c.id)}}
+                                    >X</button>
+                                 </section>                         
                     })
                 }
             </article>

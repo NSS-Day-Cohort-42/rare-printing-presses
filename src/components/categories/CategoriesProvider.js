@@ -16,10 +16,14 @@ export const CategoriesProvider = (props) => {
             .then(setCategories)
     }
 
-    const getSingleCategory = (category) => {
-        return fetch(`http://localhost:8000/categories/${category}`)
-            .then(res => res.json())
-            .then(setCategory)
+    const deleteCategory = (categoryId) => {
+        return fetch(`http://localhost:8000/categories/${categoryId}`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
+        }
+     })
+            .then(getAllCategories)
     }
 
     const addCategory = category => {
@@ -36,7 +40,7 @@ export const CategoriesProvider = (props) => {
 
     return (
         <CategoryContext.Provider value={{
-            categories, getAllCategories, category, getSingleCategory, addCategory
+            categories, getAllCategories, category, deleteCategory, addCategory
         }}>
             {props.children}
         </CategoryContext.Provider>
