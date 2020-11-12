@@ -15,7 +15,7 @@ export const Comment = (props) => {
     var pathArray = window.location.pathname.split('/')
     let postNumber = parseInt(pathArray[2])
     const thisPost = comments.filter(comment => comment.post.id === postNumber)
-    
+
     useEffect(() => {
         getComment()
         getAllPosts()
@@ -46,7 +46,7 @@ export const Comment = (props) => {
             <form className="comments-form">
                 <h1 className="h3 mb-3 font-weight-normal">Comments:</h1>{
                 thisPost.map(comment => {
-                    if (comment.IsAuthor){
+                if (comment.IsAuthor){
                     return <>
                     <section className="commentContainer">
                         <section key={comment.id} className="comments">
@@ -70,8 +70,6 @@ export const Comment = (props) => {
                     </>
                 }
                 })}
-                <div>
-                </div>
                 <h2>Add a Comment</h2>
                     <fieldset>
                         <input ref={subject} type="text" name="firstName" className="form-control" placeholder="Comment Subject" />

@@ -11,14 +11,12 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 export const PostDetails = (props) => {
     const { singlePost, getSinglePost, deletePost } = useContext(PostContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
-    // const {postTags, getPostTags} = useContext(PostTagContext)
     var pathArray = window.location.pathname.split('/')
     let postNumber = parseInt(pathArray[2])
 
     useEffect(() => {
         getSinglePost(postNumber)
         getAllCategories()
-        // getPostTags(postNumber)
     }, [])
 
     const delete_prompt = (id) => {
@@ -77,6 +75,7 @@ export const PostDetails = (props) => {
                                 } */}
                         </section>
                             <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(singlePost.id)}>Delete</button>
+                            
                     </article>
                 </article>
             </div>
@@ -104,6 +103,7 @@ export const PostDetails = (props) => {
                                 })
                             } */}
                     </section>
+                    <button onClick={() => props.history.push(`/posts/viewcomments/${singlePost.id}`)}>View All Comments</button>
                 </article>
             </article>
         </div>

@@ -21,58 +21,65 @@ import { CategoryEdit } from "./categories/CategoryEdit"
 export const ApplicationViews = () => {
     return <>
             <ProfileProvider>
-            <PostsProvider>
-                <CommentProvider>
-                    <CategoriesProvider>
-                        <TagProvider>
-                            <Route exact path="/categories" render={(props) => {
-                            return <> 
-                                <CategoriesList history={props.history} />
-                            </>
-                            }} />    
-                            <Route exact path="/categories/edit/:categoryId(\d+)" render={(props) => {
-                            return <> 
-                                <CategoryEdit {...props} />
-                            </>
-                            }} />    
-                            <Route exact path="/posts" render={(props) => {
+                <PostsProvider>
+                    <CommentProvider>
+                        <CategoriesProvider>
+                            <TagProvider>
+                                <Route exact path="/categories" render={(props) => {
                                 return <> 
-                                    <PostList history={props.history} />
+                                    <CategoriesList history={props.history} />
                                 </>
-                            }} /> 
-                            <Route exact path="/userposts" render={(props) => {
-                                return <>
-                                    <UserPostList history={props.history} />
+                                }} />    
+                                <Route exact path="/categories/edit/:categoryId(\d+)" render={(props) => {
+                                return <> 
+                                    <CategoryEdit {...props} />
                                 </>
-                            }} /> 
-                            <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
-                                return <>
-                                    <EditCommentForm {...props}/>
-                                </>
-                            }} />     
-                        </TagProvider>
-                    </CategoriesProvider>
-                </CommentProvider>
-            </PostsProvider>
+                                }} />    
+                                <Route exact path="/posts" render={(props) => {
+                                    return <> 
+                                        <PostList history={props.history} />
+                                    </>
+                                }} /> 
+                                <Route exact path="/userposts" render={(props) => {
+                                    return <>
+                                        <UserPostList history={props.history} />
+                                    </>
+                                }} /> 
+                                <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
+                                    return <>
+                                        <EditCommentForm {...props}/>
+                                    </>
+                                }} />     
+                            </TagProvider>
+                        </CategoriesProvider>
+                    </CommentProvider>
+                </PostsProvider>
             </ProfileProvider>
+            
             <ProfileProvider>
-        <PostTagProvider>
-            <PostsProvider>
-                <CommentProvider>
-                    <CategoriesProvider>
-                        <TagProvider>
-                            <Route exact path="/posts/:sampleId(\d+)" render={(props) => {
-                                return <> 
-                                    <PostDetails {...props}/>
-                                    <Comment {...props}/>
-                                </>
-                            }} />    
-                        </TagProvider>
-                    </CategoriesProvider>
-                </CommentProvider>
-            </PostsProvider>
-        </PostTagProvider>
-        </ProfileProvider>
+                <PostTagProvider>
+                    <PostsProvider>
+                        <CommentProvider>
+                            <CategoriesProvider>
+                                <TagProvider>
+                                    <Route exact path="/posts/:sampleId(\d+)" render={(props) => {
+                                        return <> 
+                                            <PostDetails {...props}/>
+                                            <Comment {...props}/>
+                                        </>
+                                    }} />    
+                                    <Route exact path="/posts/:sampleId(\d+)/viewcomments" render={(props) => {
+                                        return <> 
+                                            <Comment {...props}/>
+                                        </>
+                                    }} />    
+                                </TagProvider>
+                            </CategoriesProvider>
+                        </CommentProvider>
+                    </PostsProvider>
+                </PostTagProvider>
+            </ProfileProvider>
+
             <TagProvider>
                 <Route exact path="/tag">
                     <TagList />
