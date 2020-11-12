@@ -55,8 +55,8 @@ export const PostDetails = (props) => {
         },
     }));
 
-    // const singlePostUser = singlePost.rare_user 
-  
+    const singlePostUser = singlePost.rare_user 
+    console.log(singlePostUser, "test")
     const classes = useStyles()
     const category = categories.find(c => c.id === singlePost.category_id) || {}
     if (singlePost.user_id == parseInt(localStorage.getItem("rareUser_id"))){
@@ -97,7 +97,7 @@ export const PostDetails = (props) => {
                     <section className="postContent">
                         <div className="postDetailsTitle">{singlePost.title}</div>
                         <div className="postDetailsContent">{singlePost.content}</div>
-                        {/* <div className="PostDetailsAuthor">Author: {singlePost.rare_user.first_name}</div> */}
+                        <div className="PostDetailsAuthor">Author: {singlePost.rare_user.user.first_name}</div>
                         <div className="postDetailsPubDate">{singlePost.publication_date}</div>
                     </section>
                     <section className="contentTags">
