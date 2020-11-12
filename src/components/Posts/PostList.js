@@ -84,7 +84,7 @@ const delete_prompt = (id) => {
                 {
                     posts.map(post => {
                         // const category = categories.find(c => c.id === post.category_id) || {}
-                        console.log(post, "test")
+                        
                         return <section key={post.id} className="posts">
                                     <div className="post-info">
                                         <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
