@@ -94,7 +94,7 @@ export const PostForm = (props) => {
                 <div className="form-group">
                     <label htmlFor="image_url"></label>
                     <input type="text" name="image_url" required className="form-control"
-                        placeholder="Image Url"
+                        placeholder="Image Url (Optional)"
                         defaultValue={postState.image_url}
                         onChange={handleControlledInputChange}
                     />
