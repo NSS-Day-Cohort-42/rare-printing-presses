@@ -6,7 +6,6 @@ export const CategoryEdit = (props)=>{
     const [category, setCategory] = useState({})
 
     useEffect(() => {
-        getAllCategories()
         getCategoryInEditMode()
     }, [])
 
@@ -40,7 +39,7 @@ export const CategoryEdit = (props)=>{
                 <div className="form-group">
                     <label htmlFor="label"> </label>
                     <input type="text" name="label" required autoFocus className="form-control"
-                        placeholder= {category.label}
+                        placeholder= "Enter Updated Label"
                         onChange={handleControlledInputChange}
                     />
                 </div>
