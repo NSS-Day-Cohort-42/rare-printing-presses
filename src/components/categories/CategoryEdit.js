@@ -6,6 +6,7 @@ export const CategoryEdit = (props)=>{
     const [category, setCategory] = useState({})
 
     useEffect(() => {
+        getAllCategories()
         getCategoryInEditMode()
     }, [])
 
