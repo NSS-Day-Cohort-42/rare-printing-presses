@@ -72,6 +72,10 @@ export const CategoriesList = (props) => {
                                     evt.preventDefault()
                                     deleteCategory(c.id)}}
                                     >X</button>
+                                    <button className="cat-del-btn" onClick={evt=>{
+                                    evt.preventDefault()
+                                    props.history.push(`/categories/edit/${c.id}`)}}
+                                    >Edit</button>
                                  </section>                         
                     })
                 }
