@@ -5,6 +5,7 @@ import { CommentContext } from "./CommentProvider"
 
 export const Comment = (props) => {
     const { comments, addComment, getComment, deleteComment, getSingleComment, updateComment, setComments} = useContext(CommentContext)
+    const { getAllPosts, singlePost } = useContext(PostContext)
     const [post, setPost] = useState([])
     const subject = useRef()
     const comment = useRef()
@@ -14,6 +15,7 @@ export const Comment = (props) => {
 
     useEffect(() => {
         getComment()
+        getAllPosts()
     }, [])
 
     const add_new_comment = () => {
