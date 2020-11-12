@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { PostContext } from "./PostProvider" 
 import {CategoryContext} from "../categories/CategoriesProvider"
+import {PostTagContext, postTags} from "../tags/PostTagProvider"
+import {TagContext} from "../tags/TagProvider"
 // import {users} from "../auth/AuthProvider"
 import "./PostDetail.css"
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,8 +15,9 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 export const PostDetails = (props) => {
     const { singlePost, getSinglePost, deletePost } = useContext(PostContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
+    const { tags, getTags} = useContext(TagContext)
     // const { profile, getProfile } = useContext(ProfileContext)
-    // const {postTags, getPostTags} = useContext(PostTagContext)
+    const {postTags, getAllPostTags} = useContext(PostTagContext)
     var pathArray = window.location.pathname.split('/')
     let postNumber = parseInt(pathArray[2])
 
@@ -22,7 +25,7 @@ export const PostDetails = (props) => {
         getSinglePost(postNumber)
         // getProfile()
         getAllCategories()
-        // getPostTags(postNumber)
+        getTags()
     }, [])
 
     const delete_prompt = (id) => {
@@ -56,7 +59,7 @@ export const PostDetails = (props) => {
     }));
 
     const singlePostUser = singlePost.rare_user 
-    console.log(singlePostUser, "test")
+    console.log(postTags, "test")
     const classes = useStyles()
     const category = categories.find(c => c.id === singlePost.category_id) || {}
     if (singlePost.user_id == parseInt(localStorage.getItem("rareUser_id"))){
@@ -71,14 +74,13 @@ export const PostDetails = (props) => {
                             <div className="postDetailsTitle">{singlePost.title}</div>
                             <div className="postDetailsContent">{singlePost.content}</div>
                             <div className="postDetailsPubDate">{singlePost.publication_date}</div>
+                            <div className="postDetailsPubDate">{                                
+                                    postTags.map(t =>{
+                                        return <p>{t.tag.label}</p>
+                                    })}</div>
                         </section>
                         <section className="contentTags">
                             <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
-                                {/* {
-                                    postTags.map(t =>{
-                                        return <p>{t.tags.label}</p>
-                                    })
-                                } */}
                         </section>
                             <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(singlePost.id)}>Delete</button>
                     </article>
@@ -99,6 +101,10 @@ export const PostDetails = (props) => {
                         <div className="postDetailsContent">{singlePost.content}</div>
                         <div className="PostDetailsAuthor">Author: {singlePost.rare_user.user.first_name}</div>
                         <div className="postDetailsPubDate">{singlePost.publication_date}</div>
+                        <div className="postDetailsPubDate">{                                
+                                    postTags.map(t =>{
+                                        return <p>{t.tag.label}</p>
+                                    })}</div>
                     </section>
                     <section className="contentTags">
                         <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
