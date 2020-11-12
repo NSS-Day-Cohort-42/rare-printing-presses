@@ -3,6 +3,8 @@ import { Route, Link } from "react-router-dom"
 import "./Comment.css"
 import { CommentContext } from "./CommentProvider"
 import { PostContext } from "../Posts/PostProvider" 
+import { DateTime } from "luxon"
+
 
 // const construct_comment = () => {
 //     if (postNumber != -1) {
@@ -29,6 +31,8 @@ export const EditCommentForm = (props) => {
         console.log(comments))
     }, [])
 
+    const now = DateTime.local()
+
     return (
         <main style={{ textAlign: "center" }}>
 
@@ -48,13 +52,13 @@ export const EditCommentForm = (props) => {
                     evt.preventDefault() // Prevent browser from submitting the form
                     newComment = {
                         id: parseInt(commentNumber),
-                        user_id: parseInt(localStorage.user_id),
-                        post_id: comments.post_id,
+                        post_id: comments.post.id,
                         subject: subject.current.value,
-                        content: comment.current.value
+                        content: comment.current.value,
+                        created_on: now.toISODate()
                     }
                     updateComment(newComment).then(() =>
-                    props.history.push(`/posts/${comments.post_id}`))
+                    props.history.push(`/posts/${comments.post.id}`))
                 }}
                 className="btn btn-primary">
                 Submit

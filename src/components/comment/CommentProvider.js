@@ -50,7 +50,8 @@ export const CommentProvider = (props) => {
         return fetch(`http://localhost:8000/comments/${comment.id}`, {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
             },
             body: JSON.stringify(comment)
         })
