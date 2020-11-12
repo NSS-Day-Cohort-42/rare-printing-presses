@@ -4,16 +4,22 @@ export const PostContext = React.createContext()
 
 export const PostsProvider = (props) => {
     const [posts, setPosts] = useState([])
-    const [singlePost, setPost] = useState([])
+    const [singlePost, setPost] = useState({rare_user: {user: {}}})
 
     const getAllPosts = () => {
-        return fetch(`http://localhost:8000/posts`)
+        return fetch(`http://localhost:8000/posts`, {
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
+            }})
             .then(res => res.json())
             .then(setPosts)
     }
 
     const getSinglePost = (post) => {
-        return fetch(`http://localhost:8000/posts/${post}`)
+        return fetch(`http://localhost:8000/posts/${post}`, {
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
+            }})
             .then(res => res.json())
             .then(setPost)
     }

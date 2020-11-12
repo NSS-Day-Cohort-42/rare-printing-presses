@@ -81,6 +81,10 @@ export const ApplicationViews = () => {
                     props => <TagForm {...props} />
                 }>
                 </Route>
+                <Route path="/edittag/:tagId(\d+)" render={
+                    props => <TagForm {...props} />
+                }>
+                </Route>
             </TagProvider>
             
             <PostsProvider>

@@ -15,7 +15,7 @@
 .tags_container{
     width: 90%;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     margin-left: 4.8rem;
     
 }

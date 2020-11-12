@@ -7,17 +7,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import EditIcon from '@material-ui/icons/Edit';
-import { ProfileContext, profile } from "../auth/AuthProvider"
 
 export const PostList = (props) => {
     const { posts, getAllPosts, getPostsByCategoryId } = useContext(PostContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
-    const { profile, getProfile } = useContext(ProfileContext)
 
 
     useEffect(() => {
         getAllPosts()
-        getProfile()
             .then(getAllCategories)
     }, [])
 
@@ -51,6 +48,7 @@ export const PostList = (props) => {
         }
 
     }
+
     return (
         <>
             <article className="createArticle">
@@ -75,18 +73,15 @@ export const PostList = (props) => {
             <article className="postsContainer">
                 {
                     posts.map(post => {
-                        const category = categories.find(c => c.id === post.category_id) || {}
-                        const userName = profile.find(c => c.id === post.user_id) || {}
+                        // const category = categories.find(c => c.id === post.category_id) || {}
+                        console.log(post, "test")
                         return <section key={post.id} className="posts">
                                     <div className="post-info">
-                                        <div className="PostAuthor">{userName.name} </div>
-                                        <div className="PostTitle">{post.title}</div>
-                                        <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link></div>
+                                        <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
+                                        <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
+                                        <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
                                     </div>
                                     <div className="post-icons">
-                                        <button className="postDetailsButton">
-                                            <ArrowForwardIosIcon className={classes.primary} onClick={() => props.history.push(`/posts/${post.id}`)} />
-                                        </button>
                                         <Button className="postDetailsButton" 
                                                 onClick={() => {
                                                         props.history.push(`/posts/edit/${post.id}`)
