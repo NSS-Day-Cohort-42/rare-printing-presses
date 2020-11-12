@@ -5,11 +5,11 @@ import {CategoryContext} from "../categories/CategoriesProvider"
 import "./Post.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
 
 export const PostList = (props) => {
-    const { posts, getAllPosts, getPostsByCategoryId } = useContext(PostContext)
+    const { posts, getAllPosts, getPostsByCategoryId, deletePost } = useContext(PostContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
 
 
@@ -49,6 +49,16 @@ export const PostList = (props) => {
 
     }
 
+const delete_prompt = (id) => {
+    var retVal = window.confirm("Are you sure you want to delete your post?");
+    if( retVal == true ) {
+        deletePost(id)
+    return true;
+    } else {
+        return false;
+    }
+}
+
     return (
         <>
             <article className="createArticle">
@@ -82,12 +92,14 @@ export const PostList = (props) => {
                                         <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
                                     </div>
                                     <div className="post-icons">
-                                        <Button className="postDetailsButton" 
+                                        <Button className="editDetailsButton" 
                                                 onClick={() => {
                                                         props.history.push(`/posts/edit/${post.id}`)
                                                 }}>
                                                 <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
                                         </Button>
+                                        <DeleteForeverIcon className="deletePostButton"
+                                                onClick={() => delete_prompt(post.id)}> </DeleteForeverIcon>
                                     </div>
                                     </section>
                             
