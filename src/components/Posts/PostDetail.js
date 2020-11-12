@@ -9,7 +9,6 @@ import "./PostDetail.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-// import { ProfileContext } from "../auth/AuthProvider"
 // import { PostTagContext } from "../tags/PostTagProvider"
 
 export const PostDetails = (props) => {
@@ -18,12 +17,12 @@ export const PostDetails = (props) => {
     const { tags, getTags} = useContext(TagContext)
     // const { profile, getProfile } = useContext(ProfileContext)
     const {postTags, getAllPostTags} = useContext(PostTagContext)
+    // const {postTags, getPostTags} = useContext(PostTagContext)
     var pathArray = window.location.pathname.split('/')
     let postNumber = parseInt(pathArray[2])
 
     useEffect(() => {
         getSinglePost(postNumber)
-        // getProfile()
         getAllCategories()
         getTags()
     }, [])
