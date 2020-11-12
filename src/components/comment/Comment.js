@@ -2,6 +2,7 @@ import React, { useContext, useRef, useEffect, useState } from "react"
 import { Route, Link } from "react-router-dom"
 import "./Comment.css"
 import { CommentContext } from "./CommentProvider"
+import { PostContext } from "../Posts/PostProvider"
 
 export const Comment = (props) => {
     const { comments, addComment, getComment, deleteComment, getSingleComment, updateComment, setComments} = useContext(CommentContext)
@@ -11,8 +12,8 @@ export const Comment = (props) => {
     const comment = useRef()
     var pathArray = window.location.pathname.split('/')
     let postNumber = parseInt(pathArray[2])
-    const thisPost = comments.filter(comment => comment.post_id === postNumber)
-
+    const thisPost = comments.filter(comment => comment.post.id === postNumber)
+    
     useEffect(() => {
         getComment()
         getAllPosts()
@@ -20,7 +21,6 @@ export const Comment = (props) => {
 
     const add_new_comment = () => {
         addComment({
-            rareUser_id: localStorage.rareUser_id,
             post_id: postNumber,
             subject: subject.current.value,
             content: comment.current.value
@@ -42,7 +42,7 @@ export const Comment = (props) => {
             <form className="comments-form">
                 <h1 className="h3 mb-3 font-weight-normal">Comments:</h1>{
                 thisPost.map(comment => {
-                    if (comment.user_id == parseInt(localStorage.getItem("rareUser_id"))){
+                    if (comment.IsAuthor){
                     return <>
                     <section className="commentContainer">
                         <section key={comment.id} className="comments">
