@@ -2,25 +2,21 @@ import React, { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { PostContext } from "./PostProvider" 
 import {CategoryContext} from "../categories/CategoriesProvider"
-// import {users} from "../auth/AuthProvider"
 import "./PostDetail.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-// import { ProfileContext } from "../auth/AuthProvider"
 // import { PostTagContext } from "../tags/PostTagProvider"
 
 export const PostDetails = (props) => {
     const { singlePost, getSinglePost, deletePost } = useContext(PostContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
-    // const { profile, getProfile } = useContext(ProfileContext)
     // const {postTags, getPostTags} = useContext(PostTagContext)
     var pathArray = window.location.pathname.split('/')
     let postNumber = parseInt(pathArray[2])
 
     useEffect(() => {
         getSinglePost(postNumber)
-        // getProfile()
         getAllCategories()
         // getPostTags(postNumber)
     }, [])
