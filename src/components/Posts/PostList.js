@@ -90,6 +90,8 @@ const delete_prompt = (id) => {
                                         <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
                                         <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
                                     </div>
+
+                                        {post.IsAuthor ?
                                     <div className="post-icons">
                                         <Button className="editDetailsButton" 
                                                 onClick={() => {
@@ -99,7 +101,8 @@ const delete_prompt = (id) => {
                                         </Button>
                                         <DeleteForeverIcon className="deletePostButton"
                                                 onClick={() => delete_prompt(post.id)}> </DeleteForeverIcon>
-                                    </div>
+                                               </div> : ''}
+                                    
                                     </section>
                     })
                 }
