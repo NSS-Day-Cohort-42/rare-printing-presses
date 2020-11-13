@@ -27,7 +27,7 @@ export const Login = () => {
             .then(res => {
                 if (res.valid) {
                     localStorage.setItem("rareUser_id", res.token )
-                    history.push("/")
+                    history.push("/posts")
                 }
                 else {
                     invalidDialog.current.showModal()
@@ -43,7 +43,7 @@ export const Login = () => {
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Level Up</h1>
+                    <h1>Rare.</h1>
                     <h2>Please sign in</h2>
                     <fieldset>
                         <label htmlFor="inputEmail"> Email address </label>
