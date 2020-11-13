@@ -2,6 +2,7 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { TagForm } from "./tags/TagForm"
 import { TagList } from "./tags/TagList"
+import { TagAddList } from "./tags/TagAddList"
 import { TagProvider } from "./tags/TagProvider"
 import PostsDetails, { PostDetails } from "./Posts/PostDetail"
 import PostsProvider from "./Posts/PostProvider"
@@ -72,10 +73,16 @@ export const ApplicationViews = () => {
                 </CommentProvider>
             </PostsProvider>
         </PostTagProvider>
+        
         </ProfileProvider>
             <TagProvider>
+            <PostTagProvider>
                 <Route exact path="/tag">
                     <TagList />
+                </Route>
+                <Route exact path="/managetags/:tagId(\d+)" render={
+                    props => <TagAddList {...props}/>
+                    }>
                 </Route>
                 <Route exact path="/createtag" render={
                     props => <TagForm {...props} />
@@ -85,6 +92,7 @@ export const ApplicationViews = () => {
                     props => <TagForm {...props} />
                 }>
                 </Route>
+                </PostTagProvider>
             </TagProvider>
             
             <PostsProvider>

@@ -28,7 +28,6 @@ export const TagProvider = (props) => {
             body: JSON.stringify(tag)
         })
         .then(getTags)
-    
     }
 
     const removeTag = (tag) =>{
