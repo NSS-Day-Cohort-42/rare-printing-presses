@@ -12,6 +12,9 @@
     overflow: scroll;
 }
 
+.post_tags_container{
+ border: solid, 1px;
+}
 .tags_container{
     width: 90%;
     display: flex;
