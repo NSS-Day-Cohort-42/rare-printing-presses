@@ -6,7 +6,7 @@ import { PostContext } from "../Posts/PostProvider"
 import { DateTime } from "luxon"
 
 
-export const Comment = (props) => {
+export const CommentForm = (props) => {
     const { comments, addComment, getComment, deleteComment, getSingleComment, updateComment, setComments} = useContext(CommentContext)
     const { getAllPosts, singlePost } = useContext(PostContext)
     const [post, setPost] = useState([])
@@ -30,4 +30,29 @@ export const Comment = (props) => {
             created_on: now.toISODate()
         })
     }
+    return (
+        <>
+            <h2>Add a Comment</h2>
+                <form>
+                        <fieldset>
+                            <input ref={subject} type="text" name="firstName" className="form-control" placeholder="Comment Subject" />
+                        </fieldset>
+                        <fieldset>
+                            <textarea ref={comment} name="bio" className="form-control" placeholder="Comment" />
+                        </fieldset>
+                        <fieldset style={{
+                            textAlign: "center"
+                        }}>
+                            <button type="submit"
+                                onClick={evt => {
+                                    evt.preventDefault() // Prevent browser from submitting the form
+                                    add_new_comment()
+                                }}
+                                className="btn btn-primary">
+                                Save
+                            </button>
+                        </fieldset>
+                </form>
+        </>
+    )
 }

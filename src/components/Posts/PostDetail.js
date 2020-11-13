@@ -104,6 +104,7 @@ export const PostDetails = (props) => {
                             } */}
                     </section>
                     <button onClick={() => props.history.push(`/posts/viewcomments/${singlePost.id}`)}>View All Comments</button>
+                    <button onClick={() => props.history.push(`/posts/createcomment`)}>Add Comment</button>
                 </article>
             </article>
         </div>

@@ -17,6 +17,7 @@ import { PostForm } from "./Posts/PostForm"
 import { ProfileProvider} from "./auth/AuthProvider"
 import { PostTagProvider } from "./tags/PostTagProvider"
 import { CategoryEdit } from "./categories/CategoryEdit"
+import { CommentForm } from "./comment/CommentForm"
 
 export const ApplicationViews = () => {
     return <>
@@ -65,12 +66,17 @@ export const ApplicationViews = () => {
                                     <Route exact path="/posts/:sampleId(\d+)" render={(props) => {
                                         return <> 
                                             <PostDetails {...props}/>
-                                            <Comment {...props}/>
+                                            {/* <Comment {...props}/> */}
                                         </>
                                     }} />    
                                     <Route exact path="/posts/:sampleId(\d+)/viewcomments" render={(props) => {
                                         return <> 
                                             <Comment {...props}/>
+                                        </>
+                                    }} />    
+                                    <Route exact path="/posts/createcomment" render={(props) => {
+                                        return <> 
+                                            <CommentForm {...props}/>
                                         </>
                                     }} />    
                                 </TagProvider>
