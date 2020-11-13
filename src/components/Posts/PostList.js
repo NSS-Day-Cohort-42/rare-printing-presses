@@ -5,6 +5,8 @@ import "./Post.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
+import {HumanDate} from '../utils/HumanDate'
+import { DateTime } from "luxon"
 
 export const PostList = (props) => {
     const { posts, getAllPosts } = useContext(PostContext)
@@ -34,7 +36,8 @@ export const PostList = (props) => {
     }));
 
     const classes = useStyles()
-
+    // const startDate = new Date()
+    // console.log( DateTime.fromFormat(startDate, 'yyyy/MM/dd').valueOf() )
     return (
         <>
             <article className="createArticle">
@@ -44,22 +47,33 @@ export const PostList = (props) => {
             <article className="postsContainer">
                 {
                     posts.map(post => {
-                        
-                        return <section key={post.id} className="posts">
+                        if(post.IsAuthor){
+                            return <section key={post.id} className="posts">
+                                        <div className="post-info">
+                                            <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
+                                            <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
+                                            <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
+                                        </div>
+                                        <div className="post-icons">
+                                            <Button className="postDetailsButton" 
+                                                    onClick={() => {
+                                                            props.history.push(`/posts/edit/${post.id}`)
+                                                    }}>
+                                                    <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
+                                            </Button>
+                                        </div>
+                                        </section>
+                        } else {
+                            return <section key={post.id} className="posts">
                                     <div className="post-info">
                                         <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
                                         <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
                                         <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
                                     </div>
                                     <div className="post-icons">
-                                        <Button className="postDetailsButton" 
-                                                onClick={() => {
-                                                        props.history.push(`/posts/edit/${post.id}`)
-                                                }}>
-                                                <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
-                                        </Button>
                                     </div>
                                     </section>
+                        }
                     })
                 }
             </article>

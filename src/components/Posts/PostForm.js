@@ -65,6 +65,8 @@ export const PostForm = (props) => {
                 .then(() => props.history.push("/posts"))
         }
     }
+    const startDate = new Date()
+    console.log( DateTime.fromString(startDate, 'yyyy/MM/dd').valueOf() )
 // form needs image url option
     return (
         <form className="postForm">

@@ -19,10 +19,13 @@ export const PostDetails = (props) => {
     var pathArray = window.location.pathname.split('/')
     let postNumber = parseInt(pathArray[2])
 
+
+
     useEffect(() => {
         getSinglePost(postNumber)
-        getAllCategories()
-        getAllPostTags()
+        .then(getAllCategories())
+        .then(getAllPostTags())
+        
     }, [])
 
     const delete_prompt = (id) => {
@@ -56,10 +59,14 @@ export const PostDetails = (props) => {
     }));
 
     const singlePostUser = singlePost.rare_user 
-    console.log(postTags, "test")
+    const singlePostPubDate = singlePost.publication_date || ""
+    const splitPubDate = singlePostPubDate.split('-')
+    const correctPubDate = `${splitPubDate[1]}/${splitPubDate[2]}/${splitPubDate[0]} `
+    console.log(correctPubDate)
+    // console.log(singlePost.publication_date)
     const classes = useStyles()
     const category = categories.find(c => c.id === singlePost.category_id) || {}
-    if (singlePost.user_id == parseInt(localStorage.getItem("rareUser_id"))){
+    if (singlePost.IsAuthor){
 
         return (
             <>
@@ -70,7 +77,7 @@ export const PostDetails = (props) => {
                         <section className="postContent">
                             <div className="postDetailsTitle">{singlePost.title}</div>
                             <div className="postDetailsContent">{singlePost.content}</div>
-                            <div className="postDetailsPubDate">{singlePost.publication_date}</div>
+                            <div className="postDetailsPubDate">{correctPubDate}</div>
                             <div className="postDetailsPubDate">{                                
                                     postTags.map(t =>{
                                         return <p>{t.tag.label}</p>
@@ -101,8 +108,8 @@ export const PostDetails = (props) => {
                     <section className="postContent">
                         <div className="postDetailsTitle">{singlePost.title}</div>
                         <div className="postDetailsContent">{singlePost.content}</div>
-                        <div className="PostDetailsAuthor">Author: {singlePost.rare_user.user.first_name}</div>
-                        <div className="postDetailsPubDate">{singlePost.publication_date}</div>
+                        <div className="PostDetailsAuthor">Author: {singlePost.rare_user.user.first_name} {singlePost.rare_user.user.last_name}</div>
+                        <div className="postDetailsPubDate">{correctPubDate}</div>
                         <div className="postDetailsPubDate">{                                
                                     postTags.map(t =>{
                                         return <p>{t.tag.label}</p>
@@ -111,11 +118,6 @@ export const PostDetails = (props) => {
                     </section>
                     <section className="contentTags">
                         <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
-                            {/* {
-                                postTags.map(t =>{
-                                    return <p>{t.tags.label}</p>
-                                })
-                            } */}
                     </section>
                 </article>
             </article>
