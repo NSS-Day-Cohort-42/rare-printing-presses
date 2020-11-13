@@ -4,8 +4,6 @@ import { PostContext } from "./PostProvider"
 import {CategoryContext} from "../categories/CategoriesProvider"
 import "./PostDetail.css"
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 // import { PostTagContext } from "../tags/PostTagProvider"
 
 export const PostDetails = (props) => {
@@ -51,12 +49,9 @@ export const PostDetails = (props) => {
         },
     }));
 
-    const singlePostUser = singlePost.rare_user 
-    console.log(singlePostUser, "test")
-    const classes = useStyles()
     const category = categories.find(c => c.id === singlePost.category_id) || {}
     if (singlePost.user_id == parseInt(localStorage.getItem("rareUser_id"))){
-    
+
         return (
             <>
             <div>

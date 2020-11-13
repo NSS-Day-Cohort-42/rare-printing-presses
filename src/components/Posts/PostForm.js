@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState, useRef } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { PostContext } from "./PostProvider"
 import { TagContext } from "../tags/TagProvider"
 import { CategoryContext } from "../categories/CategoriesProvider"
 import "./Post.css"
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
 import { DateTime } from "luxon"
 
 export const PostForm = (props) => {
@@ -14,6 +13,8 @@ export const PostForm = (props) => {
     const [postState, setPost] = useState({})
 
     const editMode = props.match.params.hasOwnProperty("postId")
+    
+    // console.log(editMode, "editmode")
 
     const handleControlledInputChange = (event) => {
 
@@ -34,12 +35,10 @@ export const PostForm = (props) => {
     useEffect(() => {
         getAllPosts()
         getAllCategories()
+        getPostInEditMode()
     }, [])
     
-    useEffect(() => {
-        getPostInEditMode()
-    }, [posts])
-    
+
     const constructNewPost = () => {
         const categoryId = parseInt(postState.category_id)
         const now = DateTime.local()

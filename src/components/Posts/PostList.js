@@ -1,21 +1,17 @@
-import React, { useContext, useEffect, useState, useRef } from "react"
+import React, { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { PostContext } from "./PostProvider" 
-import {CategoryContext} from "../categories/CategoriesProvider"
 import "./Post.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import EditIcon from '@material-ui/icons/Edit';
 
 export const PostList = (props) => {
-    const { posts, getAllPosts, getPostsByCategoryId } = useContext(PostContext)
-    const { categories, getAllCategories} = useContext(CategoryContext)
+    const { posts, getAllPosts } = useContext(PostContext)
 
 
     useEffect(() => {
         getAllPosts()
-            .then(getAllCategories)
     }, [])
 
     const useStyles = makeStyles((thbe) => ({
@@ -38,42 +34,16 @@ export const PostList = (props) => {
     }));
 
     const classes = useStyles()
-    const categoryRef = useRef("")
-
-    const filterPosts = (value) => {
-        if (value ==="0") {
-            getAllPosts()
-        } else {
-            getPostsByCategoryId(value)
-        }
-
-    }
 
     return (
         <>
             <article className="createArticle">
                 <Button variant="outlined" color="primary" className="createPostButton" onClick={() => props.history.push("/Post/create")}>Create Post</Button>
             </article>
-            <section className="filteredPosts">
-                <label htmlFor="category_id">Filter By Category</label>
-                    <select name="category_id" ref={categoryRef} className="form-control" 
-                    onChange={event => {
-                        event.preventDefault()
-                        filterPosts(categoryRef.current.value)
-                    }}>
-                        <option value="0">Select a Category</option>
-                        {categories.map(c => (
-                            <option key={c.id} value={c.id}>
-                                {c.label}
-                            </option>
-                        ))}
-                    </select>
-            </section>
 
             <article className="postsContainer">
                 {
                     posts.map(post => {
-                        // const category = categories.find(c => c.id === post.category_id) || {}
                         
                         return <section key={post.id} className="posts">
                                     <div className="post-info">
