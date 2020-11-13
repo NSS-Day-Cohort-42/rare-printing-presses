@@ -58,9 +58,9 @@ export const PostDetails = (props) => {
     }));
 
     const singlePostUser = singlePost.rare_user 
-    console.log(postTags, "test")
     const classes = useStyles()
     const category = categories.find(c => c.id === singlePost.category_id) || {}
+    
     if (singlePost.user_id == parseInt(localStorage.getItem("rareUser_id"))){
     
         return (
@@ -82,6 +82,7 @@ export const PostDetails = (props) => {
                             <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
                         </section>
                             <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(singlePost.id)}>Delete</button>
+                            
                     </article>
                 </article>
             </div>
@@ -114,6 +115,8 @@ export const PostDetails = (props) => {
                                 })
                             } */}
                     </section>
+                    <button onClick={() => props.history.push(`/posts/${singlePost.id}/viewcomments`)}>View Comments</button>
+                    <button onClick={() => props.history.push(`/createcomment/${singlePost.id}`)}>Add Comment</button>
                 </article>
             </article>
         </div>

@@ -4,6 +4,7 @@ import "./Comment.css"
 import { CommentContext } from "./CommentProvider"
 import { PostContext } from "../Posts/PostProvider"
 import { DateTime } from "luxon"
+import { HumanDate } from "../utils/HumanDate"
 
 
 export const Comment = (props) => {
@@ -15,13 +16,14 @@ export const Comment = (props) => {
     var pathArray = window.location.pathname.split('/')
     let postNumber = parseInt(pathArray[2])
     const thisPost = comments.filter(comment => comment.post.id === postNumber)
-    
+
     useEffect(() => {
         getComment()
         getAllPosts()
     }, [])
     
     const now = DateTime.local()
+
     const add_new_comment = () => {
         addComment({
             post_id: postNumber,
@@ -40,21 +42,28 @@ export const Comment = (props) => {
             return false;
             }
         }
+
+    // const dateTest = Date.parse(comment[0].created_on)
+    // console.log(dateTest)
+
     return (
         <main style={{ textAlign: "center" }}>
 
             <form className="comments-form">
+                <div><Link to={{pathname:`/posts`}}>Go Back</Link></div>
                 <h1 className="h3 mb-3 font-weight-normal">Comments:</h1>{
                 thisPost.map(comment => {
-                    if (comment.IsAuthor){
+                if (comment.IsAuthor){
                     return <>
                     <section className="commentContainer">
                         <section key={comment.id} className="comments">
                         <h3>{comment.subject}</h3>
                         <div>{comment.content}</div>
+                        <div>{comment.created_on}</div>
+                        <div>{comment.author.user.first_name} {comment.author.user.last_name}</div>
                         <button onClick={() => {
                             props.history.push(`/comments/${comment.id}`)
-                            window.location.reload()}}>Edit</button>
+                            }}>Edit</button>
                         <button onClick={() => delete_prompt(comment.id)}>Delete</button>
                         </section>
                     </section>
@@ -66,31 +75,14 @@ export const Comment = (props) => {
                     <section key={comment.id} className="comments">
                     <h3>{comment.subject}</h3>
                     <div>{comment.content}</div>
+                    <div>{comment.created_on}</div>
                     </section>
                     </>
                 }
-                })}
-                <div>
-                </div>
-                <h2>Add a Comment</h2>
-                    <fieldset>
-                        <input ref={subject} type="text" name="firstName" className="form-control" placeholder="Comment Subject" />
-                    </fieldset>
-                    <fieldset>
-                        <textarea ref={comment} name="bio" className="form-control" placeholder="Comment" />
-                    </fieldset>
-                    <fieldset style={{
-                        textAlign: "center"
-                    }}>
-                        <button type="submit"
-                            onClick={evt => {
-                                evt.preventDefault() // Prevent browser from submitting the form
-                                add_new_comment()
-                            }}
-                            className="btn btn-primary">
-                            Submit
-                        </button>
-                    </fieldset>
+            }
+            )
+            .reverse()
+    }
             </form>
         </main>
     )
