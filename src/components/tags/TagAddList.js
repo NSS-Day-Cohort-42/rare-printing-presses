@@ -4,32 +4,46 @@ import {TagContext} from "./TagProvider"
 import {PostTagContext} from "./PostTagProvider"
 import "./tags.css"
 
-export const TagAddList = () =>{
+export const TagAddList = (props) =>{
     const {tags} = useContext(TagContext)
-    const {addPostTag, removePostTag} = useContext(PostTagContext)
+    const {addPostTag, removePostTag, postTags} = useContext(PostTagContext)
+    var pathArray = window.location.pathname.split('/')
+    let postNumber = parseInt(pathArray[2])
 
     const CreatePostTag = (id) =>{
-        var pathArray = window.location.pathname.split('/')
-        let postNumber = parseInt(pathArray[2])
         addPostTag({
             post_id: postNumber,
             tag_id: parseInt(id)
         })
     }
-
+const removePt = (currentTag) => {
+    var tagToBeRemoved = postTags.find(pt => pt.tag.id === currentTag) 
+    console.log(tagToBeRemoved)
+    removePostTag(tagToBeRemoved.id)
+}
 return (
     <div className="tag_container">
         <h1 className = "heading">ALL TAGS</h1>
         <div className="tags_container">
             {
                 tags.map(tag=>{
+                    if (postTags.find(pt => pt.tag.label === tag.label)){
                     return(<>
-                    <div><button onClick={() => CreatePostTag(tag.id)} className="new_tag_btn">{tag.label}</button></div>
+                    <div>{tag.label}</div>
+                    <div><button onClick={() => removePt(tag.id)} className="new_tag_btn">Remove Tag</button></div>
                     <div className="new_tag_btn_container">
-            </div>
-                    </>)
+                    </div>
+                    </>)}
+                    else{
+                    return(<>
+                        <div>{tag.label}</div>
+                        <div><button onClick={() => CreatePostTag(tag.id)} className="new_tag_btn">Add Tag</button></div>
+                        <div className="new_tag_btn_container">
+                        </div>
+                        </>)}                    
                 })
             }
+            <button className="btn btn-primary" onClick={() => props.history.push(`/posts/${postNumber}`)}>Done</button>
         </div>
     </div>
 )

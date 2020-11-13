@@ -29,7 +29,7 @@ export const PostTagProvider = (props) => {
     }
 
     const removePostTag = (postTag) =>{
-        return fetch(`http://localhost:8000/posttags`, {
+        return fetch(`http://localhost:8000/posttags/${postTag}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export const PostTagProvider = (props) => {
 
     return (
         <PostTagContext.Provider value={{
-            postTags, getAllPostTags, addPostTag
+            postTags, getAllPostTags, addPostTag, removePostTag
         }}>
             {props.children}
         </PostTagContext.Provider>

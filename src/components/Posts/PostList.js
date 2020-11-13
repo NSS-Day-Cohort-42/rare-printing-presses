@@ -90,7 +90,6 @@ export const PostList = (props) => {
                                         </Button>
                                     </div>
                                     </section>
-                            
                     })
                 }
             </article>

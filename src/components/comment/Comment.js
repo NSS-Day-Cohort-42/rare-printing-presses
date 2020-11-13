@@ -90,7 +90,6 @@ export const Comment = (props) => {
                             className="btn btn-primary">
                             Submit
                         </button>
-                        <button className="btn btn-primary" onClick={() => props.history.push(`/managetags/${postNumber}`)}>Manage Tags</button>
                     </fieldset>
             </form>
         </main>

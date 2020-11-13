@@ -24,7 +24,7 @@ export const PostDetails = (props) => {
     useEffect(() => {
         getSinglePost(postNumber)
         getAllCategories()
-        getTags()
+        getAllPostTags()
     }, [])
 
     const delete_prompt = (id) => {
@@ -104,6 +104,7 @@ export const PostDetails = (props) => {
                                     postTags.map(t =>{
                                         return <p>{t.tag.label}</p>
                                     })}</div>
+                         <button className="btn btn-primary" onClick={() => props.history.push(`/managetags/${postNumber}`)}>Manage Tags</button>
                     </section>
                     <section className="contentTags">
                         <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>

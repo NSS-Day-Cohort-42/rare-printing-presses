@@ -80,8 +80,9 @@ export const ApplicationViews = () => {
                 <Route exact path="/tag">
                     <TagList />
                 </Route>
-                <Route exact path="/managetags/:tagId(\d+)">
-                    <TagAddList />
+                <Route exact path="/managetags/:tagId(\d+)" render={
+                    props => <TagAddList {...props}/>
+                    }>
                 </Route>
                 <Route exact path="/createtag" render={
                     props => <TagForm {...props} />
