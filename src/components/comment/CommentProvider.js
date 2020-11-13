@@ -4,6 +4,7 @@ export const CommentContext = React.createContext()
 
 export const CommentProvider = (props) => {
     const [comments, setComments] = useState([])
+    const [singlePost, setPost] = useState({rare_user: {user: {}}})
 
     const getComment = () => {
         return fetch("http://localhost:8000/comments", {

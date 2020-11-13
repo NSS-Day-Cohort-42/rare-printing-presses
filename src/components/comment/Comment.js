@@ -4,6 +4,7 @@ import "./Comment.css"
 import { CommentContext } from "./CommentProvider"
 import { PostContext } from "../Posts/PostProvider"
 import { DateTime } from "luxon"
+import { HumanDate } from "../utils/HumanDate"
 
 
 export const Comment = (props) => {
@@ -22,6 +23,7 @@ export const Comment = (props) => {
     }, [])
     
     const now = DateTime.local()
+
     const add_new_comment = () => {
         addComment({
             post_id: postNumber,
@@ -41,6 +43,8 @@ export const Comment = (props) => {
             }
         }
 
+    // const dateTest = Date.parse(comment[0].created_on)
+    // console.log(dateTest)
 
     return (
         <main style={{ textAlign: "center" }}>
@@ -56,6 +60,7 @@ export const Comment = (props) => {
                         <h3>{comment.subject}</h3>
                         <div>{comment.content}</div>
                         <div>{comment.created_on}</div>
+                        <div>{comment.author.user.first_name} {comment.author.user.last_name}</div>
                         <button onClick={() => {
                             props.history.push(`/comments/${comment.id}`)
                             }}>Edit</button>
