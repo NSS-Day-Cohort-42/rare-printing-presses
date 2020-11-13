@@ -28,16 +28,7 @@ export const PostDetails = (props) => {
         
     }, [])
 
-    const delete_prompt = (id) => {
-        var retVal = window.confirm("This action will permanently delete the post. Are you sure?");
-        if( retVal == true ) {
-            deletePost(id)
-            props.history.push("/posts")
-            return true;
-        } else {
-            return false;
-        }
-    }
+
 
     const useStyles = makeStyles((theme) => ({
             root: {
@@ -91,7 +82,7 @@ export const PostDetails = (props) => {
                                 window.location.reload()}}>
                                     Edit
                             </button>
-                            <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(singlePost.id)}>Delete</button>
+                            
                     </article>
                 </article>
             </div>
@@ -119,6 +110,8 @@ export const PostDetails = (props) => {
                     <section className="contentTags">
                         <Link className="category-list-link" to={{pathname:"/categories"}}> {category.label}</Link>
                     </section>
+                    <button onClick={() => props.history.push(`/posts/${singlePost.id}/viewcomments`)}>View Comments</button>
+                    <button onClick={() => props.history.push(`/createcomment/${singlePost.id}`)}>Add Comment</button>
                 </article>
             </article>
         </div>

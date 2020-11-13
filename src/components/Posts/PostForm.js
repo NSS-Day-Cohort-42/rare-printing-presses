@@ -38,6 +38,16 @@ export const PostForm = (props) => {
         getPostInEditMode()
     }, [])
     
+    const edit_prompt = (id) => {
+        var retVal = window.confirm("Are you sure you want to save edits?");
+        if( retVal == true ) {
+            constructNewPost()
+            props.history.push("/posts")
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     const constructNewPost = () => {
         const categoryId = parseInt(postState.category_id)
@@ -52,6 +62,7 @@ export const PostForm = (props) => {
                 image_url: postState.image_url,
                 approved: true
             })
+
                 .then(() => props.history.push("/posts"))
         } else {
             createPost({
@@ -66,7 +77,6 @@ export const PostForm = (props) => {
         }
     }
     const startDate = new Date()
-    console.log( DateTime.fromString(startDate, 'yyyy/MM/dd').valueOf() )
 // form needs image url option
     return (
         <form className="postForm">
@@ -119,7 +129,11 @@ export const PostForm = (props) => {
                 <Button className="savePostButton" variant="contained" type="submit"
                     onClick={evt => {
                         evt.preventDefault() 
-                        constructNewPost()
+                        if(editMode) {
+                            edit_prompt(postState.id)
+                        } else {
+                            constructNewPost()
+                        }
                     }}
                     className="btn btn-primary">
                     Save Post

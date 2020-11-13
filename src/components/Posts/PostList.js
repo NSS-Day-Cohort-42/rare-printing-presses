@@ -5,11 +5,12 @@ import "./Post.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import {HumanDate} from '../utils/HumanDate'
 import { DateTime } from "luxon"
 
 export const PostList = (props) => {
-    const { posts, getAllPosts } = useContext(PostContext)
+    const { posts, getAllPosts, deletePost } = useContext(PostContext)
 
 
     useEffect(() => {
@@ -35,18 +36,32 @@ export const PostList = (props) => {
         },
     }));
 
+    const delete_prompt = (id) => {
+        var retVal = window.confirm("This action will permanently delete the post. Are you sure?");
+        if( retVal == true ) {
+            deletePost(id)
+            props.history.push("/posts")
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     const classes = useStyles()
-    // const startDate = new Date()
-    // console.log( DateTime.fromFormat(startDate, 'yyyy/MM/dd').valueOf() )
+
     return (
         <>
             <article className="createArticle">
-                <Button variant="outlined" color="primary" className="createPostButton" onClick={() => props.history.push("/Post/create")}>Create Post</Button>
+                <Button variant="outlined" color="primary" className="createPostButton" onClick={() => props.history.push("/posts/create")}>Create Post</Button>
             </article>
 
             <article className="postsContainer">
                 {
                     posts.map(post => {
+
+
+
                         if(post.IsAuthor){
                             return <section key={post.id} className="posts">
                                         <div className="post-info">
@@ -61,6 +76,7 @@ export const PostList = (props) => {
                                                     }}>
                                                     <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
                                             </Button>
+                                            <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 20 }} className={classes.primary} /></button>
                                         </div>
                                         </section>
                         } else {
@@ -74,7 +90,9 @@ export const PostList = (props) => {
                                     </div>
                                     </section>
                         }
-                    })
+                    }
+                    )
+                    .reverse()
                 }
             </article>
         </>
