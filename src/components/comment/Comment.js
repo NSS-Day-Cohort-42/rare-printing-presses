@@ -54,7 +54,7 @@ export const Comment = (props) => {
                         <div>{comment.content}</div>
                         <button onClick={() => {
                             props.history.push(`/comments/${comment.id}`)
-                            window.location.reload()}}>Edit</button>
+                            }}>Edit</button>
                         <button onClick={() => delete_prompt(comment.id)}>Delete</button>
                         </section>
                     </section>

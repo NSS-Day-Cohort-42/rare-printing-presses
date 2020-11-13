@@ -17,7 +17,7 @@ export const CommentForm = (props) => {
     const thisPost = comments.filter(comment => comment.post.id === postNumber)
 
     const handleback = () => {
-        props.history.goBack()
+        props.history.push(`/posts/${singlePost.id}/viewcomments`)
     }
 
     useEffect(() => {
