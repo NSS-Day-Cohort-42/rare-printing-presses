@@ -40,10 +40,13 @@ export const Comment = (props) => {
             return false;
             }
         }
+
+
     return (
         <main style={{ textAlign: "center" }}>
 
             <form className="comments-form">
+                <div><Link to={{pathname:`/posts`}}>Go Back</Link></div>
                 <h1 className="h3 mb-3 font-weight-normal">Comments:</h1>{
                 thisPost.map(comment => {
                 if (comment.IsAuthor){
@@ -52,6 +55,7 @@ export const Comment = (props) => {
                         <section key={comment.id} className="comments">
                         <h3>{comment.subject}</h3>
                         <div>{comment.content}</div>
+                        <div>{comment.created_on}</div>
                         <button onClick={() => {
                             props.history.push(`/comments/${comment.id}`)
                             }}>Edit</button>
@@ -66,10 +70,14 @@ export const Comment = (props) => {
                     <section key={comment.id} className="comments">
                     <h3>{comment.subject}</h3>
                     <div>{comment.content}</div>
+                    <div>{comment.created_on}</div>
                     </section>
                     </>
                 }
-                })}
+            }
+            )
+            .reverse()
+    }
             </form>
         </main>
     )
