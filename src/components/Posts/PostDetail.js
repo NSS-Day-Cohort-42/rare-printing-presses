@@ -50,9 +50,9 @@ export const PostDetails = (props) => {
     }));
 
     const singlePostUser = singlePost.rare_user 
-    console.log(singlePostUser, "test")
     const classes = useStyles()
     const category = categories.find(c => c.id === singlePost.category_id) || {}
+    
     if (singlePost.user_id == parseInt(localStorage.getItem("rareUser_id"))){
     
         return (
@@ -104,7 +104,7 @@ export const PostDetails = (props) => {
                             } */}
                     </section>
                     <button onClick={() => props.history.push(`/posts/viewcomments/${singlePost.id}`)}>View All Comments</button>
-                    <button onClick={() => props.history.push(`/posts/createcomment`)}>Add Comment</button>
+                    <button onClick={() => props.history.push(`/createcomment/${singlePost.id}`)}>Add Comment</button>
                 </article>
             </article>
         </div>

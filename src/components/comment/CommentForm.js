@@ -16,6 +16,10 @@ export const CommentForm = (props) => {
     let postNumber = parseInt(pathArray[2])
     const thisPost = comments.filter(comment => comment.post.id === postNumber)
 
+    const handleback = () => {
+        props.history.goBack()
+    }
+
     useEffect(() => {
         getComment()
         getAllPosts()
@@ -30,6 +34,7 @@ export const CommentForm = (props) => {
             created_on: now.toISODate()
         })
     }
+
     return (
         <>
             <h2>Add a Comment</h2>
@@ -43,14 +48,15 @@ export const CommentForm = (props) => {
                         <fieldset style={{
                             textAlign: "center"
                         }}>
-                            <button type="submit"
-                                onClick={evt => {
+                            <button type="submit" onClick={evt => {
                                     evt.preventDefault() // Prevent browser from submitting the form
                                     add_new_comment()
+                                    handleback()
                                 }}
                                 className="btn btn-primary">
                                 Save
                             </button>
+                            <button onClick={() => props.history.push(`/posts`)}>Cancel</button>
                         </fieldset>
                 </form>
         </>

@@ -70,25 +70,6 @@ export const Comment = (props) => {
                     </>
                 }
                 })}
-                <h2>Add a Comment</h2>
-                    <fieldset>
-                        <input ref={subject} type="text" name="firstName" className="form-control" placeholder="Comment Subject" />
-                    </fieldset>
-                    <fieldset>
-                        <textarea ref={comment} name="bio" className="form-control" placeholder="Comment" />
-                    </fieldset>
-                    <fieldset style={{
-                        textAlign: "center"
-                    }}>
-                        <button type="submit"
-                            onClick={evt => {
-                                evt.preventDefault() // Prevent browser from submitting the form
-                                add_new_comment()
-                            }}
-                            className="btn btn-primary">
-                            Submit
-                        </button>
-                    </fieldset>
             </form>
         </main>
     )

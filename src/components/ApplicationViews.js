@@ -9,6 +9,7 @@ import PostList from "./Posts/PostList"
 import UserPostList from "./Posts/UserPostList"
 import { Comment } from "./comment/Comment"
 import { EditCommentForm } from "./comment/EditCommentForm"
+import { CommentForm } from "./comment/CommentForm"
 import { CommentProvider } from "./comment/CommentProvider"
 import { NavBar } from "./nav/NavBar"
 import { CategoriesProvider } from "./categories/CategoriesProvider";
@@ -17,7 +18,6 @@ import { PostForm } from "./Posts/PostForm"
 import { ProfileProvider} from "./auth/AuthProvider"
 import { PostTagProvider } from "./tags/PostTagProvider"
 import { CategoryEdit } from "./categories/CategoryEdit"
-import { CommentForm } from "./comment/CommentForm"
 
 export const ApplicationViews = () => {
     return <>
@@ -66,7 +66,7 @@ export const ApplicationViews = () => {
                                     <Route exact path="/posts/:sampleId(\d+)" render={(props) => {
                                         return <> 
                                             <PostDetails {...props}/>
-                                            {/* <Comment {...props}/> */}
+                                            <Comment {...props}/>
                                         </>
                                     }} />    
                                     <Route exact path="/posts/:sampleId(\d+)/viewcomments" render={(props) => {
@@ -74,7 +74,7 @@ export const ApplicationViews = () => {
                                             <Comment {...props}/>
                                         </>
                                     }} />    
-                                    <Route exact path="/posts/createcomment" render={(props) => {
+                                    <Route exact path="/createcomment/:sampleId(\d+)" render={(props) => {
                                         return <> 
                                             <CommentForm {...props}/>
                                         </>
