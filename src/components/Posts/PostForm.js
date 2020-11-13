@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { DateTime } from "luxon"
 
 export const PostForm = (props) => {
-    const { posts, getAllPosts, getSinglePost, singlePost, createPost, deletePost, editPost } = useContext(PostContext)
+    const { posts, getAllPosts, createPost, editPost } = useContext(PostContext)
     const { tags, getTags } = useContext(TagContext)
     const { categories, getAllCategories } = useContext(CategoryContext)
     const [postState, setPost] = useState({})
@@ -41,7 +41,6 @@ export const PostForm = (props) => {
     }, [posts])
     
     const constructNewPost = () => {
-        
         const categoryId = parseInt(postState.category_id)
         const now = DateTime.local()
         if (editMode) {
@@ -51,7 +50,8 @@ export const PostForm = (props) => {
                 content: postState.content,
                 date: now.toISODate(),
                 category_id: categoryId,
-                image_url: postState.image_url
+                image_url: postState.image_url,
+                approved: true
             })
                 .then(() => props.history.push("/posts"))
         } else {

@@ -76,6 +76,11 @@ export const PostDetails = (props) => {
                                     })
                                 } */}
                         </section>
+                            <button onClick={() => {
+                                props.history.push(`/posts/${singlePost.id}`)
+                                window.location.reload()}}>
+                                    Edit
+                            </button>
                             <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(singlePost.id)}>Delete</button>
                     </article>
                 </article>
