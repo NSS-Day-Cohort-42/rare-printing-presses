@@ -102,7 +102,6 @@ const delete_prompt = (id) => {
                                                 onClick={() => delete_prompt(post.id)}> </DeleteForeverIcon>
                                     </div>
                                     </section>
-                            
                     })
                 }
             </article>
