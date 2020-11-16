@@ -6,10 +6,13 @@ export const SubscriptionProvider = (props) => {
     const [subscriptions, setSubscriptions] = useState([])
 
     const getAllSubscriptions = () => {
-        return fetch(`http://localhost:8000/subscriptions`), {
+        return fetch(`http://localhost:8000/subscriptions`, {
             headers: {
-                "Authorization": 
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
+
             }
-        }
+        })
+        .then(res => res.json())
+        .then(setSubscriptions)
     }
 }
