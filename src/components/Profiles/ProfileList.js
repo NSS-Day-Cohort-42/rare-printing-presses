@@ -5,26 +5,29 @@ import "./Profile.css"
 
 export const ProfileList = (props) => {
     const { getAllProfiles, profiles, getSingleProfile, singleProfile } = useContext(ProfileContext)
+    const b1 = "Admin"
 
     useEffect(() => {
         getAllProfiles()
         getSingleProfile()
     }, [])
 
-    console.log(singleProfile)
-
-        return (
-            <article className="profileContainer">
+    const boo1 = "Admin"
+    const boo2 = "Author"
+    return (
+        <article className="profileContainer">
             {
                 profiles.map(p => {
                     return <section key={p.id} className="profiles">
                                 <div className="profile-info">
                                     <div className="profileUsername">{p.user.username}</div>
                                     <div className="profileFullName">{p.user.first_name} {p.user.last_name}</div>
-                                    <div className="profile_Is_Staff">{p.user.is_staff}</div>
+                                    {
+                                        (p.user.is_staff === true) ? <div className="profile_Is_Staff">Admin</div> 
+                                        : <div className="profile_Is_Staff">Author</div>
+                                    }
                                 </div>
                             </section>
-
                 })
             }
         </article>
