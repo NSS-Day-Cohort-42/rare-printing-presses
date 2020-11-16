@@ -1,10 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from "react"
-import { Link } from "react-router-dom"
 import { ProfileContext } from "./ProfileProvider" 
-import { makeStyles } from '@material-ui/core/styles';
-// import Button from '@material-ui/core/Button';
-// import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-// import EditIcon from '@material-ui/icons/Edit';
+import "./Profile.css"
+
 
 export const ProfileList = (props) => {
     const { getAllProfiles, profile, getSingleProfile } = useContext(ProfileContext)
