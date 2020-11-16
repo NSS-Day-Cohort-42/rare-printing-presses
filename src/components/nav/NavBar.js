@@ -7,6 +7,7 @@ import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import CategoryIcon from '@material-ui/icons/Category';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import PersonIcon from '@material-ui/icons/Person';
 
 
 
@@ -27,6 +28,9 @@ export const NavBar = () => {
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/tag"><div className ="icon"><LoyaltyIcon style={{ fontSize: 28 }} />Tags</div> </Link>
+            </li>
+            <li className="navbar__item">
+                <Link className="navbar__link" to="/userprofiles"><div className ="icon"><PersonIcon style={{ fontSize: 28 }} />User Profiles</div> </Link>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/logout"><div className ="icon"><ExitToAppIcon style={{ fontSize: 28 }} />Logout</div></Link>
