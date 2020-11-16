@@ -3,7 +3,8 @@ import React, { useState } from "react"
 export const ProfileContext = React.createContext()
 
 export const UserProfileProvider = (props) => {
-    const [profile, setProfile] = useState([])
+    const [profiles, setProfiles] = useState([])
+    const [singleProfile, setProfile] = useState([])
 
     const getAllProfiles = () => {
         return fetch(`http://localhost:8000/profile`, {
@@ -11,7 +12,7 @@ export const UserProfileProvider = (props) => {
                 "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
             }})
             .then(res => res.json())
-            .then(setProfile)
+            .then(setProfiles)
     }
 
     const getSingleProfile = (profile) => {
@@ -25,7 +26,7 @@ export const UserProfileProvider = (props) => {
 
     return (
         <ProfileContext.Provider value={{
-            getAllProfiles, profile, getSingleProfile
+            getAllProfiles, profiles, getSingleProfile, singleProfile
         }}>
             {props.children}
         </ProfileContext.Provider>
