@@ -7,9 +7,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 export const PostList = (props) => {
-    const { posts, getAllPosts, getPostsByCategoryId } = useContext(PostContext)
+    const { posts, getAllPosts, getPostsByCategoryId, deletePost } = useContext(PostContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
 
 
@@ -40,6 +41,17 @@ export const PostList = (props) => {
     const classes = useStyles()
     const categoryRef = useRef("")
 
+    const delete_prompt = (id) => {
+        var retVal = window.confirm("This action will permanently delete the post. Are you sure?");
+        if( retVal == true ) {
+            deletePost(id)
+            props.history.push("/posts")
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     const filterPosts = (value) => {
         if (value ==="0") {
             getAllPosts()
@@ -54,7 +66,7 @@ export const PostList = (props) => {
     return (
         <>
             <article className="createArticle">
-                <Button variant="outlined" color="primary" className="createPostButton" onClick={() => props.history.push("/Post/create")}>Create Post</Button>
+                <Button variant="outlined" color="primary" className="createPostButton" onClick={() => props.history.push("/posts/create")}>Create Post</Button>
             </article>
             <section className="filteredPosts">
                 <label htmlFor="category_id">Filter By Category</label>
@@ -90,6 +102,7 @@ export const PostList = (props) => {
                                                 }}>
                                                 <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
                                         </Button>
+                                        <Button className="btn postDetails__delete_btn" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 20 }} className={classes.primary} /> </Button>
                                     </div>
                                     </section>
                     })

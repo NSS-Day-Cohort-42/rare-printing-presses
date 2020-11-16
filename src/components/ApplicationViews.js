@@ -16,7 +16,7 @@ import { NavBar } from "./nav/NavBar"
 import { CategoriesProvider } from "./categories/CategoriesProvider";
 import { CategoriesList } from "./categories/CategoriesList"
 import { PostForm } from "./Posts/PostForm"
-import { ProfileProvider} from "./auth/AuthProvider"
+// import { ProfileProvider} from "./auth/AuthProvider"
 import { PostTagProvider } from "./tags/PostTagProvider"
 import { CategoryEdit } from "./categories/CategoryEdit"
 import { ProfileList } from "./Profiles/ProfileList"
@@ -24,7 +24,6 @@ import { UserProfileProvider } from "./Profiles/ProfileProvider"
 
 export const ApplicationViews = () => {
     return <>
-            <ProfileProvider>
                 <PostsProvider>
                     <CommentProvider>
                         <CategoriesProvider>
@@ -58,9 +57,6 @@ export const ApplicationViews = () => {
                         </CategoriesProvider>
                     </CommentProvider>
                 </PostsProvider>
-            </ProfileProvider>
-            
-            <ProfileProvider>
                 <PostTagProvider>
                     <PostsProvider>
                         <CommentProvider>
@@ -86,7 +82,6 @@ export const ApplicationViews = () => {
                         </CommentProvider>
                     </PostsProvider>
                 </PostTagProvider>
-            </ProfileProvider>
 
             <TagProvider>
                 <PostTagProvider>
@@ -111,7 +106,7 @@ export const ApplicationViews = () => {
             <PostsProvider>
                 <CategoriesProvider>
                     <TagProvider>
-                        <Route path="/Post/create" render ={(props) => {
+                        <Route path="/posts/create" render ={(props) => {
                             return <PostForm {...props}/>
                         }}>
                         </Route>

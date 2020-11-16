@@ -1,19 +1,20 @@
-import React, { useContext, useEffect, useState, useRef } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { PostContext } from "./PostProvider"
 import { TagContext } from "../tags/TagProvider"
 import { CategoryContext } from "../categories/CategoriesProvider"
 import "./Post.css"
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
 import { DateTime } from "luxon"
 
 export const PostForm = (props) => {
-    const { posts, getAllPosts, getSinglePost, singlePost, createPost, deletePost, editPost } = useContext(PostContext)
+    const { posts, getAllPosts, createPost, editPost } = useContext(PostContext)
     const { tags, getTags } = useContext(TagContext)
     const { categories, getAllCategories } = useContext(CategoryContext)
     const [postState, setPost] = useState({})
 
     const editMode = props.match.params.hasOwnProperty("postId")
+    
+    // console.log(editMode, "editmode")
 
     const handleControlledInputChange = (event) => {
 
@@ -34,14 +35,21 @@ export const PostForm = (props) => {
     useEffect(() => {
         getAllPosts()
         getAllCategories()
+        getPostInEditMode()
     }, [])
     
-    useEffect(() => {
-        getPostInEditMode()
-    }, [posts])
-    
+    const edit_prompt = (id) => {
+        var retVal = window.confirm("Are you sure you want to save edits?");
+        if( retVal == true ) {
+            constructNewPost()
+            props.history.push("/posts")
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     const constructNewPost = () => {
-        
         const categoryId = parseInt(postState.category_id)
         const now = DateTime.local()
         if (editMode) {
@@ -51,8 +59,10 @@ export const PostForm = (props) => {
                 content: postState.content,
                 date: now.toISODate(),
                 category_id: categoryId,
-                image_url: postState.image_url
+                image_url: postState.image_url,
+                approved: true
             })
+
                 .then(() => props.history.push("/posts"))
         } else {
             createPost({
@@ -66,6 +76,7 @@ export const PostForm = (props) => {
                 .then(() => props.history.push("/posts"))
         }
     }
+    const startDate = new Date()
 // form needs image url option
     return (
         <form className="postForm">
@@ -118,7 +129,11 @@ export const PostForm = (props) => {
                 <Button className="savePostButton" variant="contained" type="submit"
                     onClick={evt => {
                         evt.preventDefault() 
-                        constructNewPost()
+                        if(editMode) {
+                            edit_prompt(postState.id)
+                        } else {
+                            constructNewPost()
+                        }
                     }}
                     className="btn btn-primary">
                     Save Post
