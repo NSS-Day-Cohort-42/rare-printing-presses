@@ -88,7 +88,7 @@ export const PostList = (props) => {
                                     </div>
                                     <div className="post-icons"></div>
                                     
-                                </section
+                                </section>
                         }
                     }
                     )
