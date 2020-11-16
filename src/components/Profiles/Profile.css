@@ -12,3 +12,9 @@
     height: 900px;
     overflow: scroll;
 }
+
+.profiles { 
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black
+}
