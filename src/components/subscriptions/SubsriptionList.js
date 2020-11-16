@@ -35,17 +35,24 @@ export const SubscriptionList = (props) => {
     },
 }));
 
-    const classes = useStyles(
+    const classes = useStyles()
 
     return (
         <>
             <article className="subscriptionsContainer">
                 {
                     subscriptions.map(subscription => {
-                        
+                        return <section key={subscription.id} className="subscriptions">
+                            <div className="subscription-info">
+                                <div className="AuthorToFollow">Author: {subscription.author.user.first_name} {subscription.author.user.last_name}</div>
+                                <div className="FollowedOn">Followed: {subscription.created_on}</div>
+                                <div className="UnfollowedOn">Unfollowed: {subscription.ended_on}</div>
+                            </div>
+                        </section>
                     })
                 }
             </article>
+            </>
     )
-    )
+
 }
