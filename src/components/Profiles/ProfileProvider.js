@@ -34,9 +34,33 @@ export const UserProfileProvider = (props) => {
             .then(setRareSingleProfile)
     }
 
+    const updateActive = profile => {
+        return fetch(`http://localhost:8000/deactivate/${profile}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
+            },
+            body: JSON.stringify(profile)
+        })
+            .then(getAllProfiles)
+    }
+
+    const makeAdmin = profile => {
+        return fetch(`http://localhost:8000/makeadmin/${profile}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
+            },
+            body: JSON.stringify(profile)
+        })
+            .then(getAllProfiles)
+    }
+
     return (
         <ProfileContext.Provider value={{
-            getAllProfiles, profiles, singleProfile, getSingleProfile, getSingleRareProfile, rareSingleProfile
+            getAllProfiles, profiles, singleProfile, getSingleProfile, updateActive, makeAdmin, getSingleRareProfile, rareSingleProfile
         }}>
             {props.children}
         </ProfileContext.Provider>

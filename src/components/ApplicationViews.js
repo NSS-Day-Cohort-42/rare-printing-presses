@@ -19,7 +19,10 @@ import { PostForm } from "./Posts/PostForm"
 // import { ProfileProvider} from "./auth/AuthProvider"
 import { PostTagProvider } from "./tags/PostTagProvider"
 import { CategoryEdit } from "./categories/CategoryEdit"
+import { SubscriptionProvider } from "./subscriptions/SubscriptionProvider"
+import { SubscriptionList } from "./subscriptions/SubsriptionList"
 import { ProfileList } from "./Profiles/ProfileList"
+import { DeactivatedList } from "./Profiles/DeactivatedList"
 import { UserProfileProvider } from "./Profiles/ProfileProvider"
 import { ProfileDetails } from "./Profiles/ProfileDetails"
 
@@ -29,6 +32,7 @@ export const ApplicationViews = () => {
                     <CommentProvider>
                         <CategoriesProvider>
                             <TagProvider>
+                                <SubscriptionProvider>
                                 <Route exact path="/categories" render={(props) => {
                                 return <> 
                                     <CategoriesList history={props.history} />
@@ -53,7 +57,13 @@ export const ApplicationViews = () => {
                                     return <>
                                         <EditCommentForm {...props}/>
                                     </>
-                                }} />     
+                                }} />
+                                <Route exact path="/subscriptions" render={(props) => {
+                                    return <>
+                                        <SubscriptionList history={props.history} />
+                                    </>
+                                }} />
+                                </SubscriptionProvider>     
                             </TagProvider>
                         </CategoriesProvider>
                     </CommentProvider>
@@ -121,21 +131,25 @@ export const ApplicationViews = () => {
             </PostsProvider>
 
             <UserProfileProvider>
-                <Route path="/userprofiles" render ={(props) => {
+                <Route exact path="/userprofiles" render ={(props) => {
                                 return <ProfileList {...props}/>
                             }}>
                 </Route>
                 <Route path="/rareprofile/:sampleId(\d+)" render ={(props) => {
-                                return <ProfileDetails {...props}/>
+                                return <ProfileDetails {...props} />
+                            }}>
+                </Route>
+                <Route path="/userprofiles/deactivated" render ={(props) => {
+                                return <DeactivatedList {...props} />
                             }}>
                 </Route>
             </UserProfileProvider>
-
-        <Route path="/logout" render={
-            (props) => {
-                localStorage.removeItem("rareUser_id")
-                props.history.push("/login")
-            }
-        } />
-    </>
-}
+            
+            <Route path="/logout" render={
+                (props) => {
+                    localStorage.removeItem("rareUser_id")
+                    props.history.push("/login")
+                }
+            } />
+            </>
+        }

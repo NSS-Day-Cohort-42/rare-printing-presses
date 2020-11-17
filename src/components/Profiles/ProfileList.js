@@ -5,8 +5,53 @@ import "./Profile.css"
 
 
 export const ProfileList = (props) => {
-    const { getAllProfiles, profiles, getSingleProfile, singleProfile } = useContext(ProfileContext)
+    const { getAllProfiles, profiles, getSingleProfile, singleProfile, updateActive, makeAdmin} = useContext(ProfileContext)
+    const b1 = "Admin"
 
+    const add_admin_prompt = (id) => {
+        var retVal = window.confirm("Are you sure you want to make this person an admin?");
+        if( retVal == true ) {
+            makeAdmin(id)
+            props.history.push("/userprofiles")
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    const remove_admin_prompt = (id) => {
+        var retVal = window.confirm("Are you sure you want to remove this admin?");
+        let thisUser = getSingleProfile(id)
+        if( retVal == true ) {
+            makeAdmin(id)
+            props.history.push("/userprofiles")
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    const deactivate_profile_prompt = (id) => {
+        var retVal = window.confirm("Are you sure you want to deactivate this user's account?");
+        if( retVal == true ) {
+            updateActive(id)
+            props.history.push("/userprofiles")
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    const reactivate_profile_prompt = (id) => {
+        var retVal = window.confirm("Are you sure you want to reactivate this user's account?");
+        if( retVal == true ) {
+            updateActive(id)
+            props.history.push("/userprofiles")
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     useEffect(() => {
         getAllProfiles()
@@ -26,15 +71,23 @@ export const ProfileList = (props) => {
                                     <div className="profileUsername">{p.user.username}</div>
                                     <div className="profileFullName"><Link to={{pathname:`/rareprofile/${p.user.id}`}}>{p.user.first_name} {p.user.last_name}</Link></div>
                                     <div className="profile_Is_Staff">{p.IsAdmin}</div>
-                                    <button>Deactivate User</button>
                                     {
-                                        (p.user.is_staff === true) ? <div className="profile_Is_Staff">Admin</div> 
-                                        : <div className="profile_Is_Staff">Author</div>
+                                        (p.active === true) ?                       
+                                        <button className={p.id} onClick={() => deactivate_profile_prompt(p.id)}>Deactivate User</button>
+                                        : <div></div>
+                                    }
+                                    {
+                                        (p.user.is_staff === true) ?                         
+                                        <button className={p.id} onClick={() => remove_admin_prompt(p.id)}>Remove Admin</button>
+                                        : <button className={p.id} onClick={() => add_admin_prompt(p.id)}>Make Admin</button>
                                     }
                                 </div>
                             </section>
                 })
             }
+                <button onClick={() => {
+            props.history.push("/userprofiles/deactivated")
+            }}>View Deactivated</button>
         </article>
         )} else{
             return (
