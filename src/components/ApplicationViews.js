@@ -19,6 +19,8 @@ import { PostForm } from "./Posts/PostForm"
 // import { ProfileProvider} from "./auth/AuthProvider"
 import { PostTagProvider } from "./tags/PostTagProvider"
 import { CategoryEdit } from "./categories/CategoryEdit"
+import { SubscriptionProvider } from "./subscriptions/SubscriptionProvider"
+import { SubscriptionList } from "./subscriptions/SubsriptionList"
 import { ProfileList } from "./Profiles/ProfileList"
 import { DeactivatedList } from "./Profiles/DeactivatedList"
 import { UserProfileProvider } from "./Profiles/ProfileProvider"
@@ -29,6 +31,7 @@ export const ApplicationViews = () => {
                     <CommentProvider>
                         <CategoriesProvider>
                             <TagProvider>
+                                <SubscriptionProvider>
                                 <Route exact path="/categories" render={(props) => {
                                 return <> 
                                     <CategoriesList history={props.history} />
@@ -53,7 +56,13 @@ export const ApplicationViews = () => {
                                     return <>
                                         <EditCommentForm {...props}/>
                                     </>
-                                }} />     
+                                }} />
+                                <Route exact path="/subscriptions" render={(props) => {
+                                    return <>
+                                        <SubscriptionList history={props.history} />
+                                    </>
+                                }} />
+                                </SubscriptionProvider>     
                             </TagProvider>
                         </CategoriesProvider>
                     </CommentProvider>
