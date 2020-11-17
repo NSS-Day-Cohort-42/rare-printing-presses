@@ -72,9 +72,9 @@ export const ProfileList = (props) => {
                                     <div className="profileFullName">{p.user.first_name} {p.user.last_name}</div>
                                     <div className="profile_Is_Staff">{p.IsAdmin}</div>
                                     {
-                                        (p.active === true) ?                         
+                                        (p.active === true) ?                       
                                         <button className={p.id} onClick={() => deactivate_profile_prompt(p.id)}>Deactivate User</button>
-                                        : <button className={p.id} onClick={() => reactivate_profile_prompt(p.id)}>Activate User</button>
+                                        : <div></div>
                                     }
                                     {
                                         (p.user.is_staff === true) ?                         
