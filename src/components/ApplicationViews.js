@@ -19,6 +19,7 @@ import { PostForm } from "./Posts/PostForm"
 // import { ProfileProvider} from "./auth/AuthProvider"
 import { PostTagProvider } from "./tags/PostTagProvider"
 import { CategoryEdit } from "./categories/CategoryEdit"
+import ReactionProvider from "./reactions/ReactionProvider"
 
 export const ApplicationViews = () => {
     return <>
@@ -55,6 +56,7 @@ export const ApplicationViews = () => {
                         </CategoriesProvider>
                     </CommentProvider>
                 </PostsProvider>
+            <ReactionProvider>
                 <PostTagProvider>
                     <PostsProvider>
                         <CommentProvider>
@@ -80,6 +82,7 @@ export const ApplicationViews = () => {
                         </CommentProvider>
                     </PostsProvider>
                 </PostTagProvider>
+            </ReactionProvider>
 
             <TagProvider>
             <PostTagProvider>
