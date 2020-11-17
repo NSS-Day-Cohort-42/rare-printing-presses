@@ -20,6 +20,7 @@ import { PostForm } from "./Posts/PostForm"
 import { PostTagProvider } from "./tags/PostTagProvider"
 import { CategoryEdit } from "./categories/CategoryEdit"
 import { ProfileList } from "./Profiles/ProfileList"
+import { DeactivatedList } from "./Profiles/DeactivatedList"
 import { UserProfileProvider } from "./Profiles/ProfileProvider"
 
 export const ApplicationViews = () => {
@@ -119,8 +120,12 @@ export const ApplicationViews = () => {
             </PostsProvider>
 
             <UserProfileProvider>
-                <Route path="/userprofiles" render ={(props) => {
+                <Route exact path="/userprofiles" render ={(props) => {
                                 return <ProfileList {...props}/>
+                            }}>
+                </Route>
+                <Route path="/userprofiles/deactivated" render ={(props) => {
+                                return <DeactivatedList {...props}/>
                             }}>
                 </Route>
             </UserProfileProvider>

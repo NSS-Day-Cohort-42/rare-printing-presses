@@ -85,6 +85,9 @@ export const ProfileList = (props) => {
                             </section>
                 })
             }
+                <button onClick={() => {
+            props.history.push("/userprofiles/deactivated")
+            }}>View Deactivated</button>
         </article>
         )} else{
             return (
