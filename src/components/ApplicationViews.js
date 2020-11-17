@@ -56,9 +56,10 @@ export const ApplicationViews = () => {
                         </CategoriesProvider>
                     </CommentProvider>
                 </PostsProvider>
-            <ReactionProvider>
+            
                 <PostTagProvider>
                     <PostsProvider>
+                     <ReactionProvider>
                         <CommentProvider>
                             <CategoriesProvider>
                                 <TagProvider>
@@ -80,9 +81,10 @@ export const ApplicationViews = () => {
                                 </TagProvider>
                             </CategoriesProvider>
                         </CommentProvider>
+                        </ReactionProvider>
                     </PostsProvider>
                 </PostTagProvider>
-            </ReactionProvider>
+            
 
             <TagProvider>
             <PostTagProvider>

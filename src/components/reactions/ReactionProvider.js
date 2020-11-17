@@ -1,9 +1,11 @@
-import React, { useState } from "react"
-
+import React, { useState, useContext } from "react"
+import { PostContext } from "../Posts/PostProvider"
 export const ReactionContext = React.createContext()
 
 export const ReactionProvider = (props) => {
     const [reactions, setReactions] = useState([])
+    const [newReaction, setNewReaction] = useState([])
+    const {getSinglePost} = useContext(PostContext)
     
 
     const getAllReactions = () => {
@@ -37,11 +39,26 @@ export const ReactionProvider = (props) => {
         })
             .then(getAllReactions)
     }
+
+    const newPostReaction = (pr) =>{
+        return fetch("http://localhost:8000/postreactions", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
+            },
+            body: JSON.stringify(pr)
+        })
+        .then(()=>
+        getSinglePost(pr.post_id))
+    }
+
+    
     
 
     return (
         <ReactionContext.Provider value={{
-            reactions, setReactions, getAllReactions, deleteReaction, createReaction
+            reactions, setReactions, getAllReactions, deleteReaction, createReaction, newPostReaction, newReaction
         }}>
             {props.children}
         </ReactionContext.Provider>

@@ -16,7 +16,7 @@ export const PostsProvider = (props) => {
             .then(setPosts)
     }
 
-    const getSinglePost = (post) => {
+   const getSinglePost = (post) => {
         return fetch(`http://localhost:8000/posts/${post}`, {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("rareUser_id")}`

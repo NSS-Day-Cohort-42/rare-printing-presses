@@ -14,7 +14,7 @@ export const PostDetails = (props) => {
     const { singlePost, getSinglePost, deletePost } = useContext(PostContext)
     const { categories, getAllCategories } = useContext(CategoryContext)
     const { tags, getTags } = useContext(TagContext)
-    const { reactions, getAllReactions } = useContext(ReactionContext)
+    const { reactions, getAllReactions, newPostReaction, newReaction } = useContext(ReactionContext)
     const [countObject, setCountObject] = useState({})
     const { postTags, getAllPostTags } = useContext(PostTagContext)
 
@@ -41,10 +41,9 @@ export const PostDetails = (props) => {
             } else {
                 object[`${react.id}`] = 1
             }
-            console.log(object)
         })
         setCountObject(object)
-    }, [singlePost])
+    }, [singlePost, newReaction])
 
 
 
@@ -91,9 +90,13 @@ export const PostDetails = (props) => {
                                         return <p key={t.tag.label}>{t.tag.label}</p>
                                     })}</div>
                                 <div className="postReactions">
-                                    {
+                                {
                                         reactions.map(r => {
-                                            return (<div key={r.label}><img className="reaction_img" src={r.image_url} alt={r.label} _img />{r.label}</div>)
+                                            return (<button className="reaction" key={r.label}>
+                                                {
+                                                    countObject.hasOwnProperty(r.id) ? countObject[`${r.id}`] : null
+                                                }
+                                                <img className="reaction_img" src={r.image_url} />{r.label}</button>)
                                         })
                                     }
                                 </div>
@@ -133,11 +136,13 @@ export const PostDetails = (props) => {
                                 <div className="postReactions">
                                     {
                                         reactions.map(r => {
-                                            return (<button className="reaction" key={r.label}>
+                                            return (<button className="reaction" key={r.label} onClick={()=>{
+                                                newPostReaction({"post_id": singlePost.id, "reaction_id": r.id})
+                                            }}>
                                                 {
                                                     countObject.hasOwnProperty(r.id) ? countObject[`${r.id}`] : null
                                                 }
-                                                <img className="reaction_img" src={r.image_url} />{r.label}</button>)
+                                                <img className="reaction_img" src={r.image_url} /></button>)
                                         })
                                     }
                                 </div>
