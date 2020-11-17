@@ -44,7 +44,7 @@ export const SubscriptionList = (props) => {
                     subscriptions.map(subscription => {
                         return <section key={subscription.id} className="subscriptions">
                             <div className="subscription-info">
-                                <div className="AuthorToFollow">Author:</div>
+                    <div className="AuthorToFollow">Author: {subscription.user.first_name} {subscription.user.last_name}</div>
                                 <div className="FollowedOn">Followed: {subscription.created_on}</div>
                                 <div className="UnfollowedOn">Unfollowed: {subscription.ended_on}</div>
                             </div>
