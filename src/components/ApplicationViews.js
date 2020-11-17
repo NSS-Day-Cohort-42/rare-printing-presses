@@ -21,6 +21,7 @@ import { PostTagProvider } from "./tags/PostTagProvider"
 import { CategoryEdit } from "./categories/CategoryEdit"
 import { ProfileList } from "./Profiles/ProfileList"
 import { UserProfileProvider } from "./Profiles/ProfileProvider"
+import { ProfileDetails } from "./Profiles/ProfileDetails"
 
 export const ApplicationViews = () => {
     return <>
@@ -57,6 +58,7 @@ export const ApplicationViews = () => {
                         </CategoriesProvider>
                     </CommentProvider>
                 </PostsProvider>
+                
                 <PostTagProvider>
                     <PostsProvider>
                         <CommentProvider>
@@ -121,6 +123,10 @@ export const ApplicationViews = () => {
             <UserProfileProvider>
                 <Route path="/userprofiles" render ={(props) => {
                                 return <ProfileList {...props}/>
+                            }}>
+                </Route>
+                <Route path="/rareprofile/:sampleId(\d+)" render ={(props) => {
+                                return <ProfileDetails {...props}/>
                             }}>
                 </Route>
             </UserProfileProvider>
