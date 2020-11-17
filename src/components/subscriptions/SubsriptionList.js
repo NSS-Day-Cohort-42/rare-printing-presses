@@ -41,12 +41,12 @@ export const SubscriptionList = (props) => {
         <>
             <article className="subscriptionsContainer">
                 {
-                    subscriptions.map(subscription => {
-                        return <section key={subscription.id} className="subscriptions">
+                    subscriptions.map(subs => {
+                        return <section key={subs.id} className="subscriptions">
                             <div className="subscription-info">
-                    <div className="AuthorToFollow">Author: {subscription.user.first_name} {subscription.user.last_name}</div>
-                                <div className="FollowedOn">Followed: {subscription.created_on}</div>
-                                <div className="UnfollowedOn">Unfollowed: {subscription.ended_on}</div>
+                                <div className="AuthorToFollow">Author: {subs.author.user.first_name}</div>
+                                <div className="FollowedOn">Followed: {subs.created_on}</div>
+                                <div className="UnfollowedOn">Unfollowed: {subs.ended_on}</div>
                             </div>
                         </section>
                     })
