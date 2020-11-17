@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button'
 import DeleteIcon from '@material-ui/icons/Delete'
 import {HumanDate} from '../utils/HumanDate'
 
+import './Subscription.css'
+
 export const SubscriptionList = (props) => {
     const { subscriptions, getAllSubscriptions, } = useContext(SubscriptionContext)
 
@@ -40,11 +42,12 @@ export const SubscriptionList = (props) => {
     return (
         <>
             <article className="subscriptionsContainer">
+            <h3>Subscriptions</h3>
                 {
                     subscriptions.map(subs => {
                         return <section key={subs.id} className="subscriptions">
                             <div className="subscription-info">
-                                <div className="AuthorToFollow">Author: {subs.author.user.first_name}</div>
+                                <div className="AuthorToFollow">Author: {subs.author.user.first_name} {subs.author.user.last_name}</div>
                                 <div className="FollowedOn">Followed: {subs.created_on}</div>
                                 <div className="UnfollowedOn">Unfollowed: {subs.ended_on}</div>
                             </div>
