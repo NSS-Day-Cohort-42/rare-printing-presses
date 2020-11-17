@@ -19,6 +19,8 @@ import { PostForm } from "./Posts/PostForm"
 // import { ProfileProvider} from "./auth/AuthProvider"
 import { PostTagProvider } from "./tags/PostTagProvider"
 import { CategoryEdit } from "./categories/CategoryEdit"
+import { ProfileList } from "./Profiles/ProfileList"
+import { UserProfileProvider } from "./Profiles/ProfileProvider"
 
 export const ApplicationViews = () => {
     return <>
@@ -82,22 +84,22 @@ export const ApplicationViews = () => {
                 </PostTagProvider>
 
             <TagProvider>
-            <PostTagProvider>
-                <Route exact path="/tag">
-                    <TagList />
-                </Route>
-                <Route exact path="/managetags/:tagId(\d+)" render={
-                    props => <TagAddList {...props}/>
+                <PostTagProvider>
+                    <Route exact path="/tag">
+                        <TagList />
+                    </Route>
+                    <Route exact path="/managetags/:tagId(\d+)" render={
+                        props => <TagAddList {...props}/>
+                        }>
+                    </Route>
+                    <Route exact path="/createtag" render={
+                        props => <TagForm {...props} />
                     }>
-                </Route>
-                <Route exact path="/createtag" render={
-                    props => <TagForm {...props} />
-                }>
-                </Route>
-                <Route path="/edittag/:tagId(\d+)" render={
-                    props => <TagForm {...props} />
-                }>
-                </Route>
+                    </Route>
+                    <Route path="/edittag/:tagId(\d+)" render={
+                        props => <TagForm {...props} />
+                    }>
+                    </Route>
                 </PostTagProvider>
             </TagProvider>
             
@@ -115,6 +117,13 @@ export const ApplicationViews = () => {
                     </TagProvider>
                 </CategoriesProvider>
             </PostsProvider>
+
+            <UserProfileProvider>
+                <Route path="/userprofiles" render ={(props) => {
+                                return <ProfileList {...props}/>
+                            }}>
+                </Route>
+            </UserProfileProvider>
 
         <Route path="/logout" render={
             (props) => {
