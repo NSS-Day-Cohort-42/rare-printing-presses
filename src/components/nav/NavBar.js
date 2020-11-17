@@ -7,7 +7,7 @@ import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import CategoryIcon from '@material-ui/icons/Category';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 
 export const NavBar = () => {
@@ -29,7 +29,7 @@ export const NavBar = () => {
                 <Link className="navbar__link" to="/tag"><div className ="icon"><LoyaltyIcon style={{ fontSize: 28 }} />Tags</div> </Link>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/subscriptions"><div className ="icon"><LoyaltyIcon style={{ fontSize: 28 }} />Subscriptions</div> </Link>
+                <Link className="navbar__link" to="/subscriptions"><div className ="icon"><AddCircleOutlineIcon style={{ fontSize: 28 }} />Subscriptions</div> </Link>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/logout"><div className ="icon"><ExitToAppIcon style={{ fontSize: 28 }} />Logout</div></Link>
