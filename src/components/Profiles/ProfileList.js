@@ -8,11 +8,11 @@ export const ProfileList = (props) => {
 
     useEffect(() => {
         getAllProfiles()
+        getSingleProfile(userNumber)
     }, [])
 
-    let admins = profiles.filter(p => p.user.is_staff == true)
-    console.log(admins)
-    
+    let userNumber = localStorage.getItem("rareUser_number")
+    if (singleProfile.is_staff){
         return (
             <article className="profileContainer">
             {
@@ -22,13 +22,32 @@ export const ProfileList = (props) => {
                                     <div className="profileUsername">{p.user.username}</div>
                                     <div className="profileFullName">{p.user.first_name} {p.user.last_name}</div>
                                     <div className="profile_Is_Staff">{p.IsAdmin}</div>
+                                    <button>Deactivate User</button>
                                 </div>
                             </section>
 
                 })
             }
         </article>
-        )
+        )} else{
+            return (
+                <article className="profileContainer">
+                {
+                    profiles.map(p => {
+                        return <section key={p.id} className="profiles">
+                                    <div className="profile-info">
+                                        <div className="profileUsername">{p.user.username}</div>
+                                        <div className="profileFullName">{p.user.first_name} {p.user.last_name}</div>
+                                        <div className="profile_Is_Staff">{p.IsAdmin}</div>
+                                    </div>
+                                </section>
+    
+                    })
+                }
+            </article>
+            )
+
+        }
     
 
 }
