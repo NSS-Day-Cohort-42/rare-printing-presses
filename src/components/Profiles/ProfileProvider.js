@@ -26,7 +26,7 @@ export const UserProfileProvider = (props) => {
 
     return (
         <ProfileContext.Provider value={{
-            getAllProfiles, profiles, getSingleProfile, singleProfile
+            getAllProfiles, profiles, singleProfile, getSingleProfile
         }}>
             {props.children}
         </ProfileContext.Provider>

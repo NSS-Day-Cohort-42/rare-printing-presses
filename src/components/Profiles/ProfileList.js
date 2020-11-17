@@ -4,15 +4,15 @@ import "./Profile.css"
 
 
 export const ProfileList = (props) => {
-    const { getAllProfiles, profiles, getSingleProfile, singleProfile } = useContext(ProfileContext)
+    const { getAllProfiles, profiles, getSingleProfile, singleProfile} = useContext(ProfileContext)
 
     useEffect(() => {
         getAllProfiles()
-        getSingleProfile()
     }, [])
 
-    console.log(singleProfile)
-
+    let admins = profiles.filter(p => p.user.is_staff == true)
+    console.log(admins)
+    
         return (
             <article className="profileContainer">
             {
