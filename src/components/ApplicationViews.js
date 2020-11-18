@@ -20,6 +20,11 @@ import { PostForm } from "./Posts/PostForm"
 import { PostTagProvider } from "./tags/PostTagProvider"
 import { CategoryEdit } from "./categories/CategoryEdit"
 import ReactionProvider from "./reactions/ReactionProvider"
+import { SubscriptionProvider } from "./subscriptions/SubscriptionProvider"
+import { SubscriptionList } from "./subscriptions/SubsriptionList"
+import { ProfileList } from "./Profiles/ProfileList"
+import { DeactivatedList } from "./Profiles/DeactivatedList"
+import { UserProfileProvider } from "./Profiles/ProfileProvider"
 
 export const ApplicationViews = () => {
     return <>
@@ -27,6 +32,7 @@ export const ApplicationViews = () => {
                     <CommentProvider>
                         <CategoriesProvider>
                             <TagProvider>
+                                <SubscriptionProvider>
                                 <Route exact path="/categories" render={(props) => {
                                 return <> 
                                     <CategoriesList history={props.history} />
@@ -51,7 +57,13 @@ export const ApplicationViews = () => {
                                     return <>
                                         <EditCommentForm {...props}/>
                                     </>
-                                }} />     
+                                }} />
+                                <Route exact path="/subscriptions" render={(props) => {
+                                    return <>
+                                        <SubscriptionList history={props.history} />
+                                    </>
+                                }} />
+                                </SubscriptionProvider>     
                             </TagProvider>
                         </CategoriesProvider>
                     </CommentProvider>
@@ -87,22 +99,22 @@ export const ApplicationViews = () => {
             
 
             <TagProvider>
-            <PostTagProvider>
-                <Route exact path="/tag">
-                    <TagList />
-                </Route>
-                <Route exact path="/managetags/:tagId(\d+)" render={
-                    props => <TagAddList {...props}/>
+                <PostTagProvider>
+                    <Route exact path="/tag">
+                        <TagList />
+                    </Route>
+                    <Route exact path="/managetags/:tagId(\d+)" render={
+                        props => <TagAddList {...props}/>
+                        }>
+                    </Route>
+                    <Route exact path="/createtag" render={
+                        props => <TagForm {...props} />
                     }>
-                </Route>
-                <Route exact path="/createtag" render={
-                    props => <TagForm {...props} />
-                }>
-                </Route>
-                <Route path="/edittag/:tagId(\d+)" render={
-                    props => <TagForm {...props} />
-                }>
-                </Route>
+                    </Route>
+                    <Route path="/edittag/:tagId(\d+)" render={
+                        props => <TagForm {...props} />
+                    }>
+                    </Route>
                 </PostTagProvider>
             </TagProvider>
             
@@ -120,6 +132,17 @@ export const ApplicationViews = () => {
                     </TagProvider>
                 </CategoriesProvider>
             </PostsProvider>
+
+            <UserProfileProvider>
+                <Route exact path="/userprofiles" render ={(props) => {
+                                return <ProfileList {...props}/>
+                            }}>
+                </Route>
+                <Route path="/userprofiles/deactivated" render ={(props) => {
+                                return <DeactivatedList {...props}/>
+                            }}>
+                </Route>
+            </UserProfileProvider>
 
         <Route path="/logout" render={
             (props) => {

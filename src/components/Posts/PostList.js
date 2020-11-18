@@ -86,9 +86,9 @@ export const PostList = (props) => {
                                         <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
                                         <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
                                     </div>
-                                    <div className="post-icons">
-                                    </div>
-                                    </section>
+                                    <div className="post-icons"></div>
+                                    
+                                </section>
                         }
                     }
                     )
