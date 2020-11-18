@@ -25,6 +25,7 @@ import { SubscriptionList } from "./subscriptions/SubsriptionList"
 import { ProfileList } from "./Profiles/ProfileList"
 import { DeactivatedList } from "./Profiles/DeactivatedList"
 import { UserProfileProvider } from "./Profiles/ProfileProvider"
+import { ReactionForm } from "./reactions/ReactionForm"
 
 export const ApplicationViews = () => {
     return <>
@@ -88,6 +89,11 @@ export const ApplicationViews = () => {
                                     <Route exact path="/createcomment/:sampleId(\d+)" render={(props) => {
                                         return <> 
                                             <CommentForm {...props}/>
+                                        </>
+                                    }} />    
+                                    <Route exact path="/create/reaction" render={(props) => {
+                                        return <> 
+                                            <ReactionForm {...props}/>
                                         </>
                                     }} />    
                                 </TagProvider>
