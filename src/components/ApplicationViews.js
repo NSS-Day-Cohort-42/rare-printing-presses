@@ -33,36 +33,38 @@ export const ApplicationViews = () => {
                         <CategoriesProvider>
                             <TagProvider>
                                 <SubscriptionProvider>
-                                <Route exact path="/categories" render={(props) => {
-                                return <> 
-                                    <CategoriesList history={props.history} />
-                                </>
-                                }} />    
-                                <Route exact path="/categories/edit/:categoryId(\d+)" render={(props) => {
-                                return <> 
-                                    <CategoryEdit {...props} />
-                                </>
-                                }} />    
-                                <Route exact path="/posts" render={(props) => {
+                                    <UserProfileProvider>
+                                    <Route exact path="/categories" render={(props) => {
                                     return <> 
-                                        <PostList history={props.history} />
+                                        <CategoriesList history={props.history} />
                                     </>
-                                }} /> 
-                                <Route exact path="/userposts" render={(props) => {
-                                    return <>
-                                        <UserPostList history={props.history} />
+                                    }} />    
+                                    <Route exact path="/categories/edit/:categoryId(\d+)" render={(props) => {
+                                    return <> 
+                                        <CategoryEdit {...props} />
                                     </>
-                                }} /> 
-                                <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
-                                    return <>
-                                        <EditCommentForm {...props}/>
-                                    </>
-                                }} />
-                                <Route exact path="/subscriptions" render={(props) => {
-                                    return <>
-                                        <SubscriptionList history={props.history} />
-                                    </>
-                                }} />
+                                    }} />    
+                                    <Route exact path="/posts" render={(props) => {
+                                        return <> 
+                                            <PostList history={props.history} />
+                                        </>
+                                    }} /> 
+                                    <Route exact path="/userposts" render={(props) => {
+                                        return <>
+                                            <UserPostList history={props.history} />
+                                        </>
+                                    }} /> 
+                                    <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
+                                        return <>
+                                            <EditCommentForm {...props}/>
+                                        </>
+                                    }} />
+                                    <Route exact path="/subscriptions" render={(props) => {
+                                        return <>
+                                            <SubscriptionList history={props.history} />
+                                        </>
+                                    }} />
+                                    </UserProfileProvider>
                                 </SubscriptionProvider>     
                             </TagProvider>
                         </CategoriesProvider>
@@ -118,6 +120,7 @@ export const ApplicationViews = () => {
             <PostsProvider>
                 <CategoriesProvider>
                     <TagProvider>
+                        <UserProfileProvider>
                         <Route path="/posts/create" render ={(props) => {
                             return <PostForm {...props}/>
                         }}>
@@ -126,6 +129,7 @@ export const ApplicationViews = () => {
                             return <PostForm {...props} /> 
                             }}>
                         </Route>
+                        </UserProfileProvider>
                     </TagProvider>
                 </CategoriesProvider>
             </PostsProvider>
