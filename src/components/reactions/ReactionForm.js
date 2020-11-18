@@ -1,12 +1,7 @@
 import { Button } from "@material-ui/core"
 import React, { useContext, useState } from "react"
 import { ReactionContext } from "./ReactionProvider"
-
-
-
-
-
-
+import "./reaction.css"
 
 
 
@@ -62,15 +57,15 @@ export const ReactionForm = (props) =>{
                     />
                 </div>
             </fieldset>
-            <Button className="saveReactionButton" variant="contained" type="submit"
+            <button className="saveReactionButton" variant="contained" type="submit"
                 onClick={evt => {
                     evt.preventDefault()
                     constructNewReaction()  
                     
                 }}
-                className="btn btn-primary btn-add_category">
+                className="add-react-btn">
                 Save
-            </Button>
+            </button>
         </form>
     )
 
