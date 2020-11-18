@@ -11,7 +11,9 @@ export const Rare = (props) => (
         <Route render={(props) => {
             if (localStorage.getItem("rareUser_id")) {
                 return <>
+                <UserProfileProvider>
                     <NavBar />
+                </UserProfileProvider>
                     <ApplicationViews />
 
                 </>
