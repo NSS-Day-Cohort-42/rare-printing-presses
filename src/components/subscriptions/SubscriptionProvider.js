@@ -16,6 +16,17 @@ export const SubscriptionProvider = (props) => {
         .then(setSubscriptions)
     }
 
+    const unsubscribe = followerId => {
+        return fetch(`http://localhost:8000/subscriptions/${followerId}/follow`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
+        }
+    })
+            .then(response => response.json())
+            .then(getAllSubscriptions)
+    }
+
     const followAuthor = followerId => {
         return fetch(`http://localhost:8000/subscriptions/${followerId}/follow`, {
             method: "POST",
@@ -28,7 +39,7 @@ export const SubscriptionProvider = (props) => {
 
     return (
         <SubscriptionContext.Provider value={{
-            subscriptions, getAllSubscriptions, followAuthor
+            subscriptions, getAllSubscriptions, followAuthor, unsubscribe
         }}>
             {props.children}
         </SubscriptionContext.Provider>
