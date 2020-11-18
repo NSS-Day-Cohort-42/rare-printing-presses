@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { PostContext } from "./PostProvider" 
+import { ProfileContext } from "../Profiles/ProfileProvider" 
 import "./Post.css"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -10,10 +11,14 @@ import {HumanDate} from '../utils/HumanDate'
 import { DateTime } from "luxon"
 
 export const PostList = (props) => {
-    const { posts, getAllPosts, deletePost } = useContext(PostContext)
+    const { posts, getAllPosts, deletePost, updatePostApproval } = useContext(PostContext)
+    const { getSingleProfile, singleProfile } = useContext(ProfileContext)
 
+    
+    const currentUser = localStorage.getItem("rareUser_number")
 
     useEffect(() => {
+        getSingleProfile(currentUser)
         getAllPosts()
     }, [])
 
@@ -28,8 +33,8 @@ export const PostList = (props) => {
                 background: "black",
                 margin: 0
             },
-            },
-            primary: {
+        },
+        primary: {
             '& > *': {
                 color: "black"
             },
@@ -47,6 +52,27 @@ export const PostList = (props) => {
         }
     }
 
+    const approve_post_prompt = (id) => {
+        var retVal = window.confirm("Are you sure you want to approve this user's post?");
+        if( retVal == true ) {
+            updatePostApproval(id)
+            props.history.push("/posts")
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    const unapprove_post_prompt = (id) => {
+        var retVal = window.confirm("Are you sure you want to unapprove this user's post?");
+        if( retVal == true ) {
+            updatePostApproval(id)
+            props.history.push("/posts")
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     const classes = useStyles()
 
@@ -60,15 +86,16 @@ export const PostList = (props) => {
                 {
                     posts.map(post => {
 
-
+                        console.log(post, "post")
 
                         if(post.IsAuthor){
                             return <section key={post.id} className="posts">
-                                        <div className="post-info">
+                                <div className="post-info">
                                             <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
                                             <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
                                             <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
                                         </div>
+
                                         <div className="post-icons">
                                             <Button className="postDetailsButton" 
                                                     onClick={() => {
@@ -78,7 +105,14 @@ export const PostList = (props) => {
                                             </Button>
                                             <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 20 }} className={classes.primary} /></button>
                                         </div>
-                                        </section>
+                                        {
+                                            (singleProfile.is_staff)?
+                                                (post.approved === false) ?                         
+                                                    <button className={post.id} onClick={() => approve_post_prompt(post.id)}>Approve</button>
+                                                : <button className={post.id} onClick={() => unapprove_post_prompt(post.id)}>Unapprove</button>
+                                            : <div></div>
+                                        }   
+                                    </section>
                         } else {
                             return <section key={post.id} className="posts">
                                     <div className="post-info">
@@ -88,12 +122,20 @@ export const PostList = (props) => {
                                     </div>
                                     <div className="post-icons"></div>
                                     
+                                    {
+                                        (singleProfile.is_staff)?
+                                            (post.approved === false) ?                         
+                                                <button className={post.id} onClick={() => approve_post_prompt(post.id)}>Approve</button>
+                                            : <button className={post.id} onClick={() => unapprove_post_prompt(post.id)}>Unapprove</button>
+                                        : <div></div>
+                                    }
                                 </section>
                         }
                     }
                     )
                     .reverse()
                 }
+
             </article>
         </>
     )

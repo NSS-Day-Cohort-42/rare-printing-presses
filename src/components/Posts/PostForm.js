@@ -60,7 +60,7 @@ export const PostForm = (props) => {
                 date: now.toISODate(),
                 category_id: categoryId,
                 image_url: postState.image_url,
-                approved: true
+                approved: false
             })
 
                 .then(() => props.history.push("/posts"))
@@ -71,7 +71,7 @@ export const PostForm = (props) => {
                 date: now.toISODate(),
                 category_id: categoryId,
                 image_url: "",
-                approved: true
+                approved: false
             })
                 .then(() => props.history.push("/posts"))
         }
