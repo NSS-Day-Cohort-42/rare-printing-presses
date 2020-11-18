@@ -25,6 +25,7 @@ import { SubscriptionList } from "./subscriptions/SubsriptionList"
 import { ProfileList } from "./Profiles/ProfileList"
 import { DeactivatedList } from "./Profiles/DeactivatedList"
 import { UserProfileProvider } from "./Profiles/ProfileProvider"
+import { ProfileDetails } from "./Profiles/ProfileDetails"
 import { ReactionForm } from "./reactions/ReactionForm"
 
 export const ApplicationViews = () => {
@@ -71,6 +72,7 @@ export const ApplicationViews = () => {
                         </CategoriesProvider>
                     </CommentProvider>
                 </PostsProvider>
+                
             
                 <PostTagProvider>
                     <PostsProvider>
@@ -148,17 +150,21 @@ export const ApplicationViews = () => {
                                 return <ProfileList {...props}/>
                             }}>
                 </Route>
+                <Route path="/rareprofile/:sampleId(\d+)" render ={(props) => {
+                                return <ProfileDetails {...props} />
+                            }}>
+                </Route>
                 <Route path="/userprofiles/deactivated" render ={(props) => {
-                                return <DeactivatedList {...props}/>
+                                return <DeactivatedList {...props} />
                             }}>
                 </Route>
             </UserProfileProvider>
-
-        <Route path="/logout" render={
-            (props) => {
-                localStorage.removeItem("rareUser_id")
-                props.history.push("/login")
-            }
-        } />
-    </>
-}
+            
+            <Route path="/logout" render={
+                (props) => {
+                    localStorage.removeItem("rareUser_id")
+                    props.history.push("/login")
+                }
+            } />
+            </>
+        }

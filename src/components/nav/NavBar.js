@@ -46,7 +46,7 @@ export const NavBar = () => {
                 <Link className="navbar__link" to="/tag"><div className ="icon"><LoyaltyIcon style={{ fontSize: 28 }} />Tags</div> </Link>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/subscriptions"><div className ="icon"><AddCircleOutlineIcon style={{ fontSize: 28 }} />Subscriptions</div> </Link>
+            <Link className="navbar__link" to="/subscriptions"><div className ="icon"><AddCircleOutlineIcon style={{ fontSize: 28 }} />Subscriptions</div> </Link>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/userprofiles"><div className ="icon"><PersonIcon style={{ fontSize: 28 }} />User Profiles</div> </Link>
