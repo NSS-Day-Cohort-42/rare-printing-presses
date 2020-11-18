@@ -73,3 +73,14 @@
 .postDetails__title_article {
     margin-left: 20rem;
 }
+
+.postReactions{
+    display: flex;
+    justify-content: space-between;
+}
+
+.reaction{
+    background-color: rgb(242, 240, 240);
+    padding: 6px;
+    border-radius: 20px;
+}
