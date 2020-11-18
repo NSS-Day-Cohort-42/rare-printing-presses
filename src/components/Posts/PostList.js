@@ -86,50 +86,76 @@ export const PostList = (props) => {
                 {
                     posts.map(post => {
 
-                        console.log(post, "post")
-
-                        if(post.IsAuthor){
-                            return <section key={post.id} className="posts">
-                                <div className="post-info">
-                                            <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
-                                            <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
-                                            <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
-                                        </div>
-
-                                        <div className="post-icons">
-                                            <Button className="postDetailsButton" 
-                                                    onClick={() => {
-                                                            props.history.push(`/posts/edit/${post.id}`)
-                                                    }}>
-                                                    <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
-                                            </Button>
-                                            <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 20 }} className={classes.primary} /></button>
-                                        </div>
-                                        {
-                                            (singleProfile.is_staff)?
-                                                (post.approved === false) ?                         
-                                                    <button className={post.id} onClick={() => approve_post_prompt(post.id)}>Approve</button>
-                                                : <button className={post.id} onClick={() => unapprove_post_prompt(post.id)}>Unapprove</button>
-                                            : <div></div>
-                                        }   
-                                    </section>
+                        console.log(singleProfile.is_staff, "test")
+                        if(singleProfile.is_staff){
+                                    return <section key={post.id} className="posts">
+                                        <div className="post-info">
+                                                    <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
+                                                    <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
+                                                    <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
+                                                </div>
+        
+                                                <div className="post-icons">
+                                                    <Button className="postDetailsButton" 
+                                                            onClick={() => {
+                                                                    props.history.push(`/posts/edit/${post.id}`)
+                                                            }}>
+                                                            <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
+                                                    </Button>
+                                                    <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 20 }} className={classes.primary} /></button>
+                                                </div>
+                                                {
+                                                        (post.approved === false) ?                         
+                                                            <button className={post.id} onClick={() => approve_post_prompt(post.id)}>Approve</button>
+                                                        : <button className={post.id} onClick={() => unapprove_post_prompt(post.id)}>Unapprove</button>
+                                                }   
+                                            </section>
                         } else {
-                            return <section key={post.id} className="posts">
-                                    <div className="post-info">
-                                        <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
-                                        <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
-                                        <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
-                                    </div>
-                                    <div className="post-icons"></div>
-                                    
-                                    {
-                                        (singleProfile.is_staff)?
-                                            (post.approved === false) ?                         
-                                                <button className={post.id} onClick={() => approve_post_prompt(post.id)}>Approve</button>
-                                            : <button className={post.id} onClick={() => unapprove_post_prompt(post.id)}>Unapprove</button>
-                                        : <div></div>
-                                    }
-                                </section>
+                            if(post.approved){
+                                if(post.IsAuthor){
+                                    return <section key={post.id} className="posts">
+                                        <div className="post-info">
+                                                    <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
+                                                    <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
+                                                    <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
+                                                </div>
+        
+                                                <div className="post-icons">
+                                                    <Button className="postDetailsButton" 
+                                                            onClick={() => {
+                                                                    props.history.push(`/posts/edit/${post.id}`)
+                                                            }}>
+                                                            <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
+                                                    </Button>
+                                                    <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 20 }} className={classes.primary} /></button>
+                                                </div>
+                                                {
+                                                    (singleProfile.is_staff)?
+                                                        (post.approved === false) ?                         
+                                                            <button className={post.id} onClick={() => approve_post_prompt(post.id)}>Approve</button>
+                                                        : <button className={post.id} onClick={() => unapprove_post_prompt(post.id)}>Unapprove</button>
+                                                    : <div></div>
+                                                }   
+                                            </section>
+                                } else {
+                                    return <section key={post.id} className="posts">
+                                            <div className="post-info">
+                                                <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
+                                                <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
+                                                <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
+                                            </div>
+                                            <div className="post-icons"></div>
+                                            
+                                            {
+                                                (singleProfile.is_staff)?
+                                                    (post.approved === false) ?                         
+                                                        <button className={post.id} onClick={() => approve_post_prompt(post.id)}>Approve</button>
+                                                    : <button className={post.id} onClick={() => unapprove_post_prompt(post.id)}>Unapprove</button>
+                                                : <div></div>
+                                            }
+                                        </section>
+                                }
+                        }
                         }
                     }
                     )

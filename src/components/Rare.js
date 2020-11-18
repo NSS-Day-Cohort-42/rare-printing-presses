@@ -21,13 +21,15 @@ export const Rare = (props) => (
                 return <Redirect to="/login" />
             }
         }} />
-        <Route path="/login" render={() => {
-            if (localStorage.getItem("rareUser_id")) {
-                return <Redirect to="/" />
-            } else {
-                return <Login />
-            }
-        }} />
-        <Route path="/register" render={props => <Register {...props} />} />
+        <UserProfileProvider>
+            <Route path="/login" render={() => {
+                if (localStorage.getItem("rareUser_id")) {
+                    return <Redirect to="/" />
+                } else {
+                    return <Login />
+                }
+            }} />
+            <Route path="/register" render={props => <Register {...props} />} />
+        </UserProfileProvider>
     </>
 )
