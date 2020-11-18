@@ -43,7 +43,7 @@ export const PostDetails = (props) => {
             }
         })
         setCountObject(object)
-    }, [singlePost, newReaction])
+    }, [singlePost])
 
 
 
@@ -90,13 +90,15 @@ export const PostDetails = (props) => {
                                         return <p key={t.tag.label}>{t.tag.label}</p>
                                     })}</div>
                                 <div className="postReactions">
-                                {
+                                    {
                                         reactions.map(r => {
-                                            return (<button className="reaction" key={r.label}>
+                                            return (<button className="reaction" key={r.label} onClick={()=>{
+                                                newPostReaction({"post_id": singlePost.id, "reaction_id": r.id})
+                                            }}>
                                                 {
                                                     countObject.hasOwnProperty(r.id) ? countObject[`${r.id}`] : null
                                                 }
-                                                <img className="reaction_img" src={r.image_url} />{r.label}</button>)
+                                                <img className="reaction_img" src={r.image_url} /></button>)
                                         })
                                     }
                                 </div>
