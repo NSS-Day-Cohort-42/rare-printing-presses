@@ -16,13 +16,21 @@ export const SubscriptionProvider = (props) => {
         .then(setSubscriptions)
     }
 
+    const followAuthor = followerId => {
+        return fetch(`http://localhost:8000/subscriptions/${followerId}/follow`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
+        }
+    })
+        .then(response => response.json())
+}
+
     return (
         <SubscriptionContext.Provider value={{
-            subscriptions, getAllSubscriptions
+            subscriptions, getAllSubscriptions, followAuthor
         }}>
             {props.children}
         </SubscriptionContext.Provider>
     )
 }
-
-export default SubscriptionProvider

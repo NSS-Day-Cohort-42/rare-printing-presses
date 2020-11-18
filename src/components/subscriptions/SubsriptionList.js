@@ -27,7 +27,6 @@ export const SubscriptionList = (props) => {
             display: "flex",
             bottom: 0,
             background: "black",
-            margin: 0
         },
         },
         primary: {
