@@ -13,7 +13,6 @@ export const PostList = (props) => {
     const { posts, getAllPosts, getPostsByCategoryId, deletePost } = useContext(PostContext)
     const { categories, getAllCategories} = useContext(CategoryContext)
 
-
     useEffect(() => {
         getAllPosts()
             .then(getAllCategories)
@@ -106,7 +105,11 @@ export const PostList = (props) => {
                                         </Button>
                                         <Button className="postDetailsButton" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 40 }} className={classes.primary} /> </Button>
                                     </div>
-                                    </section>
+                                    {
+                                        (post.approved === false) ? <div><strong><emphasis>Pending Approval</emphasis></strong></div>
+                                        : null
+                                    }
+                                </section>
                     })
                 }
             </article>

@@ -26,7 +26,6 @@ export const NavBar = () => {
        
     }, [])
     
-    console.log(singleProfile)
 
     return (
         <ul className="navbar">
@@ -39,12 +38,18 @@ export const NavBar = () => {
             <li className="navbar__item">
                 <Link className="navbar__link" to="/userposts"><div className ="icon"><VisibilityIcon style={{ fontSize: 28 }} />Your Posts</div></Link>
             </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/categories"><div className ="icon"><CategoryIcon style={{ fontSize: 28 }} />Category Manager</div></Link>
-            </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/tag"><div className ="icon"><LoyaltyIcon style={{ fontSize: 28 }} />Tags</div> </Link>
-            </li>
+            {
+                singleProfile.is_staff ? <li className="navbar__item">
+                            <Link className="navbar__link" to="/categories"><div className ="icon"><CategoryIcon style={{ fontSize: 28 }} />Category Manager</div></Link>
+                        </li>
+                : null
+            }
+            {
+                singleProfile.is_staff ? <li className="navbar__item">
+                    <Link className="navbar__link" to="/tag"><div className ="icon"><LoyaltyIcon style={{ fontSize: 28 }} />Tags</div> </Link>
+                    </li>
+                : null
+            }
             <li className="navbar__item">
             <Link className="navbar__link" to="/subscriptions"><div className ="icon"><AddCircleOutlineIcon style={{ fontSize: 28 }} />Subscriptions</div> </Link>
             </li>

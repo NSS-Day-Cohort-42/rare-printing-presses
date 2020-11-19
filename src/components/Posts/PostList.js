@@ -11,16 +11,28 @@ import {HumanDate} from '../utils/HumanDate'
 import { DateTime } from "luxon"
 
 export const PostList = (props) => {
-    const { posts, getAllPosts, deletePost, updatePostApproval } = useContext(PostContext)
-    const { getSingleProfile, singleProfile } = useContext(ProfileContext)
+    const { posts, getAllPosts, deletePost, updatePostApproval} = useContext(PostContext)
+    const { getSingleProfile, singleProfile,  getSingleRareProfile, rareSingleProfile  } = useContext(ProfileContext)
 
     
     const currentUser = localStorage.getItem("rareUser_number")
 
     useEffect(() => {
-        getSingleProfile(currentUser)
-        getAllPosts()
+        getSingleRareProfile(currentUser)
+        .then(() => getAllPosts())
+        .then(() => getSingleProfile(currentUser))
     }, [])
+
+    useEffect(() => {
+        if(rareSingleProfile.hasOwnProperty("active") && rareSingleProfile.active === false) {
+            window.alert("User is not currently active")
+            localStorage.removeItem("rareUser_id")
+            localStorage.removeItem("rareUser_number")
+            props.history.push("/login")
+        }
+    }, [rareSingleProfile])
+
+    console.log(rareSingleProfile, "RARE")
 
     const useStyles = makeStyles((thbe) => ({
             root: {
@@ -76,7 +88,6 @@ export const PostList = (props) => {
 
     
     const classes = useStyles()
-    
     return (
         <>
             <article className="createArticle">
@@ -157,16 +168,24 @@ export const PostList = (props) => {
                                             }
                                         </section>
                                 }
-                        }
-                        }
-                    }
+                                }
+                            }}
                     )
-                    .reverse()
-                }
-
-            </article>
-        </>
-    )
+                            .reverse()
+                        }
+        
+                    </article>
+                </>
+            )
+    //     } else {
+    //         window.alert("User is not currently active")
+    //         localStorage.removeItem("rareUser_id")
+    //         props.history.push("/login")
+    //         return null
+    //     }
+    // } else {
+    //     return (<div></div>)
+    // }
 }
 
 export default PostList
