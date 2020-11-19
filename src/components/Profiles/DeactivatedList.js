@@ -59,7 +59,7 @@ export const DeactivatedList = (props) => {
                             </section>
                 })
             }
-                <button onClick={() => {
+                <button className="back-btn" onClick={() => {
             props.history.push("/userprofiles")
             }}>Back</button>
         </article>

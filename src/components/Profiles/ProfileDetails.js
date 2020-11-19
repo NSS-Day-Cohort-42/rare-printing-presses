@@ -47,11 +47,15 @@ export const ProfileDetails = (props) => {
         <article className="profileContainer">
             <section key={rareSingleProfile.id} className="profiles">
                 <div className="profile-info">
+                    <div className="profile-left">
                     <div className="profileFullName">{rareSingleProfile.user.first_name} {rareSingleProfile.user.last_name}</div>
                     <img src={rareSingleProfile.profile_image_url}></img>
+                    </div>
+                    <div className="profile-right">
                     <div className="profileUsername">{rareSingleProfile.user.username}</div>
                     <div className="profile_Is_Staff">{rareSingleProfile.user.is_staff}</div>
                     <div className="profile_Is_Staff">{rareSingleProfile.created_on}</div>
+                    
                     {
                         (rareSingleProfile.user.is_staff === true) ? <div className="profile_Is_Staff">Admin</div> 
                         : <div className="profile_Is_Staff">Author</div>
@@ -70,6 +74,7 @@ export const ProfileDetails = (props) => {
                         </div>
                         : null
                     }
+                    </div>
                 </div>
             </section>
 
