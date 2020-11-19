@@ -91,7 +91,7 @@ export const PostList = (props) => {
                                         <div className="post-info">
                                                     <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
                                                     <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
-                                                    <div className="image"><img src={post.image_url}></img></div>
+                                                    <div className="image"><img src={post.image_url}/></div>
                                                     <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
                                                 </div>
         
@@ -117,7 +117,7 @@ export const PostList = (props) => {
                                         <div className="post-info">
                                                     <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
                                                     <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
-                                                    <div className="image"><img src={post.image_url}></img></div>
+                                                    <div className="image">Mo</div>
                                                     <div className="PostAuthor">{post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
                                                 </div>
         
@@ -143,7 +143,7 @@ export const PostList = (props) => {
                                             <div className="post-info">
                                                 <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
                                                 <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
-                                                <div className="image"><img src={post.image_url}></img></div>
+                                                <div className="image"><img src={post.image_url}/></div>
                                                 <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
                                             </div>
                                             <div className="post-icons"></div>
