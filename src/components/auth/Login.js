@@ -5,7 +5,7 @@ import "./Auth.css"
 
 
 export const Login = () => {
-    const { getSingleProfile, singleProfile} = useContext(ProfileContext)
+    const { getSingleProfile, singleProfile, getSingleRareProfile, rareSingleProfile} = useContext(ProfileContext)
     const email = useRef()
     const password = useRef()
     const invalidDialog = useRef()
@@ -13,7 +13,8 @@ export const Login = () => {
     let userNumber = localStorage.getItem("rareUser_number")
 
 
-    console.log(singleProfile, "test")
+    console.log(rareSingleProfile, "test")
+
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -34,11 +35,8 @@ export const Login = () => {
                 if (res.valid) {
                     localStorage.setItem("rareUser_id", res.token )
                     localStorage.setItem("rareUser_number", res.user_no)
-                    getSingleProfile(userNumber)
-                    console.log(singleProfile, "test")
-                    .then( (singleProfile.active) ?
-                        history.push("/posts")
-                    : window.alert("User is not currently active."))
+                    history.push("/posts")
+                    
                 }
                 else {
                     invalidDialog.current.showModal()

@@ -26,7 +26,6 @@ export const NavBar = () => {
        
     }, [])
     
-    console.log(singleProfile)
 
     return (
         <ul className="navbar">

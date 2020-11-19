@@ -19,14 +19,11 @@ import { PostForm } from "./Posts/PostForm"
 // import { ProfileProvider} from "./auth/AuthProvider"
 import { PostTagProvider } from "./tags/PostTagProvider"
 import { CategoryEdit } from "./categories/CategoryEdit"
-import ReactionProvider from "./reactions/ReactionProvider"
 import { SubscriptionProvider } from "./subscriptions/SubscriptionProvider"
 import { SubscriptionList } from "./subscriptions/SubsriptionList"
 import { ProfileList } from "./Profiles/ProfileList"
 import { DeactivatedList } from "./Profiles/DeactivatedList"
 import { UserProfileProvider } from "./Profiles/ProfileProvider"
-import { ProfileDetails } from "./Profiles/ProfileDetails"
-import { ReactionForm } from "./reactions/ReactionForm"
 
 export const ApplicationViews = () => {
     return <>
@@ -72,11 +69,8 @@ export const ApplicationViews = () => {
                         </CategoriesProvider>
                     </CommentProvider>
                 </PostsProvider>
-                
-            
                 <PostTagProvider>
                     <PostsProvider>
-                     <ReactionProvider>
                         <CommentProvider>
                             <CategoriesProvider>
                                 <TagProvider>
@@ -95,18 +89,11 @@ export const ApplicationViews = () => {
                                             <CommentForm {...props}/>
                                         </>
                                     }} />    
-                                    <Route exact path="/create/reaction" render={(props) => {
-                                        return <> 
-                                            <ReactionForm {...props}/>
-                                        </>
-                                    }} />    
                                 </TagProvider>
                             </CategoriesProvider>
                         </CommentProvider>
-                        </ReactionProvider>
                     </PostsProvider>
                 </PostTagProvider>
-            
 
             <TagProvider>
                 <PostTagProvider>
@@ -150,21 +137,17 @@ export const ApplicationViews = () => {
                                 return <ProfileList {...props}/>
                             }}>
                 </Route>
-                <Route path="/rareprofile/:sampleId(\d+)" render ={(props) => {
-                                return <ProfileDetails {...props} />
-                            }}>
-                </Route>
                 <Route path="/userprofiles/deactivated" render ={(props) => {
-                                return <DeactivatedList {...props} />
+                                return <DeactivatedList {...props}/>
                             }}>
                 </Route>
             </UserProfileProvider>
-            
-            <Route path="/logout" render={
-                (props) => {
-                    localStorage.removeItem("rareUser_id")
-                    props.history.push("/login")
-                }
-            } />
-            </>
-        }
+
+        <Route path="/logout" render={
+            (props) => {
+                localStorage.removeItem("rareUser_id")
+                props.history.push("/login")
+            }
+        } />
+    </>
+}
