@@ -24,6 +24,7 @@ import { ProfileList } from "./Profiles/ProfileList"
 import { DeactivatedList } from "./Profiles/DeactivatedList"
 import { UserProfileProvider } from "./Profiles/ProfileProvider"
 import { ReactionProvider } from "./reactions/ReactionProvider"
+import { ReactionForm } from "./reactions/ReactionForm"
 
 export const ApplicationViews = () => {
     return <>
@@ -82,6 +83,10 @@ export const ApplicationViews = () => {
                                                 }} />
                                                 <Route path="/posts/create" render ={(props) => {
                                                     return <PostForm {...props}/>
+                                                }}>
+                                                </Route>
+                                                <Route path="/create/reaction" render ={(props) => {
+                                                    return <ReactionForm {...props}/>
                                                 }}>
                                                 </Route>
                                                 <Route path="/posts/edit/:postId(\d+)" render ={(props) => {
