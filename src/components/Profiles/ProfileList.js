@@ -74,7 +74,7 @@ export const ProfileList = (props) => {
     }, [])
     
 
-    let userNumber = localStorage.getItem("rareUser_number")
+   
     if (singleProfile.is_staff) {
         return (
             <>
