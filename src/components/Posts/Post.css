@@ -38,8 +38,8 @@
     text-align: center;
     padding:2px;
     width: 15rem;
-    margin-top: 29rem;
-    margin-left: 3rem;
+    margin-top: 26rem;
+    margin-left: 2rem;
     font-size: 25px;
 }
 
@@ -52,15 +52,17 @@
 
 .PostTitle{
     font-weight: bold;
+    font-size: 35px;
+    margin-left: 3rem;
+    text-decoration: none;
 }
 
 .PostCategory{
     font-style: italic;
+    margin-left: 3rem;
 }
 
-.PostTitle,.PostCategory{
-    margin-left: 1rem;
-}
+
 
 .post-icons{
     display: flex;
