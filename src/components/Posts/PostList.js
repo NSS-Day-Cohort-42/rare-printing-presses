@@ -125,9 +125,9 @@ export const PostList = (props) => {
                                                             onClick={() => {
                                                                     props.history.push(`/posts/edit/${post.id}`)
                                                             }}>
-                                                            <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
+                                                            <EditIcon style={{ fontSize: 30 }} className={classes.primary} /> 
                                                     </Button>
-                                                    <Button className="postDetailsButton" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 20 }} className={classes.primary} /></Button>
+                                                    <Button className="postDetailsButton" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 30 }} className={classes.primary} /></Button>
                                                 </div>
                                                 {
                                                     (singleProfile.is_staff)?
