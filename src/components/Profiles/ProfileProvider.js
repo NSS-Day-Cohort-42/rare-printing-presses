@@ -4,7 +4,9 @@ export const ProfileContext = React.createContext()
 
 export const UserProfileProvider = (props) => {
     const [profiles, setProfiles] = useState([])
-    const [singleProfile, setProfile] = useState([])
+    // const [singleProfile, setProfile] = useState([])
+    const [rareSingleProfile, setRareSingleProfile] = useState({"user": {}})
+    const [singleProfile, setProfile] = useState({})
 
     const getAllProfiles = () => {
         return fetch(`http://localhost:8000/profile`, {
@@ -22,6 +24,15 @@ export const UserProfileProvider = (props) => {
             }})
             .then(res => res.json())
             .then(setProfile)
+    }
+    
+    const getSingleRareProfile = (profile) => {
+        return fetch(`http://localhost:8000/rareprofile/${profile}`, {
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("rareUser_id")}`
+            }})
+            .then(res => res.json())
+            .then(setRareSingleProfile)
     }
 
     const updateActive = profile => {
@@ -50,7 +61,7 @@ export const UserProfileProvider = (props) => {
 
     return (
         <ProfileContext.Provider value={{
-            getAllProfiles, profiles, singleProfile, getSingleProfile, updateActive, makeAdmin
+            getAllProfiles, profiles, singleProfile, getSingleProfile, updateActive, makeAdmin, getSingleRareProfile, rareSingleProfile
         }}>
             {props.children}
         </ProfileContext.Provider>
