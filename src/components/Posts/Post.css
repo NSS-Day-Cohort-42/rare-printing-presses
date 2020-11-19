@@ -78,10 +78,6 @@
     flex-direction: column;
 }
 
-.post-info>*{
-    /* margin-top:2px; */
-}
-
 .postDetailsButton {
     border: none;
     background-color: white;
