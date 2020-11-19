@@ -16,7 +16,6 @@ import { NavBar } from "./nav/NavBar"
 import { CategoriesProvider } from "./categories/CategoriesProvider";
 import { CategoriesList } from "./categories/CategoriesList"
 import { PostForm } from "./Posts/PostForm"
-// import { ProfileProvider} from "./auth/AuthProvider"
 import { PostTagProvider } from "./tags/PostTagProvider"
 import { CategoryEdit } from "./categories/CategoryEdit"
 import { SubscriptionProvider } from "./subscriptions/SubscriptionProvider"
@@ -24,76 +23,78 @@ import { SubscriptionList } from "./subscriptions/SubsriptionList"
 import { ProfileList } from "./Profiles/ProfileList"
 import { DeactivatedList } from "./Profiles/DeactivatedList"
 import { UserProfileProvider } from "./Profiles/ProfileProvider"
+import { ReactionProvider } from "./reactions/ReactionProvider"
 
 export const ApplicationViews = () => {
     return <>
                 <PostsProvider>
-                    <CommentProvider>
-                        <CategoriesProvider>
-                            <TagProvider>
-                                <SubscriptionProvider>
-                                    <UserProfileProvider>
-                                    <Route exact path="/categories" render={(props) => {
-                                    return <> 
-                                        <CategoriesList history={props.history} />
-                                    </>
-                                    }} />    
-                                    <Route exact path="/categories/edit/:categoryId(\d+)" render={(props) => {
-                                    return <> 
-                                        <CategoryEdit {...props} />
-                                    </>
-                                    }} />    
-                                    <Route exact path="/posts" render={(props) => {
-                                        return <> 
-                                            <PostList history={props.history} />
-                                        </>
-                                    }} /> 
-                                    <Route exact path="/userposts" render={(props) => {
-                                        return <>
-                                            <UserPostList history={props.history} />
-                                        </>
-                                    }} /> 
-                                    <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
-                                        return <>
-                                            <EditCommentForm {...props}/>
-                                        </>
-                                    }} />
-                                    <Route exact path="/subscriptions" render={(props) => {
-                                        return <>
-                                            <SubscriptionList history={props.history} />
-                                        </>
-                                    }} />
-                                    </UserProfileProvider>
-                                </SubscriptionProvider>     
-                            </TagProvider>
-                        </CategoriesProvider>
-                    </CommentProvider>
+                    <PostTagProvider>
+                        <ReactionProvider>
+                            <CommentProvider>
+                                <CategoriesProvider>
+                                    <TagProvider>
+                                        <SubscriptionProvider>
+                                            <UserProfileProvider>
+                                                <Route exact path="/categories" render={(props) => {
+                                                    return <> 
+                                                        <CategoriesList history={props.history} />
+                                                    </>
+                                                }} />    
+                                                <Route exact path="/categories/edit/:categoryId(\d+)" render={(props) => {
+                                                    return <> 
+                                                        <CategoryEdit {...props} />
+                                                    </>
+                                                }} />    
+                                                <Route exact path="/posts" render={(props) => {
+                                                    return <> 
+                                                        <PostList history={props.history} />
+                                                    </>
+                                                }} /> 
+                                                <Route exact path="/userposts" render={(props) => {
+                                                    return <>
+                                                        <UserPostList history={props.history} />
+                                                    </>
+                                                }} /> 
+                                                <Route exact path="/comments/:sampleId(\d+)" render={(props) => {
+                                                    return <>
+                                                        <EditCommentForm {...props}/>
+                                                    </>
+                                                }} />
+                                                <Route exact path="/subscriptions" render={(props) => {
+                                                    return <>
+                                                        <SubscriptionList history={props.history} />
+                                                    </>
+                                                }} />
+                                                <Route exact path="/posts/:sampleId(\d+)" render={(props) => {
+                                                        return <> 
+                                                            <PostDetails {...props}/>
+                                                        </>
+                                                    }} />    
+                                                <Route exact path="/posts/:sampleId(\d+)/viewcomments" render={(props) => {
+                                                    return <> 
+                                                        <Comment {...props}/>
+                                                    </>
+                                                }} />    
+                                                <Route exact path="/createcomment/:sampleId(\d+)" render={(props) => {
+                                                    return <> 
+                                                        <CommentForm {...props}/>
+                                                    </>
+                                                }} />
+                                                <Route path="/posts/create" render ={(props) => {
+                                                    return <PostForm {...props}/>
+                                                }}>
+                                                </Route>
+                                                <Route path="/posts/edit/:postId(\d+)" render ={(props) => {
+                                                    return <PostForm {...props} /> 
+                                                    }}></Route>
+                                            </UserProfileProvider>
+                                        </SubscriptionProvider>     
+                                    </TagProvider>
+                                </CategoriesProvider>
+                            </CommentProvider>
+                        </ReactionProvider>
+                    </PostTagProvider>
                 </PostsProvider>
-                <PostTagProvider>
-                    <PostsProvider>
-                        <CommentProvider>
-                            <CategoriesProvider>
-                                <TagProvider>
-                                    <Route exact path="/posts/:sampleId(\d+)" render={(props) => {
-                                        return <> 
-                                            <PostDetails {...props}/>
-                                        </>
-                                    }} />    
-                                    <Route exact path="/posts/:sampleId(\d+)/viewcomments" render={(props) => {
-                                        return <> 
-                                            <Comment {...props}/>
-                                        </>
-                                    }} />    
-                                    <Route exact path="/createcomment/:sampleId(\d+)" render={(props) => {
-                                        return <> 
-                                            <CommentForm {...props}/>
-                                        </>
-                                    }} />    
-                                </TagProvider>
-                            </CategoriesProvider>
-                        </CommentProvider>
-                    </PostsProvider>
-                </PostTagProvider>
 
             <TagProvider>
                 <PostTagProvider>
@@ -114,23 +115,6 @@ export const ApplicationViews = () => {
                     </Route>
                 </PostTagProvider>
             </TagProvider>
-            
-            <PostsProvider>
-                <CategoriesProvider>
-                    <TagProvider>
-                        <UserProfileProvider>
-                        <Route path="/posts/create" render ={(props) => {
-                            return <PostForm {...props}/>
-                        }}>
-                        </Route>
-                        <Route path="/posts/edit/:postId(\d+)" render ={(props) => {
-                            return <PostForm {...props} /> 
-                            }}>
-                        </Route>
-                        </UserProfileProvider>
-                    </TagProvider>
-                </CategoriesProvider>
-            </PostsProvider>
 
             <UserProfileProvider>
                 <Route exact path="/userprofiles" render ={(props) => {
