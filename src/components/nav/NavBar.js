@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect, useContext} from "react"
 import { Link, useHistory } from "react-router-dom"
 import "./NavBar.css"
 import Logo from "./rare.jpeg"
@@ -9,10 +9,25 @@ import CategoryIcon from '@material-ui/icons/Category';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import PersonIcon from '@material-ui/icons/Person';
+import {ProfileContext} from '../Profiles/ProfileProvider'
+
 
 
 
 export const NavBar = () => {
+    const {getSingleProfile, singleProfile} = useContext(ProfileContext)
+    
+
+
+    let userNumber = localStorage.getItem("rareUser_number")
+
+    useEffect(() => {
+        getSingleProfile(userNumber)
+       
+    }, [])
+    
+    console.log(singleProfile)
+
     return (
         <ul className="navbar">
             <li className="navbarTitle">
@@ -31,14 +46,20 @@ export const NavBar = () => {
                 <Link className="navbar__link" to="/tag"><div className ="icon"><LoyaltyIcon style={{ fontSize: 28 }} />Tags</div> </Link>
             </li>
             <li className="navbar__item">
-                <Link className="navbar__link" to="/subscriptions"><div className ="icon"><AddCircleOutlineIcon style={{ fontSize: 28 }} />Subscriptions</div> </Link>
+            <Link className="navbar__link" to="/subscriptions"><div className ="icon"><AddCircleOutlineIcon style={{ fontSize: 28 }} />Subscriptions</div> </Link>
             </li>
             <li className="navbar__item">
                 <Link className="navbar__link" to="/userprofiles"><div className ="icon"><PersonIcon style={{ fontSize: 28 }} />User Profiles</div> </Link>
             </li>
+            {
+                singleProfile.is_staff ? <li className="navbar__item">
+                <Link className="navbar__link" to="/create/reaction"><div className ="icon"><ExitToAppIcon style={{ fontSize: 28 }} />Create Reaction</div></Link>
+            </li> : null
+            }
             <li className="navbar__item">
                 <Link className="navbar__link" to="/logout"><div className ="icon"><ExitToAppIcon style={{ fontSize: 28 }} />Logout</div></Link>
             </li>
+            
         </ul>
     )
 }
