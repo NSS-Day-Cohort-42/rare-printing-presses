@@ -63,6 +63,10 @@ export const ApplicationViews = () => {
                                             <SubscriptionList history={props.history} />
                                         </>
                                     }} />
+                                     <Route exact path="/userprofiles" render ={(props) => {
+                                        return <ProfileList {...props}/>
+                                    }}>
+                                        </Route>
                                     </UserProfileProvider>
                                 </SubscriptionProvider>     
                             </TagProvider>
@@ -133,11 +137,7 @@ export const ApplicationViews = () => {
             </PostsProvider>
 
             <UserProfileProvider>
-                <Route exact path="/userprofiles" render ={(props) => {
-                                return <ProfileList {...props}/>
-                            }}>
-                </Route>
-                <Route path="/userprofiles/deactivated" render ={(props) => {
+                               <Route path="/userprofiles/deactivated" render ={(props) => {
                                 return <DeactivatedList {...props}/>
                             }}>
                 </Route>
