@@ -54,8 +54,10 @@
 
 .post-icons{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-end;
+    background-color: white;
+    margin-top: 5rem;
 }
 
 .post-info{

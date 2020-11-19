@@ -115,7 +115,7 @@ export const PostList = (props) => {
                                 if(post.IsAuthor){
                                     return <section key={post.id} className="posts">
                                         <div className="post-info">
-                                                    <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
+                                                    <div className="PostAuthor">{post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
                                                     <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
                                                     <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
                                                 </div>
@@ -127,7 +127,7 @@ export const PostList = (props) => {
                                                             }}>
                                                             <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
                                                     </Button>
-                                                    <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 20 }} className={classes.primary} /></button>
+                                                    <Button className="postDetailsButton" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 20 }} className={classes.primary} /></Button>
                                                 </div>
                                                 {
                                                     (singleProfile.is_staff)?
