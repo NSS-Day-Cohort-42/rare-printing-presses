@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState, useRef } from "react"
-import { ProfileContext } from "./ProfileProvider" 
+import { ProfileContext } from "./ProfileProvider"
+import { SubscriptionContext } from "../subscriptions/SubscriptionProvider"
 import "./Profile.css"
 
 
 export const ProfileList = (props) => {
     const { getAllProfiles, profiles, getSingleProfile, singleProfile, updateActive, makeAdmin} = useContext(ProfileContext)
+    const { getAllSubscriptions, followAuthor, unsubscribe, subscriptions } = useContext(SubscriptionContext)
     const b1 = "Admin"
 
     const add_admin_prompt = (id) => {
@@ -55,6 +57,7 @@ export const ProfileList = (props) => {
     useEffect(() => {
         getAllProfiles()
         getSingleProfile(userNumber)
+        getAllSubscriptions()
     }, [])
 
     let userNumber = localStorage.getItem("rareUser_number")
@@ -85,10 +88,23 @@ export const ProfileList = (props) => {
                             </section>
                 })
             }
-                <button onClick={() => {
+        
+            <button onClick={() => {
             props.history.push("/userprofiles/deactivated")
             }}>View Deactivated</button>
+            <div className="subscriptionButtons">
+                { subscriptions.map(s => {
+                    return s.subscribed
+                        ? <button className="btn btn-3"
+                            onClick={() => unsubscribe(subscriptions.id)}
+                            >Unsubscribe</button>
+                        : <button className="btn btn-2"
+                            onClick={() => followAuthor(subscriptions.id)}
+                            >Subscribe</button>
+                            })}
+            </div>
         </article>
+        
         )} else{
             return (
                 <article className="profileContainer">
@@ -104,14 +120,18 @@ export const ProfileList = (props) => {
     
                     })
                 }
+                <div className="subscriptionButtons">
+                { subscriptions.map(s => {
+                    return s.subscribed
+                        ? <button className="btn btn-3"
+                            onClick={() => unsubscribe(subscriptions.id)}
+                            >Unsubscribe</button>
+                        : <button className="btn btn-2"
+                            onClick={() => followAuthor(subscriptions.id)}
+                            >Subscribe</button>
+                            })}
+            </div>
             </article>
             )
-
         }
-    
-
-}
-
-
-{/* <div className="profile_Is_Staff">{p.user.is_staff}<button>Make Admin</button></div> */}
-{/* <div className="profile_Is_Staff">{p.user.is_staff}<button>Deactivate Account</button></div> */}
+    }
