@@ -25,6 +25,7 @@ import { DeactivatedList } from "./Profiles/DeactivatedList"
 import { UserProfileProvider } from "./Profiles/ProfileProvider"
 import { ReactionProvider } from "./reactions/ReactionProvider"
 import { ReactionForm } from "./reactions/ReactionForm"
+import { ProfileDetails } from "./Profiles/ProfileDetails"
 
 export const ApplicationViews = () => {
     return <>
@@ -128,6 +129,10 @@ export const ApplicationViews = () => {
                 </Route>
                 <Route path="/userprofiles/deactivated" render ={(props) => {
                                 return <DeactivatedList {...props}/>
+                            }}>
+                </Route>
+                <Route path="/rareprofile/:user_id(\d+)" render ={(props) => {
+                                return <ProfileDetails {...props}/>
                             }}>
                 </Route>
             </UserProfileProvider>

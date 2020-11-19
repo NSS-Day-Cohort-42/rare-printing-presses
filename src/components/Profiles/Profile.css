@@ -1,20 +1,50 @@
 .profileContainer { 
-    display: flex;
+    display: block;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-evenly;
-    align-items: auto;
-    align-content: start;
     background-color: rgb(242, 240, 240);
     border-top-left-radius: 25px;
-    margin-top: 5rem;
     margin-left: 25rem;
     height: 900px;
     overflow: scroll;
 }
+.heading{
+    color: #828282;
+   font: 26px Monsarrat, sans-serif;
+   text-align: center;
+   margin-top: 11rem;
+}
 
-.profiles { 
+.profile { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.profileFullName{
+    margin-right: 3rem;
+}
+
+.back-btn{
+    margin-left: 2rem;
+    margin-top: 8rem;
+}
+
+.profile-info{
     display: flex;
     flex-direction: row;
-    border: 1px solid black
+    margin-bottom: 1rem;
+    margin-left: 3rem;
+    margin-top: 3rem;
+    align-self: center;
+}
+.profile-right{
+    display:flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    margin-top:5rem;
+}
+
+.profileUsername{
+    margin-right: 2rem;
 }
