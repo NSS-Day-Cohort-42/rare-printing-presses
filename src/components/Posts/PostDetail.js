@@ -148,7 +148,7 @@ export const PostDetails = (props) => {
                                         })
                                     }
                                 </div>
-                                <button className="btn btn-primary" onClick={() => props.history.push(`/managetags/${postNumber}`)}>Manage Tags</button>
+                                <button onClick={() => props.history.push(`/managetags/${postNumber}`)}>Manage Tags</button>
                             </section>
                             <section className="contentTags">
                                 <Link className="category-list-link" to={{ pathname: "/categories" }}> {category.label}</Link>

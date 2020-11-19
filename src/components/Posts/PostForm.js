@@ -11,6 +11,7 @@ export const PostForm = (props) => {
     const { tags, getTags } = useContext(TagContext)
     const { categories, getAllCategories } = useContext(CategoryContext)
     const [postState, setPost] = useState({})
+    const [ postImage, setPostImage ] = useState("")
 
     const editMode = props.match.params.hasOwnProperty("postId")
     
@@ -48,7 +49,6 @@ export const PostForm = (props) => {
             return false;
         }
     }
-
     const constructNewPost = () => {
         const categoryId = parseInt(postState.category_id)
         const now = DateTime.local()
@@ -59,7 +59,7 @@ export const PostForm = (props) => {
                 content: postState.content,
                 date: now.toISODate(),
                 category_id: categoryId,
-                image_url: postState.image_url,
+                image_url: postImage.image_url,
                 approved: false
             })
 
@@ -70,12 +70,27 @@ export const PostForm = (props) => {
                 content: postState.content,
                 date: now.toISODate(),
                 category_id: categoryId,
-                image_url: "",
+                image_url: postImage.image_url,
                 approved: false
             })
                 .then(() => props.history.push("/posts"))
         }
     }
+
+
+    const getBase64 = (file, callback) => {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => callback(reader.result));
+        reader.readAsDataURL(file);
+    }
+    
+    const createPostImageJSON = (event) => {
+        
+        getBase64(event.target.files[0], (base64ImageString) => {
+            setPostImage({'image_url':base64ImageString})
+        });
+    }
+
     const startDate = new Date()
 // form needs image url option
     return (
@@ -102,14 +117,11 @@ export const PostForm = (props) => {
                 </div>
             </fieldset>
             <fieldset>
-                <div className="form-group">
-                    <label htmlFor="image_url"></label>
-                    <input type="text" name="image_url" required className="form-control"
-                        placeholder="Image Url (Optional)"
-                        defaultValue={postState.image_url}
-                        onChange={handleControlledInputChange}
-                    />
-                </div>
+                        <div className="uploadButtons">
+                            <input type="file" id="image_url" onChange={(evt) => {createPostImageJSON(evt)}} />
+                            <input type="hidden" name="image_url" value={postState.id} />
+                        </div>
+                    
             </fieldset>
             <fieldset>
                 <div className="form-group">
@@ -133,6 +145,7 @@ export const PostForm = (props) => {
                             edit_prompt(postState.id)
                         } else {
                             constructNewPost()
+                            
                         }
                     }}
                     className="btn btn-primary">

@@ -8,6 +8,8 @@ export const ProfileList = (props) => {
     const { getAllProfiles, profiles, getSingleProfile, singleProfile, updateActive, makeAdmin } = useContext(ProfileContext)
     const b1 = "Admin"
 
+    let userNumber = localStorage.getItem("rareUser_number")
+
     const add_admin_prompt = (id) => {
         var retVal = window.confirm("Are you sure you want to make this person an admin?");
         if (retVal == true) {
@@ -19,24 +21,37 @@ export const ProfileList = (props) => {
         }
     }
 
+    const adminProfiles = profiles.filter(profile => {
+        return profile.user.is_staff === true
+    }) || {}
+
+    console.log(adminProfiles.length, "adminpros")
+
+
     const remove_admin_prompt = (id) => {
         var retVal = window.confirm("Are you sure you want to remove this admin?");
-        let thisUser = getSingleProfile(id)
-        if (retVal == true) {
-            makeAdmin(id)
-            props.history.push("/userprofiles")
-            return true;
+        if( retVal == true ) {
+            if(adminProfiles.length > 1) {
+                makeAdmin(id)
+                props.history.push("/userprofiles")
+                return true;
+            } else {
+                return window.alert("Please make someone else an admin before you deactivate this user's profile.");
+            }
         } else {
             return false;
         }
     }
-
     const deactivate_profile_prompt = (id) => {
         var retVal = window.confirm("Are you sure you want to deactivate this user's account?");
-        if (retVal == true) {
-            updateActive(id)
-            props.history.push("/userprofiles")
-            return true;
+            if( retVal == true ) {
+                if(id != userNumber) {
+                    updateActive(id)
+                    props.history.push("/userprofiles")
+                    return true;
+            } else {
+                return window.alert("Please make someone else an admin before you deactivate this user's profile.");
+            }
         } else {
             return false;
         }
@@ -57,10 +72,10 @@ export const ProfileList = (props) => {
         getAllProfiles()
         getSingleProfile(userNumber)
     }, [])
+    
 
     let userNumber = localStorage.getItem("rareUser_number")
     if (singleProfile.is_staff) {
-        console.log(singleProfile)
         return (
             <>
                 <article className="profileContainer">
