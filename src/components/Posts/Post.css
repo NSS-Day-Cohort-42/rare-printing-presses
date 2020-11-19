@@ -5,8 +5,10 @@
     justify-content: space-evenly;
     align-items: auto;
     align-content: start;
-    background-color: rgb(242, 240, 240);
+    background: rgb(55,47,101);
+    background: linear-gradient(180deg, rgba(55,47,101,1) 0%, rgba(122,148,186,1) 100%, rgba(179,179,179,1) 100%);
     border-top-left-radius: 25px;
+    box-shadow: 0px 6px 10px 2px rgb(98, 108, 161);
     margin-top: 5rem;
     margin-left: 25rem;
     height: 900px;
@@ -14,7 +16,8 @@
 }
 
 .posts { 
-    background-color: white;
+    background: rgb(200,200,200);
+    background: linear-gradient(180deg, rgba(200,200,200,1) 0%, rgba(255,255,255,1) 100%, rgba(179,179,179,1) 70%);
     margin-top: 2rem;
     margin-bottom: 20px;
     margin-left: .5rem;
@@ -22,22 +25,29 @@
     padding: 15px;
     border-radius: .3rem;
     color: black;
-    box-shadow: 0px 6px 10px 2px rgba(163, 163,163,1);
-    width: 25rem;
+    box-shadow: 0px 6px 10px 2px rgb(98, 108, 161);
+    width: 70rem;
+    height: 35rem;
     display:flex;
     justify-content: space-between;
 }
 
 .PostAuthor{
-    background-color: #72c8cc;
+    background-color: none;
     border-radius: 80px;
     text-align: center;
     padding:2px;
-    width: 7rem;
+    width: 15rem;
+    margin-top: 29rem;
+    margin-left: 3rem;
+    font-size: 25px;
 }
 
-.PostAuthor>p{
-    margin-left:3px;
+.PostAuthor{
+    /* margin-left:3px; */
+    display: flex;
+    justify-content: center;
+
 }
 
 .PostTitle{
@@ -56,9 +66,9 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    background-color: white;
-    margin-top: 5rem;
-    margin-left: 10rem;
+    background-color: none;
+    margin-top: 30rem;
+    margin-left: 40rem;
 }
 
 .post-info{
@@ -67,7 +77,7 @@
 }
 
 .post-info>*{
-    margin-top:2px;
+    /* margin-top:2px; */
 }
 
 .postDetailsButton {

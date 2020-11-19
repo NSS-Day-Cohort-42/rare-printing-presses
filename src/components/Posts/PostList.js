@@ -90,9 +90,9 @@ export const PostList = (props) => {
                         if(singleProfile.is_staff){
                                     return <section key={post.id} className="posts">
                                         <div className="post-info">
-                                                    <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
                                                     <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
                                                     <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
+                                                    <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
                                                 </div>
         
                                                 <div className="post-icons">
@@ -100,9 +100,9 @@ export const PostList = (props) => {
                                                             onClick={() => {
                                                                     props.history.push(`/posts/edit/${post.id}`)
                                                             }}>
-                                                            <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
+                                                            <EditIcon style={{ fontSize: 40 }} className={classes.primary} /> 
                                                     </Button>
-                                                    <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 20 }} className={classes.primary} /></button>
+                                                    <button className="btn postDetails__delete_btn" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 40 }} className={classes.primary} /></button>
                                                 </div>
                                                 {
                                                         (post.approved === false) ?                         
@@ -115,9 +115,9 @@ export const PostList = (props) => {
                                 if(post.IsAuthor){
                                     return <section key={post.id} className="posts">
                                         <div className="post-info">
-                                                    <div className="PostAuthor">{post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
                                                     <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
                                                     <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
+                                                    <div className="PostAuthor">{post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
                                                 </div>
         
                                                 <div className="post-icons">
@@ -125,9 +125,9 @@ export const PostList = (props) => {
                                                             onClick={() => {
                                                                     props.history.push(`/posts/edit/${post.id}`)
                                                             }}>
-                                                            <EditIcon style={{ fontSize: 30 }} className={classes.primary} /> 
+                                                            <EditIcon style={{ fontSize: 40 }} className={classes.primary} /> 
                                                     </Button>
-                                                    <Button className="postDetailsButton" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 30 }} className={classes.primary} /></Button>
+                                                    <Button className="postDetailsButton" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 40 }} className={classes.primary} /></Button>
                                                 </div>
                                                 {
                                                     (singleProfile.is_staff)?
@@ -140,9 +140,9 @@ export const PostList = (props) => {
                                 } else {
                                     return <section key={post.id} className="posts">
                                             <div className="post-info">
-                                                <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
                                                 <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
                                                 <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
+                                                <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
                                             </div>
                                             <div className="post-icons"></div>
                                             
