@@ -90,18 +90,20 @@ export const PostList = (props) => {
                         
                         return <section key={post.id} className="posts">
                                     <div className="post-info">
-                                        <div className="PostAuthor">Author: {post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
                                         <div className="PostTitle"><Link to={{pathname:`/posts/${post.id}`}}>{post.title}</Link></div>
                                         <div className="PostCategory"><Link className="category-list-link" to={{pathname:"/categories"}}> {post.category.label}</Link></div>
+                                        <div className="image"><img src={post.image_url}/></div>
+
+                                        <div className="PostAuthor">{post.rare_user.user.first_name} {post.rare_user.user.last_name}</div>
                                     </div>
                                     <div className="post-icons">
                                         <Button className="postDetailsButton" 
                                                 onClick={() => {
                                                         props.history.push(`/posts/edit/${post.id}`)
                                                 }}>
-                                                <EditIcon style={{ fontSize: 20 }} className={classes.primary} /> 
+                                                <EditIcon style={{ fontSize: 40 }} className={classes.primary} /> 
                                         </Button>
-                                        <Button className="btn postDetails__delete_btn" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 20 }} className={classes.primary} /> </Button>
+                                        <Button className="postDetailsButton" onClick={() => delete_prompt(post.id)}><DeleteIcon style={{ fontSize: 40 }} className={classes.primary} /> </Button>
                                     </div>
                                     {
                                         (post.approved === false) ? <div><strong><emphasis>Pending Approval</emphasis></strong></div>
